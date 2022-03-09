@@ -28,19 +28,19 @@ class progetto{
         return $this->leader;
     }
 
-    public function getNome(){
+    public function getNomeP(){
         return $this->nome;
     }
 
-    public function getDescrizione(){
+    public function getDescrizioneP(){
         return $this->descrizione;
     }
 
-    public function getData_scadenza(){
+    public function getDataScadenzaP(){
         return $this->data_scadenza;
     }
 
-    public function getData_creazione(){
+    public function getDataCreazioneP(){
         return $this->data_creazione;
     }
 }

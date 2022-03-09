@@ -4,16 +4,15 @@
 
         private $servername;
         private $username;
-        //private $pwd;
         private $dbname;
         private $connection;
 
-        private function getP(){return "";}
+        public function getP(){return "";}
 
         public function __construct() {
             $this->servername = "localhost";
             $this->username = "root";
-            //$this->pwd = getP();
+            $this->pwd = "";
             $this->dbname = "db_desarrollo";
         }
 
@@ -25,9 +24,9 @@
             $this->username = $username;
         }
 
-        /*public function setPassword($pwd) {
-            $this->pwd = $pwd;
-        }*/
+        public function setPassword() {
+            $this->pwd = "";
+        }
 
         public function setDbname ($db) {
             $this->dbname = $db;
@@ -38,7 +37,7 @@
         }
 
         public function startConnection() {
-            $this->connection = new mysqli($this->servername, $this->username, /*$this->pwd,*/ $this->dbname);
+            $this->connection = new mysqli($this->servername, $this->username, "", $this->dbname);
         }
 
         public function closeconnection() {
