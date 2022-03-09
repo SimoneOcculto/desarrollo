@@ -1,4 +1,5 @@
 <?php
+
     session_start();
 
     require 'BackEnd/db_handler.php';
