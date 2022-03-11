@@ -60,7 +60,6 @@ if(isset($_POST['search'])) {
     } else {
         foreach ($array as $value) {
             echo "<table>
-<<<<<<< HEAD
                         <tr><td>
                             " . $value->getNomeP() . "
                         </td><td>
@@ -70,17 +69,6 @@ if(isset($_POST['search'])) {
                         </td><td>
                             " . $value->getDataCreazioneP() . "
                         </td></tr>
-=======
-                            <tr><td>
-                                " . $value->getNomeP() . "
-                            </td><td>
-                                " . $value->getDescrizioneP() . "
-                            </td><td>
-                                " . $value->getDataScadenzaP() . "
-                            </td><td>
-                                " . $value->getDataCreazioneP() . "
-                            </td></tr>
->>>>>>> origin/main
                         </table>";
         }
     }
