@@ -41,7 +41,7 @@
     </head>
 
     <body>
-        <form action="nuova_task.php" method="POST">
+        <form action="" method="POST">
             <label>Email </label></br>
             <input type="email" name="email" required></br>
             <label>Nome progetto</label></br>
