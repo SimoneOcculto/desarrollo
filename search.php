@@ -28,15 +28,15 @@
                 } else {
                     foreach ($array as $value) {
                         echo "<table>
-                        <tr><td>
-                            " . $value->getNomeP() . "
-                        </td><td>
-                            " . $value->getDescrizioneP() . "
-                        </td><td>
-                            " . $value->getDataScadenzaP() . "
-                        </td><td>
-                            " . $value->getDataCreazioneP() . "
-                        </td></tr>
+                            <tr><td>
+                                " . $value->getNomeP() . "
+                            </td><td>
+                                " . $value->getDescrizioneP() . "
+                            </td><td>
+                                " . $value->getDataScadenzaP() . "
+                            </td><td>
+                                " . $value->getDataCreazioneP() . "
+                            </td></tr>
                         </table>";
                     }
                 }

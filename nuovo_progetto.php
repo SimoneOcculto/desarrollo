@@ -30,7 +30,6 @@
                 "DataScadenzaP" => $dataSca,
                 "DataCreazioneP" => $dataCrea);
             $progetto->register($array);
-
         }
     }
 
@@ -42,7 +41,7 @@
     </head>
 
     <body>
-        <form action="" method="POST">
+        <form action="nuova_task.php" method="POST">
             <label>Email </label></br>
             <input type="email" name="email" required></br>
             <label>Nome progetto</label></br>
@@ -56,6 +55,11 @@
                 ?>
             ></br>
             <input type="submit" name="invio">
+        </form>
+
+        <form method="POST" action="search.php">
+            <input type="text" placeholder="Search" aria-label="Search" name="search">
+            <button type="submit">Ricerca</button>
         </form>
     </body>
 </html>
