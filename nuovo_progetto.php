@@ -18,9 +18,6 @@
         $dataSca = $_POST['dataScadenza'];
         $dataCrea = date("Y-m-d");
 
-        echo $mailU;
-        echo $nomeProg;
-
         $progetto = new db_progetto();
 
         if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {

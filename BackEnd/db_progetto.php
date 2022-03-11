@@ -1,7 +1,7 @@
 <?php
 
     require 'progetto.php';
-    //require 'db_handler.php';
+    require 'db_handler.php';
 
     class db_progetto extends db_handler{
 
