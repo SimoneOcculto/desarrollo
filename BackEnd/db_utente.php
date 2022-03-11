@@ -1,6 +1,6 @@
 <?php
 
-require 'utente.php';
+    require 'utente.php';
 
     class db_utente extends db_handler{
         //dichiarazione attributi

@@ -24,11 +24,11 @@
         $progetto = new db_progetto();
 
         if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
-            $array = array("leader" => $_POST['email'],
-                "nome" => $_POST['nome'],
-                "descrizione" => $_POST['descrizione'],
-                "data_scadenza" => $dataSca,
-                "data_creazione" => $dataCrea);
+            $array = array("Leader" => $_POST['email'],
+                "NomeP" => $_POST['nome'],
+                "DescrizioneP" => $_POST['descrizione'],
+                "DataScadenzaP" => $dataSca,
+                "DataCreazioneP" => $dataCrea);
             $progetto->register($array);
 
         }
