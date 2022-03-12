@@ -24,6 +24,17 @@ class db_task extends  db_handler{
         $this->closeconnection();
     }
 
+    public function EliminaTask($id){
+
+        $this->startConnection();
+
+        $sql = "DELETE FROM task WHERE Progetto=".$id;
+
+        $this->getConnection()->query($sql);
+
+        $this->closeconnection();
+    }
+
 }
 
 

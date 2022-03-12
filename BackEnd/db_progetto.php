@@ -32,7 +32,8 @@
 
             $sql = "SELECT ID_Progetto 
                     FROM progetto 
-                    WHERE (Leader = '".$leader."' AND DataCreazioneP <= '".$dataCreazione."')";
+                    WHERE (Leader = '".$leader."' AND DataCreazioneP <= '".$dataCreazione."')
+                    ORDER BY ID_Progetto DESC";
 
             $result = $this->getConnection()->query($sql);
 
@@ -47,7 +48,7 @@
 
             $this->startConnection();
 
-            $sql = "SELECT DISTINCT ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP FROM progetto WHERE NomeP LIKE '%".$ricerca."%' ORDER BY dataCreazioneP DESC";
+            $sql = "SELECT DISTINCT ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') ORDER BY dataCreazioneP DESC";
 
             $result = $this->getConnection()->query($sql);
 
@@ -97,6 +98,30 @@
                 echo "Error in ".$sql."<br>".$this->startConnection()->error;
             }
             return $array;
+        }
+
+        public function EliminaProgetto($id){
+
+            $this->startConnection();
+
+            $sql = "DELETE FROM progetto WHERE ID_Progetto=".$id;
+
+            $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+        }
+
+        public function getNomeProg($id){
+
+            $this->startConnection();
+
+            $sql = "SELECT NomeP FROM progetto WHERE ID_Progetto=".$id;
+
+            $result=$this->getConnection()->query($sql);
+
+            $this->closeconnection();
+
+            return $result;
         }
 
     }

@@ -9,7 +9,7 @@
     }*/
 
     if(isset($_POST['invioP'])) {
-        require "BackEnd/db_progetto.php";
+        require_once "BackEnd/db_progetto.php";
 
         $mailU = $_POST['email'];
         $nomeProg = $_POST['nome'];
@@ -19,8 +19,6 @@
 
         $progetto = new db_progetto();
 
-        $ID_Progetto = $progetto->getIdUltimoProgetto($mailU, $dataCrea);
-
         if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
             $array = array("Leader" => $_POST['email'],
                 "NomeP" => $_POST['nome'],
@@ -29,6 +27,8 @@
                 "DataCreazioneP" => $dataCrea);
             $progetto->register($array);
         }
+
+        $ID_Progetto = $progetto->getIdUltimoProgetto($mailU, $dataCrea);
     }
 
     if(isset($_POST['invioT'])) {
@@ -74,7 +74,12 @@
 
     <body>
         <form action='nuova_task.php?id=<?php echo $ID_Progetto ?>' method="POST">
-            <label>Progetto numero: </label></br>
+            <label>Progetto: <?php
+                require_once "BackEnd/db_progetto.php";
+                $progetti2 = new db_progetto();
+                $result = $progetti2->getArrayProgetti($ID_Progetto);
+                echo $result->getNomeP();
+                ?></label></br>
             <label>Nome task</label></br>
             <input type="text" id="nome" name="nome" required></br>
             <label>Descrizione</label></br>
