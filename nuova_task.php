@@ -1,5 +1,5 @@
 <?php
-    //session_start();
+    session_start();
 
     require 'BackEnd/db_handler.php';
 
@@ -8,7 +8,31 @@
         header('Location: index.php');
     }*/
 
-    if(isset($_POST['invio'])) {
+    if(isset($_POST['invioP'])) {
+        require "BackEnd/db_progetto.php";
+
+        $mailU = $_POST['email'];
+        $nomeProg = $_POST['nome'];
+        $descrizione = $_POST['descrizione'];
+        $dataSca = $_POST['dataScadenza'];
+        $dataCrea = date("Y-m-d");
+
+        $progetto = new db_progetto();
+
+        $ID_Progetto = $progetto->getIdUltimoProgetto($mailU, $dataCrea);
+        $_SESSION['ID_Progetto'] = $ID_Progetto;
+
+        if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
+            $array = array("Leader" => $_POST['email'],
+                "NomeP" => $_POST['nome'],
+                "DescrizioneP" => $_POST['descrizione'],
+                "DataScadenzaP" => $dataSca,
+                "DataCreazioneP" => $dataCrea);
+            $progetto->register($array);
+        }
+    }
+
+    if(isset($_POST['invioT'])) {
         require "BackEnd/db_task.php";
 
         $nomeTask = $_POST['nome'];
@@ -35,43 +59,43 @@
 
         $task = new db_task();
 
-        if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
-            $array = array("NomeT" => $_POST['nome'],
+        if ($_SESSION['ID_Progetto'] != "") {
+            $array = array("Progetto" => $_SESSION['ID_Progetto'],
+                "NomeT" => $_POST['nome'],
                 "DescrizioneT" => $_POST['descrizione'],
                 "DataScadenzaT" => $dataScaTask,
                 "DataCreazioneT" => $dataCreaTask,
                 "Priorita" => $priorita);
             $task->register($array);
-
         }
     }
 ?>
 
 <html>
-<head>
+    <head>
 
-</head>
+    </head>
 
-<body>
-<form action="" method="POST">
-    <label>Progetto numero: </label></br>
-    <label>Nome task</label></br>
-    <input type="text" id="nome" name="nome" required></br>
-    <label>Descrizione</label></br>
-    <textarea id="descrizione" name="descrizione" required></textarea></br>
-    <label>Data scadenza</label></br>
-    <input type="date" id="dataScadenza" name="dataScadenza" <?php
-    $date=date_create(date("Y-m-d"));
-    echo "min=\"".date_format($date,"Y-m-d")."\" ";
-    ?>
-    ></br>
-    <label>Priorita:</label></form</br>
-    <select name="priorita">
-        <option value="uno">Bassa</option>
-        <option value="due">Media</option>
-        <option value="tre">Alta</option>
-    </select>
-    <input type="submit" name="invio">
-</form>
-</body>
+    <body>
+        <form action="" method="POST">
+            <label>Progetto numero: </label></br>
+            <label>Nome task</label></br>
+            <input type="text" id="nome" name="nome" required></br>
+            <label>Descrizione</label></br>
+            <textarea id="descrizione" name="descrizione" required></textarea></br>
+            <label>Data scadenza</label></br>
+            <input type="date" id="dataScadenza" name="dataScadenza" <?php
+                $date=date_create(date("Y-m-d"));
+                echo "min=\"".date_format($date,"Y-m-d")."\" ";
+            ?>
+            ></br>
+            <label>Priorita:</label></form</br>
+            <select name="priorita">
+                <option value="uno">Bassa</option>
+                <option value="due">Media</option>
+                <option value="tre">Alta</option>
+            </select>
+            <input type="submit" name="invioT">
+        </form>
+    </body>
 </html>
