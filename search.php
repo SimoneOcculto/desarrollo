@@ -13,6 +13,11 @@ if(isset($_POST['search'])) {
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -53,13 +58,19 @@ if(isset($_POST['search'])) {
 </nav>
 
 
-<?php
-if(isset($_POST['search'])) {
-    if ($array == false) {
-        echo "<b>Nessun progetto trovato</b>";
-    } else {
-        foreach ($array as $value) {
-            echo "<table>
+
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item clearfix">
+            <span style="position:absolute; top:30%;">
+
+            <?php
+            if(isset($_POST['search'])) {
+                if ($array == false) {
+                    echo "<b>Nessun progetto trovato</b>";
+                } else {
+                    foreach ($array as $value) {
+                        echo "<table>
                         <tr><td>
                             " . $value->getNomeP() . "
                         </td><td>
@@ -70,9 +81,18 @@ if(isset($_POST['search'])) {
                             " . $value->getDataCreazioneP() . "
                         </td></tr>
                         </table>";
-        }
-    }
-}
-?>
+                    }
+                }
+            }
+            ?>
+            </span></span>
+            <span class="pull-right button-group">
+                <a href="/admin/userA" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+            </span>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>

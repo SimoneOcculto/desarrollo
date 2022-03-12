@@ -9,27 +9,6 @@
         header('Location: index.php');
     }*/
 
-    if(isset($_POST['invio'])) {
-        require "BackEnd/db_progetto.php";
-
-        $mailU = $_POST['email'];
-        $nomeProg = $_POST['nome'];
-        $descrizione = $_POST['descrizione'];
-        $dataSca = $_POST['dataScadenza'];
-        $dataCrea = date("Y-m-d");
-
-        $progetto = new db_progetto();
-
-        if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
-            $array = array("Leader" => $_POST['email'],
-                "NomeP" => $_POST['nome'],
-                "DescrizioneP" => $_POST['descrizione'],
-                "DataScadenzaP" => $dataSca,
-                "DataCreazioneP" => $dataCrea);
-            $progetto->register($array);
-        }
-    }
-
 ?>
 
 <html>
@@ -38,7 +17,7 @@
     </head>
 
     <body>
-        <form action="" method="POST">
+        <form action="nuova_task.php" method="POST">
             <label>Email </label></br>
             <input type="email" name="email" required></br>
             <label>Nome progetto</label></br>
@@ -51,7 +30,7 @@
                 echo "min=\"".date_format($date,"Y-m-d")."\" ";
                 ?>
             ></br>
-            <input type="submit" name="invio">
+            <input type="submit" name="invioP">
         </form>
 
         <form method="POST" action="search.php">

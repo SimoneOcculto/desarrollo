@@ -26,6 +26,22 @@
             $this->closeconnection();
         }
 
+        public function getIdUltimoProgetto($leader, $dataCreazione){
+
+            $this->startConnection();
+
+            $sql = "SELECT ID_Progetto 
+                    FROM progetto 
+                    WHERE (Leader = ".$leader." AND DataCreazioneP <= ".$dataCreazione.")";
+
+            if($result = $this->getConnection()->query($sql)){
+                $row = $result->fetch_assoc();
+                return $row['ID_Progetto'];
+            }
+
+            $this->closeconnection();
+        }
+
         public function search_id($mail, $data_creazione){
 
             $this->startConnection();
