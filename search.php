@@ -59,18 +59,18 @@ if(isset($_POST['search'])) {
 
 
 
-<div class="container">
-    <ul class="list-group">
-        <li class="list-group-item clearfix">
-            <span style="position:absolute; top:30%;">
 
-            <?php
-            if(isset($_POST['search'])) {
-                if ($array == false) {
-                    echo "<b>Nessun progetto trovato</b>";
-                } else {
-                    foreach ($array as $value) {
-                        echo "<table>
+
+<?php
+if(isset($_POST['search'])) {
+    if ($array == false) {
+        echo "<b>Nessun progetto trovato</b>";
+    } else {
+        foreach ($array as $value) {
+            ?><div class="container">
+            <ul class="list-group">
+                <li class="list-group-item clearfix">
+            <span style="position:absolute; top:30%;">  <?php echo "<table>
                         <tr><td>
                             " . $value->getNomeP() . "
                         </td><td>
@@ -81,18 +81,20 @@ if(isset($_POST['search'])) {
                             " . $value->getDataCreazioneP() . "
                         </td></tr>
                         </table>";
-                    }
-                }
-            }
-            ?>
-            </span></span>
-            <span class="pull-right button-group">
+                ?>
+                    </span></span>
+                    <span class="pull-right button-group">
                 <a href="/admin/userA" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                 <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</button>
             </span>
-        </li>
-    </ul>
-</div>
+                </li>
+            </ul>
+            </div><?php
+        }
+    }
+}
+?>
+
 
 </body>
 </html>
