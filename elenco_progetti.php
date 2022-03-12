@@ -5,6 +5,10 @@ $progetti = new db_progetto();
 
 $array=$progetti->getAllProgetti();
 
+if(isset($_POST['delete'])) {
+    $array = $progetti->getArrayProgetti($_POST['search']);
+}
+
 ?>
 
 <html>
@@ -15,7 +19,7 @@ $array=$progetti->getAllProgetti();
 
                 <?php
                 if ($array == false) {
-                    echo "<b>Nessun ci sono progetti</b>";
+                    echo "<b>Non ci sono progetti</b>";
                 } else {
                     foreach ($array as $value) {
                         echo "<table>
@@ -27,6 +31,8 @@ $array=$progetti->getAllProgetti();
                             " . $value->getNomeP() ."
                         </td><td>
                             " . $value->getDataCreazioneP() . "
+                        </td><td>
+                           <a href='prova.php?nome=".$value->getId()."'><button>ciao</button></a>
                         </td></tr>
                         </table>";
                     }

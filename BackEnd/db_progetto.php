@@ -32,14 +32,15 @@
 
             $sql = "SELECT ID_Progetto 
                     FROM progetto 
-                    WHERE (Leader = ".$leader." AND DataCreazioneP <= ".$dataCreazione.")";
+                    WHERE (Leader = '".$leader."' AND DataCreazioneP <= '".$dataCreazione."')";
 
-            if($result = $this->getConnection()->query($sql)){
-                $row = $result->fetch_assoc();
-                return $row['ID_Progetto'];
-            }
+            $result = $this->getConnection()->query($sql);
+
+            $row = $result->fetch_assoc();
 
             $this->closeconnection();
+
+            return $row['ID_Progetto'];
         }
 
         public function search_id($mail, $data_creazione){

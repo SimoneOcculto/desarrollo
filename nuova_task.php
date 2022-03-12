@@ -20,7 +20,7 @@
         $progetto = new db_progetto();
 
         $ID_Progetto = $progetto->getIdUltimoProgetto($mailU, $dataCrea);
-        $_SESSION['ID_Progetto'] = $ID_Progetto;
+        //$_SESSION['ID_Progetto'] = $ID_Progetto;
 
         if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
             $array = array("Leader" => $_POST['email'],
@@ -59,8 +59,8 @@
 
         $task = new db_task();
 
-        if ($_SESSION['ID_Progetto'] != "") {
-            $array = array("Progetto" => $_SESSION['ID_Progetto'],
+        if ($_GET['id'] != "") {
+            $array = array("Progetto" => $_GET['id'],
                 "NomeT" => $_POST['nome'],
                 "DescrizioneT" => $_POST['descrizione'],
                 "DataScadenzaT" => $dataScaTask,
@@ -77,7 +77,7 @@
     </head>
 
     <body>
-        <form action="" method="POST">
+        <form action='nuova_task.php?id=<?php echo $ID_Progetto ?>' method="POST">
             <label>Progetto numero: </label></br>
             <label>Nome task</label></br>
             <input type="text" id="nome" name="nome" required></br>
