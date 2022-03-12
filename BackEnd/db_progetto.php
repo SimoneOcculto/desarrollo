@@ -34,19 +34,12 @@
                     FROM progetto 
                     WHERE (Leader = ".$leader." AND DataCreazioneP <= ".$dataCreazione.")";
 
-            $result = $this->getConnection()->query($sql);
-
-            $row = $result->fetch_assoc();
-
             if($result = $this->getConnection()->query($sql)){
                 $row = $result->fetch_assoc();
-            } else {
-                printf("Error: %s\n", $this->startConnection()->error);
+                return $row['ID_Progetto'];
             }
 
             $this->closeconnection();
-
-            return $row['ID_Progetto'];
         }
 
         public function search_id($mail, $data_creazione){
