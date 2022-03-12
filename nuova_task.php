@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start();
 
     require 'BackEnd/db_handler.php';
 
@@ -20,7 +20,6 @@
         $progetto = new db_progetto();
 
         $ID_Progetto = $progetto->getIdUltimoProgetto($mailU, $dataCrea);
-        //$_SESSION['ID_Progetto'] = $ID_Progetto;
 
         if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
             $array = array("Leader" => $_POST['email'],
@@ -53,9 +52,6 @@
                 $priorita=3;
                 break;
         }
-
-        //echo $mailU;
-        //echo $nomeProg;
 
         $task = new db_task();
 
