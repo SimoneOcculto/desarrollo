@@ -241,6 +241,45 @@ class db_task extends  db_handler{
         return $array;
     }*/
 
+    public function getTask($id){
+
+        $this->startConnection();
+
+        $sql = "SELECT * FROM task WHERE Progetto=".$id;
+
+        $result = $this->getConnection()->query($sql);
+
+        $array = array();
+
+        $this->closeconnection();
+
+        if($result) {
+            if ($result->num_rows == 0) {
+                return false;
+            } else {
+                for ($i = 0; $i < $result->num_rows; $i++) {
+                    $row = $result->fetch_assoc();
+                    $project = new progetto($row);
+                    $array[] = $project;
+                }
+            }
+        } else{
+            echo "Error in ".$sql."<br>".$this->startConnection()->error;
+        }
+        return $array;
+    }
+
+    public function EliminaTask($id){
+
+        $this->startConnection();
+
+        $sql = "DELETE FROM task WHERE Progetto=".$id;
+
+        $this->getConnection()->query($sql);
+
+        $this->closeconnection();
+    }
+
 }
 
 

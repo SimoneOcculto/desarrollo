@@ -5,9 +5,6 @@ $progetti = new db_progetto();
 
 $array=$progetti->getAllProgetti();
 
-if(isset($_POST['delete'])) {
-    $array = $progetti->getArrayProgetti($_POST['search']);
-}
 
 ?>
 
@@ -32,7 +29,7 @@ if(isset($_POST['delete'])) {
                         </td><td>
                             " . $value->getDataCreazioneP() . "
                         </td><td>
-                           <a href='prova.php?nome=".$value->getId()."'><button>ciao</button></a>
+                           <a href='elimina.php?id=".$value->getId()."'><button>Elimina</button></a>
                         </td></tr>
                         </table>";
                     }
