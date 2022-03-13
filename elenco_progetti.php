@@ -29,7 +29,9 @@ $array=$progetti->getAllProgetti();
                         </td><td>
                             " . $value->getDataCreazioneP() . "
                         </td><td>
-                           <a href='elimina.php?id=".$value->getId()."'><button>Elimina</button></a>
+                           <a href='elimina_progetto.php?id=".$value->getId()."'><button>Elimina</button></a>
+                        </td><td>
+                           <a href='modifica_progetto.php?id=".$value->getId()."'><button>Modifica</button></a>
                         </td></tr>
                         </table>";
                     }
