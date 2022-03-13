@@ -63,27 +63,28 @@
                 <div class="row">
                     <div class="col-4 offset-2">
                         <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="email" name="email">
                         <br>
                         <label for="inputPassword4">Project's name</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name">
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome">
                         <br>
                         <label for="exampleFormControlTextarea1" align="center">Description</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione"></textarea>
                         <br>
                         <label>Expiration date</label>
                         </br>
-                        <input type="date" id="dataScadenza" name="dataScadenza">
+                        <input type="date" id="dataScadenza" name="dataScadenza"
                         <?php
                             $date=date_create(date("Y-m-d"));
-                        ?>
+                            echo "min=\"".date_format($date,"Y-m-d")."\" ";
+                        ?>>
                     </div>
                 </div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-4 offset-2">
                             <div align="right">
-                            <button type="submit" class="btn btn-primary" >Submit</button>
+                            <button type="submit" class="btn btn-primary" name="invioP">Submit</button>
                             </div>
                         </div>
                     </div>

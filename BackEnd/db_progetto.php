@@ -59,6 +59,10 @@
             if($result) {
                 if ($result->num_rows == 0) {
                     return false;
+                } else if($result->num_rows == 1) {
+                    $row = $result->fetch_assoc();
+                    $project = new progetto($row);
+                    return $project;
                 } else {
                     for ($i = 0; $i < $result->num_rows; $i++) {
                         $row = $result->fetch_assoc();

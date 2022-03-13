@@ -77,9 +77,15 @@
             <label>Progetto: <?php
                 require_once "BackEnd/db_progetto.php";
                 $progetti2 = new db_progetto();
-                $result = $progetti2->getArrayProgetti($ID_Progetto);
-                echo $result->getNomeP();
-                ?></label></br>
+                if(isset($_POST['invioT'])) {
+                    $result = $progetti2->getArrayProgetti($_GET['id']);
+                    echo $result->getNomeP();
+                } else{
+                    $result = $progetti2->getArrayProgetti($ID_Progetto);
+                    echo $result->getNomeP();
+                }
+                ?>
+            </label></br>
             <label>Nome task</label></br>
             <input type="text" id="nome" name="nome" required></br>
             <label>Descrizione</label></br>
