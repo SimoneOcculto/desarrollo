@@ -113,59 +113,58 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 offset-2">
                 <form action='nuova_task.php?id=<?php echo $ID_Progetto ?>' method="POST">
-                <label><h1>Project:</h1> <h2><?php
-                require_once "BackEnd/db_progetto.php";
-                $progetti2 = new db_progetto();
-                if(isset($_POST['invioT'])) {
-                    $result = $progetti2->getArrayProgetti($_GET['id']);
-                    echo $result[0]->getNomeP();
-                } else{
-                    $result = $progetti2->getArrayProgetti($ID_Progetto);
-                    echo $result[0]->getNomeP();
-                }
-                ?></h2>
-                    <br>
-                                <label for="inputPassword4">Task's name</label>
-                                <input type="text" class="form-control" id="nome" placeholder="Task's name" name="nome" required>
-                                <br>
-                                <label for="exampleFormControlTextarea1" align="center">Description</label>
-                                <textarea class="form-control" id="descrizione" rows="3" align="center" name="descrizione" required></textarea>
-                                <br>
-                                <label>Expiration date</label>
-                                </br>
-                                <input type="date" id="dataScadenza" name="dataScadenza"
-                                    <?php
-                                    $date=date_create(date("Y-m-d"));
-                                    echo "min=\"".date_format($date,"Y-m-d")."\" ";
-                                    ?>>
+                    <label>
+                        <h1>Project:</h1>
+                        <h2>
+                            <?php
+                                require_once "BackEnd/db_progetto.php";
+                                $progetti2 = new db_progetto();
+                                if(isset($_POST['invioT'])) {
+                                    $result = $progetti2->getArrayProgetti($_GET['id']);
+                                    echo $result[0]->getNomeP();
+                                } else{
+                                    $result = $progetti2->getArrayProgetti($ID_Progetto);
+                                    echo $result[0]->getNomeP();
+                                }
+                            ?>
+                        </h2>
+                    </label></br>
+
+                    <label for="inputPassword4">Task's name</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Task's name" name="nome" required></br>
+
+                    <label for="exampleFormControlTextarea1" align="center">Description</label>
+                    <textarea class="form-control" id="descrizione" rows="3" align="center" name="descrizione" required></textarea></br>
+
+                    <label>Expiration date</label></br>
+                    <input type="date" id="dataScadenza" name="dataScadenza"
+                        <?php
+                            $date=date_create(date("Y-m-d"));
+                            echo "min=\"".date_format($date,"Y-m-d")."\" ";
+                        ?>>
+
                     <label>Priority:</label></form</br>
-                <select name="priorita">
-                    <option value="uno">Low</option>
-                    <option value="due">Medium</option>
-                    <option value="tre">High</option>
-                </select>
-
-
-                            </div>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-4 offset-2">
-                                    <div align="right">
-                                        <button type="submit" class="btn btn-primary" name="invioT">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
+                    <select name="priorita">
+                        <option value="uno">Low</option>
+                        <option value="due">Medium</option>
+                        <option value="tre">High</option>
+                    </select>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-4 offset-2">
+                        <div align="right">
+                            <button type="submit" class="btn btn-primary" name="invioT">Submit</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
                 </form>
-
-            </br>
-
-        </form>
     </body>
 </html>
