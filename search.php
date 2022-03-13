@@ -1,13 +1,3 @@
-<?php
-    require "BackEnd\db_progetto.php";
-
-    $progetti = new db_progetto();
-
-    if(isset($_POST['search'])) {
-        $array = $progetti->getArrayProgetti($_POST['search']);
-    }
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -57,7 +47,12 @@
         </nav>
 
     <?php
-        if(isset($_POST['search'])) {
+        require "BackEnd\db_progetto.php";
+
+        $progetti = new db_progetto();
+
+        if(!empty($_POST['search'])){
+            $array = $progetti->getArrayProgetti($_POST['search']);
             if ($array == false) {
                 echo "<b>Nessun progetto trovato</b>";
             } else {
@@ -66,7 +61,8 @@
                 <div class="container">
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
-                            <span style="position:absolute; top:30%;">  <?php echo "<table>
+                            <span style="position:absolute; top:30%;">
+                                <?php echo "<table>
                                         <tr><td>
                                             ".$value->getNomeP()."
                                         </td><td> 
@@ -85,9 +81,12 @@
                             </span>
                         </li>
                     </ul>
-                </div><?php
+                </div>
+    <?php
                 }
             }
+        } else{
+            echo "Non hai digitato nulla!";
         }
     ?>
 
