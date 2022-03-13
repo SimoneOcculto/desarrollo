@@ -79,10 +79,10 @@
                 $progetti2 = new db_progetto();
                 if(isset($_POST['invioT'])) {
                     $result = $progetti2->getArrayProgetti($_GET['id']);
-                    echo $result->getNomeP();
+                    echo $result[0]->getNomeP();
                 } else{
                     $result = $progetti2->getArrayProgetti($ID_Progetto);
-                    echo $result->getNomeP();
+                    echo $result[0]->getNomeP();
                 }
                 ?>
             </label></br>
