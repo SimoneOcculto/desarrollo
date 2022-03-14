@@ -35,7 +35,7 @@ $array=$progetti->getAllProgetti();
                         </td><td>
                            <a href='modifica_progetto.php?id=".$value->getId()."'><button>Modifica</button></a>
                         </td><td>
-                           <a href='modifica_progetto.php?id=".$value->getId()."'><button>Visualizza Task</button></a>
+                           <a href='elenco_task.php?id=".$value->getId()."'><button>Visualizza Task</button></a>
                         </td></tr>
                         </table>";
                     }
