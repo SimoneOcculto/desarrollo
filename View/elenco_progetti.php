@@ -1,5 +1,5 @@
 <?php
-require "Model\db_progetto.php";
+require "BackEnd\db_progetto.php";
 
 $progetti = new db_progetto();
 
@@ -14,12 +14,12 @@ $array=$progetti->getAllProgetti();
     <h1>Elenco progetti</h1>
 <body>
 
-                <?php
-                if ($array == false) {
-                    echo "<b>Non ci sono progetti</b>";
-                } else {
-                    foreach ($array as $value) {
-                        echo "<table>
+<?php
+if ($array == false) {
+    echo "<b>Non ci sono progetti</b>";
+} else {
+    foreach ($array as $value) {
+        echo "<table>
                         <tr><td>
                             " . $value->getId() . "
                         </td><td>
@@ -38,9 +38,9 @@ $array=$progetti->getAllProgetti();
                            <a href='elenco_task.php?id=".$value->getId()."'><button>Visualizza Task</button></a>
                         </td></tr>
                         </table>";
-                    }
-                }
-                ?>
+    }
+}
+?>
 </body>
 </head>
 </html>
