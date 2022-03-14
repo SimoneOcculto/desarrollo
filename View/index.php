@@ -1,20 +1,20 @@
 <?php
     session_start();
 
-    require 'BackEnd/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
     if(isset($_SESSION['mail'])) {
-        header('Location: Homepage.php');
+        header('Location: C:/xampp/htdocs/desarrollo/View/Homepage.php');
     }
 
     if(isset($_POST['login'])){
         $email = $_POST['email'];
         $pwd = $_POST['password'];
 
-        require "BackEnd/db_utente.php";
+        require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
         $utente = new db_utente();
         if($utente->access_User($email, $pwd)){
-            header("location: Homepage.php");
+            header("location: C:/xampp/htdocs/desarrollo/View/Homepage.php");
         } else{
             session_destroy();
         }

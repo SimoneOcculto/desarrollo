@@ -1,7 +1,7 @@
 <?php
     //session_start();
 
-    require 'Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
     /*if(empty($_SESSION)) {
         // session isn't started
@@ -9,7 +9,7 @@
     }*/
 
     if(isset($_POST['invioP'])) {
-        require_once "Model/db_progetto.php";
+        require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
         $mailU = $_POST['email'];
         $nomeProg = $_POST['nome'];
@@ -32,7 +32,7 @@
     }
 
     if(isset($_POST['invioT'])) {
-        require "BackEnd/db_task.php";
+        require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
 
         $nomeTask = $_POST['nome'];
         $descrizioneTask = $_POST['descrizione'];
@@ -122,7 +122,7 @@
                         <h1>Project:</h1>
                         <h2>
                             <?php
-                                require_once "Model/db_progetto.php";
+                                require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
                                 $progetti2 = new db_progetto();
                                 if(isset($_POST['invioT'])) {
                                     $result = $progetti2->getArrayProgetti($_GET['id']);

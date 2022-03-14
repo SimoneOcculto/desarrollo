@@ -1,6 +1,6 @@
 <?php
 
-require "Model/db_task.php";
+require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
 
 $task = new db_task();
 
@@ -8,7 +8,7 @@ if(isset($_POST['elimina'])){
 
     $task->EliminaSingleTask($_GET['id']);
 
-    header('Location: elenco_progetti.php');
+    header('Location: C:/xampp/htdocs/desarrollo/View/elenco_progetti.php');
 }
 $array=$task->getArrayTask($_GET['id']);
 

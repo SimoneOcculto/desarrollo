@@ -1,11 +1,11 @@
 <?php
     session_start();
 
-    require 'Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
     if(!empty($_SESSION)) {
         // session isn't started
-        header('Location: homepage.php');
+        header('Location: C:/xampp/htdocs/desarrollo/View/homepage.php');
     }
 
     $flag = false;
@@ -16,7 +16,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        require "Model/db_utente.php";
+        require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
         $utente = new db_utente();
         if($utente->checkUtente($email)){
             $array = array("email" => $email,
@@ -26,7 +26,7 @@
             $utente = new db_utente();
             $utente->register($array);
 
-            header('Location: index.php');
+            header('Location: C:/xampp/htdocs/desarrollo/View/index.php');
 
             $flag = false;
         } else {

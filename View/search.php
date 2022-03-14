@@ -47,7 +47,7 @@
         </nav>
 
     <?php
-        require "Model\db_progetto.php";
+        require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
         $progetti = new db_progetto();
 

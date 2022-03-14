@@ -2,7 +2,7 @@
 
     //session_start();
 
-    require 'Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
     /*if(empty($_SESSION)) {
         // session isn't started

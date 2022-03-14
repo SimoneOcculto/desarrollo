@@ -1,18 +1,18 @@
 <?php
 //echo $_GET['nome'];
-require "Model/db_progetto.php";
+require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
 $progetti = new db_progetto();
 
 if(isset($_POST['elimina'])){
 
-    require "Model/db_task.php";
+    require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
 
     $task = new db_task();
     $task->EliminaTask($_GET['id']);
     $progetti->EliminaProgetto($_GET['id']);
 
-    header('Location: elenco_progetti.php');
+    header('Location: C:/xampp/htdocs/desarrollo/View/elenco_progetti.php');
 
 }
 
