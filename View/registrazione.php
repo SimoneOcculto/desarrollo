@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require 'BackEnd/db_handler.php';
+    require 'Model/db_handler.php';
 
     if(!empty($_SESSION)) {
         // session isn't started
@@ -16,7 +16,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        require "BackEnd/db_utente.php";
+        require "Model/db_utente.php";
         $utente = new db_utente();
         if($utente->checkUtente($email)){
             $array = array("email" => $email,

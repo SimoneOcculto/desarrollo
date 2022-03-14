@@ -1,12 +1,12 @@
 <?php
 //echo $_GET['nome'];
-require "BackEnd/db_progetto.php";
+require "Model/db_progetto.php";
 
 $progetti = new db_progetto();
 
 if(isset($_POST['elimina'])){
 
-    require "BackEnd/db_task.php";
+    require "Model/db_task.php";
 
     $task = new db_task();
     $task->EliminaTask($_GET['id']);

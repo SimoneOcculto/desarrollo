@@ -1,6 +1,6 @@
 <?php
 
-    require 'progetto.php';
+    require 'Controller/progetto.php';
     require_once 'db_handler.php';
 
     class db_progetto extends db_handler{

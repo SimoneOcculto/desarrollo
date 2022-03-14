@@ -1,6 +1,6 @@
 <?php
 
-require "BackEnd/db_progetto.php";
+require "Model/db_progetto.php";
 
 $progetti = new db_progetto();
 
