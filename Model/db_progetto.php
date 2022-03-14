@@ -48,7 +48,7 @@
 
             $this->startConnection();
 
-            $sql = "SELECT DISTINCT ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') ORDER BY dataCreazioneP DESC";
+            $sql = "SELECT DISTINCT Leader, ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') ORDER BY dataCreazioneP DESC";
 
             $result = $this->getConnection()->query($sql);
 
@@ -122,6 +122,61 @@
             $this->closeconnection();
 
             return $result;
+        }
+
+        public function UpdateProg($project){
+
+            $leader;
+            $nomeP;
+            $DescrizioneP;
+            $dataScadenzaP;
+
+            $this->progetto = new progetto($project);
+
+            $this->startConnection();
+
+            $sql = "SELECT Leader FROM progetto WHERE ID_Progetto=".$this->progetto->getId();
+
+            $leader=$this->getConnection()->query($sql);
+
+            if(strcmp($leader,$this->progetto->getLeader())!=0){
+                $cambioL="UPDATE progetto SET Leader=".$this->progetto->getLeader()." WHERE ID_Progetto=".$this->progetto->getId();
+                $this->getConnection()->query($cambioL);
+            }
+
+            $sql = "SELECT nomeP FROM progetto WHERE ID_Progetto=".$this->progetto->getId();
+
+            $nomeP=$this->getConnection()->query($sql);
+
+            if(strcmp($nomeP,$this->progetto->getNomeP())!=0){
+                $cambioN="UPDATE progetto SET NomeP=".$this->progetto->getNomeP()." WHERE ID_Progetto=".$this->progetto->getId();
+                $this->getConnection()->query($cambioN);
+            }
+
+            $sql = "SELECT DescrizioneP FROM progetto WHERE ID_Progetto=".$this->progetto->getId();
+
+            $DescrizioneP=$this->getConnection()->query($sql);
+
+            if(strcmp($DescrizioneP,$this->progetto->getDescrizioneP())!=0){
+                $cambioD="UPDATE progetto SET DescrizioneP=".$this->progetto->getDescrizioneP()." WHERE ID_Progetto=".$this->progetto->getId();
+                $this->getConnection()->query($cambioD);
+            }
+
+            $sql = "SELECT DataScadenzaP FROM progetto WHERE ID_Progetto=".$this->progetto->getId();
+
+            $dataScadenzaP=$this->getConnection()->query($sql);
+
+            $dataScadenzaP=strtotime($dataScadenzaP);
+            $dataP=strtotime($this->progetto->getDataScadenzaP());
+
+            if($dataScadenzaP!=$dataP)
+            {
+                $cambioData="UPDATE progetto SET DataScadenzaP=".$this->progetto->getDataScadenzaP()." WHERE ID_Progetto=".$this->progetto->getId();
+                $this->getConnection()->query($cambioData);
+            }
+
+            $this->closeconnection();
+
         }
 
     }

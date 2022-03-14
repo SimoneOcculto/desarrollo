@@ -3,6 +3,31 @@
 require "Model/db_progetto.php";
 
 $progetti = new db_progetto();
+$ID_Progetto=$_GET['id'];
+$result=$progetti->getArrayProgetti($ID_Progetto);
+
+
+if(isset($_POST['modifica'])){
+
+    $mailU = $_POST['email'];
+    $nomeProg = $_POST['nome'];
+    $descrizione = $_POST['descrizione'];
+    $dataSca = $_POST['dataScadenza'];
+    $dataCrea = date("Y-m-d");
+
+    $progetto = new db_progetto();
+
+    if ($ID_Progetto != "") {
+        $array = array("ID_Progetto" => $ID_Progetto,
+                "Leader" => $_POST['email'],
+                "NomeP" => $_POST['nome'],
+                "DescrizioneP" => $_POST['descrizione'],
+                "DataScadenzaP" => $dataSca,
+                "DataCreazioneP" => $dataCrea);
+        $progetto->UpdateProg($array);
+    }
+}
+
 
 ?>
 
@@ -54,37 +79,35 @@ $progetti = new db_progetto();
     </form>
 </nav>
 
-<form action="modifica_progetto.php" method="POST" >
+<form action='modifica_progetto.php?=<?php echo $ID_Progetto ?>' method="POST">
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 offset-2">
                 <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo $result[0]->getLeader(); ?>">
                 <br>
                 <label for="inputPassword4">Project's name</label>
-                <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name">
+                <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" value="<?php echo $result[0]->getNomeP(); ?>">
                 <br>
                 <label for="exampleFormControlTextarea1" align="center">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione" ><?php echo $result[0]->getDescrizioneP();?></textarea>
                 <br>
                 <label>Expiration date</label>
                 </br>
-                <input type="date" id="dataScadenza" name="dataScadenza">
-                <?php
-                $date=date_create(date("Y-m-d"));
-                ?>
+                <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaP(); ?>">
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-4 offset-2">
                     <div align="right">
-                        <button type="submit" class="btn btn-primary" >Submit</button>
+                        <button type="submit" class="btn btn-primary" name="modifica">Modifica</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
 </body>
 </html>
