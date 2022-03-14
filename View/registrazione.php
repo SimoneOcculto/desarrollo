@@ -5,7 +5,7 @@
 
     if(!empty($_SESSION)) {
         // session isn't started
-        header('Location: C:/xampp/htdocs/desarrollo/View/homepage.php');
+        header('Location: homepage.php');
     }
 
     $flag = false;
@@ -26,7 +26,7 @@
             $utente = new db_utente();
             $utente->register($array);
 
-            header('Location: C:/xampp/htdocs/desarrollo/View/index.php');
+            header('Location: index.php');
 
             $flag = false;
         } else {

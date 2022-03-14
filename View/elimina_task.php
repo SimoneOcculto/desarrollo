@@ -8,7 +8,7 @@ if(isset($_POST['elimina'])){
 
     $task->EliminaSingleTask($_GET['id']);
 
-    header('Location: C:/xampp/htdocs/desarrollo/View/elenco_progetti.php');
+    header('Location: elenco_progetti.php');
 }
 $array=$task->getArrayTask($_GET['id']);
 
