@@ -90,7 +90,7 @@
                         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="search.php">Projects</a>
+                        <a class="nav-link" href="elenco_progetti.php">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Teams</a>

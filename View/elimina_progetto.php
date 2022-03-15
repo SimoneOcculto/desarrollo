@@ -19,7 +19,12 @@
 ?>
 <html>
     <head>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8">
     </head>
 
     <body>
@@ -29,28 +34,40 @@
             echo "<b>Errore</b>";
         } else {
             foreach ($array as $value) {
-            echo "<table>
-                <tr><td>
-                        " . $value->getId() . "
-                    </td><td>
-                        " . $value->getLeader() . "
-                    </td><td>
-                        " . $value->getNomeP() ."
-                    </td><td>
-                        " . $value->getDataCreazioneP() . "
-                    </td><td>
-                        <form action='' method='POST'>
-                            <input type='submit' name='elimina' value='elimina'>
-                        </form>
-                    </td><td>
-                        <a href='elenco_progetti.php'><button>Annulla</button></a>
-                    </td></tr>
-            </table>";
+                ?>
+                <div class="container">
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix">
+                            <span style="position:absolute; top:30%;">
+                                <?php echo "<table>
+                                        <tr><td>
+                                            ".$value->getNomeP()."
+                                        </td><td> 
+                                            ".$value->getDescrizioneP()."
+                                        </td><td> 
+                                            ".$value->getDataScadenzaP()."
+                                        </td><td>
+                                            ".$value->getDataCreazioneP()." 
+                                        </td></tr>
+                                        </table>";
+                                ?>
+
+                            </span>
+                            <form action='' method='POST'>
+                                <span class="pull-right button-group">
+                                <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
+                                <input type='submit' name='elimina' value='Delete' class="btn btn-danger">
+                            </span>
+                            </form>
+
+                        </li>
+                    </ul>
+                </div>
+                <?php
             }
         }
+
     ?>
 
     </body>
-
 </html>
-
