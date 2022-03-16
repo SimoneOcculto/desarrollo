@@ -57,7 +57,7 @@
     </nav>
     <div class="container">
 <span class="pull-left button-group">
-   <a class="btn btn-success" href="nuova_task.php" role="button">New Task</a>
+   <a class="btn btn-success" href='nuova_task.php?id=<?php echo $_GET['id'];  ?>'  role="button">New Task</a>
  </span>
     </div>
     <?php

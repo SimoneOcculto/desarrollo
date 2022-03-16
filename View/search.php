@@ -75,8 +75,9 @@
                                 ?>
                             </span>
                             <span class="pull-right button-group">
-                                <a href="/admin/userA" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                                <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                  <a href='modifica_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                  <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+
                             </span>
                         </li>
                     </ul>
