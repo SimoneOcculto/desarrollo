@@ -92,7 +92,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="elenco_progetti.php">Projects</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Teams</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -104,7 +104,7 @@
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -113,6 +113,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
+
 
     <div class="container-fluid">
         <div class="row">

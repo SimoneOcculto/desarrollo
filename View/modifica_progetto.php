@@ -57,7 +57,7 @@ if(isset($_POST['modifica'])){
                 <li class="nav-item">
                     <a class="nav-link" href="elenco_progetti.php">Projects</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Teams</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -69,7 +69,7 @@ if(isset($_POST['modifica'])){
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
     </nav>
@@ -78,6 +78,7 @@ if(isset($_POST['modifica'])){
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
+
 
 <form action='modifica_progetto.php?=<?php echo $ID_Progetto ?>' method="POST">
     <div class="container-fluid">

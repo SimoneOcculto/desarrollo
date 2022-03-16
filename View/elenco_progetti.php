@@ -32,7 +32,7 @@ $array=$progetti->getAllProgetti();
                 <li class="nav-item">
                     <a class="nav-link" href="elenco_progetti.php">Projects</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Teams</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,7 +44,7 @@ $array=$progetti->getAllProgetti();
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
     </nav>
@@ -53,6 +53,7 @@ $array=$progetti->getAllProgetti();
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
+
 
 <?php
 
