@@ -55,6 +55,11 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
+    <div class="container">
+<span class="pull-left button-group">
+   <a class="btn btn-success" href="nuova_task.php" role="button">New Task</a>
+ </span>
+    </div>
     <?php
         if ($array == false) {
             echo "<b>Non ci sono task</b> <a href='elenco_progetti.php'><button>Annulla</button></a>";
