@@ -1,45 +1,29 @@
 <?php
+    session_start();
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-session_start();
+    $flag = false;
 
-require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    if(!empty($_SESSION)) {
+        // session isn't started
+        header('Location: index.php');
+    }
 
-if(empty($_SESSION)) {
-    // session isn't started
-    header('Location: login.php');
-}
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
-
-$progetti = new db_progetto();
-$ID_Progetto=$_GET['id'];
-$result=$progetti->getArrayProgetti($ID_Progetto);
-
-
-if(isset($_POST['modifica'])){
-
-    $mailU = $_POST['email'];
-    $nomeProg = $_POST['nome'];
-    $descrizione = $_POST['descrizione'];
-    $dataSca = $_POST['dataScadenza'];
-    $dataCrea = date("Y-m-d");
-
-    $progetto = new db_progetto();
-
-    if ($ID_Progetto != "") {
-        $array = array("ID_Progetto" => $ID_Progetto,
-                "Leader" => $_POST['email'],
-                "NomeP" => $_POST['nome'],
-                "DescrizioneP" => $_POST['descrizione'],
-                "DataScadenzaP" => $dataSca,
-                "DataCreazioneP" => $dataCrea);
-        $progetto->UpdateProg($array);
+    require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
+    $utente = new db_utente();
+    if($utente->accesso_utente($username,$password)){
+        header("location: index.php");
+    }else{
+        session_destroy();
     }
 }
 
 
 ?>
-
 
 <html>
 <head>
@@ -82,42 +66,31 @@ if(isset($_POST['modifica'])){
             </ul>
         </div>
     </nav>
-    <form method="POST" action="search.php" class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
 </nav>
 
 
-<form action='modifica_progetto.php?=<?php echo $ID_Progetto ?>' method="POST">
+<form action="login.php" method="POST" >
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 offset-2">
                 <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo $result[0]->getLeader(); ?>">
+                <input type="email" class="form-control" id="inputEmail4" placeholder="email" name="username">
                 <br>
-                <label for="inputPassword4">Project's name</label>
-                <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" value="<?php echo $result[0]->getNomeP(); ?>">
+                <label for="inputPassword4">Password</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="password" name="password">
                 <br>
-                <label for="exampleFormControlTextarea1" align="center">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione" ><?php echo $result[0]->getDescrizioneP();?></textarea>
-                <br>
-                <label>Expiration date</label>
-                </br>
-                <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaP(); ?>">
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-4 offset-2">
                     <div align="right">
-                        <button type="submit" class="btn btn-primary" name="modifica">Modifica</button>
+                        <button type="submit" class="btn btn-primary" name="login">Login</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
 </body>
 </html>
