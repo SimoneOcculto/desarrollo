@@ -3,8 +3,6 @@
 require 'C:/xampp/htdocs/desarrollo/Controller/task.php';
 require_once 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-require_once 'db_handler.php';
-
 class db_task extends  db_handler{
 
     //dichiarazione attributi

@@ -1,7 +1,6 @@
 <?php
 
-    class utente
-    {
+    class utente{
         //Dichiarazione attributi
         private $mail;
         private $password;
