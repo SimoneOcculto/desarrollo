@@ -1,20 +1,18 @@
 <?php
-session_start();
+    session_start();
 
-require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-if(empty($_SESSION)) {
-    // session isn't started
-    header('Location: login.php');
-}
+    if(empty($_SESSION)) {
+        // session isn't started
+        header('Location: index.php');
+    }
 
-require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
+    require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
-$progetti = new db_progetto();
+    $progetti = new db_progetto();
 
-$array=$progetti->getAllProgetti();
-
-
+    $array=$progetti->getAllProgetti();
 ?>
 
 <html>

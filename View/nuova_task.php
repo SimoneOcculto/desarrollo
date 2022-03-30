@@ -5,7 +5,7 @@
 
     if(empty($_SESSION)) {
         // session isn't started
-        header('Location: login.php');
+        header('Location: index.php');
     }
 
     if(isset($_POST['invioP'])) {

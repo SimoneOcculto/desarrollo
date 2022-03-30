@@ -6,7 +6,7 @@ require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
 if(empty($_SESSION)) {
     // session isn't started
-    header('Location: login.php');
+    header('Location: index.php');
 }
 
     //echo $_GET['nome'];

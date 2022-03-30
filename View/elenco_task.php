@@ -1,20 +1,18 @@
 <?php
+    session_start();
 
-session_start();
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    if(empty($_SESSION)) {
+        // session isn't started
+        header('Location: index.php');
+    }
 
-if(empty($_SESSION)) {
-    // session isn't started
-    header('Location: login.php');
-}
+        require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
 
-    require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
+        $task = new db_task();
 
-    $task = new db_task();
-
-    $array=$task->getAllTask($_GET['id']);
-
+        $array=$task->getAllTask($_GET['id']);
 ?>
 
 <html>

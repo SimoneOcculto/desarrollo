@@ -3,10 +3,10 @@
     if(!isset($_SESSION)){
         session_start();
     } else {
-        header('Location: login.php');
+        header('Location: index.php');
     }
 
     session_destroy();
 
-    header('Location: login.php');
+    header('Location: index.php');
 ?>

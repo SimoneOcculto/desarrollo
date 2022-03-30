@@ -6,7 +6,7 @@
 
     if(!empty($_SESSION)) {
         // session isn't started
-        header('Location: index.php');
+        header('Location: nuovo_progetto.php');
     }
 
     $flag = false;
@@ -26,7 +26,7 @@
                 "cognome" => $cognome);
             $utente->register($array);
 
-            header('Location: index.php');
+            header('Location: nuovo_progetto.php');
 
             $flag = false;
         } else {
