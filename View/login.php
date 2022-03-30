@@ -9,17 +9,19 @@
         header('Location: index.php');
     }
 
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    if (isset($_POST['login'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-    require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
-    $utente = new db_utente();
-    if($utente->accesso_utente($username,$password)){
-        header("location: index.php");
-    }else{
-        session_destroy();
-    }
+        require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
+        $utente = new db_utente();
+
+        if($utente->accesso_utente($username,$password)){
+            $_SESSION['mail'] = $username;
+            header("location: index.php");
+        }else{
+            session_destroy();
+        }
 }
 
 

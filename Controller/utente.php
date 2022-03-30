@@ -10,12 +10,12 @@
 
         //Definizione Metodi
         public function __construct($array){
-            $this->mail = $array['mail'];
-            $this->password = $array['password'];
-            $this->nome = $array['nome'];
-            $this->cognome = $array['cognome'];
-            if(array_key_exists('nascita', $array))
-                $this->nascita = $array['nascita'];
+            $this->mail = $array['Mail'];
+            $this->password = $array['Password'];
+            $this->nome = $array['Nome'];
+            $this->cognome = $array['Cognome'];
+            if(array_key_exists('Nascita', $array))
+                $this->nascita = $array['Nascita'];
         }
 
         public function getMail(){

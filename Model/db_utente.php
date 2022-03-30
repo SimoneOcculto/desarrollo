@@ -3,8 +3,7 @@
     require 'C:/xampp/htdocs/desarrollo/Controller/utente.php';
     require_once 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-    class db_utente extends db_handler
-    {
+    class db_utente extends db_handler{
         //dichiarazione attributi
         private $utente;
 
@@ -71,8 +70,29 @@
                 return false;
 
             }
+        }
 
+        public function getUtente($mail){
 
+            $this->startConnection();
+
+            $sql = "SELECT Nome, Cognome, Mail, Password  FROM utente WHERE Mail='".$mail."'";
+
+            $result = $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else{
+                    $row = $result->fetch_assoc();
+                    $user = new utente($row);
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+            return $user;
         }
     }
 

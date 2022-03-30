@@ -4,7 +4,7 @@
     require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
     if(isset($_SESSION['mail'])) {
-        header('Location: homepage.php');
+        header('Location: index.php');
     }
 
     if(isset($_POST['login'])){
@@ -14,7 +14,7 @@
         require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
         $utente = new db_utente();
         if($utente->access_User($email, $pwd)){
-            header("location: homepage.php");
+            header("location: index.php");
         } else{
             session_destroy();
         }
