@@ -35,6 +35,9 @@ if(empty($_SESSION)) {
                     <li class="nav-item">
                         <a class="nav-link" href="elenco_progetti.php">Projects</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="logout.php">logout <span class="sr-only">(current)</span></a>
+                    </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Teams</a>
                     </li>
