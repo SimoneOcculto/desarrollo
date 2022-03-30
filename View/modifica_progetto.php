@@ -1,42 +1,41 @@
 <?php
 
-session_start();
+    session_start();
 
-require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-if(empty($_SESSION)) {
-    // session isn't started
-    header('Location: login.php');
-}
-
-require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
-
-$progetti = new db_progetto();
-$ID_Progetto=$_GET['id'];
-$result=$progetti->getArrayProgetti($ID_Progetto);
-
-
-if(isset($_POST['modifica'])){
-
-    $mailU = $_POST['email'];
-    $nomeProg = $_POST['nome'];
-    $descrizione = $_POST['descrizione'];
-    $dataSca = $_POST['dataScadenza'];
-    $dataCrea = date("Y-m-d");
-
-    $progetto = new db_progetto();
-
-    if ($ID_Progetto != "") {
-        $array = array("ID_Progetto" => $ID_Progetto,
-                "Leader" => $_POST['email'],
-                "NomeP" => $_POST['nome'],
-                "DescrizioneP" => $_POST['descrizione'],
-                "DataScadenzaP" => $dataSca,
-                "DataCreazioneP" => $dataCrea);
-        $progetto->UpdateProg($array);
+    if(empty($_SESSION)) {
+        // session isn't started
+        header('Location: login.php');
     }
-}
 
+    require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
+
+    $progetti = new db_progetto();
+    $ID_Progetto=$_GET['id'];
+    $result=$progetti->getArrayProgetti($ID_Progetto);
+
+
+    if(isset($_POST['modifica'])){
+
+        $mailU = $_POST['email'];
+        $nomeProg = $_POST['nome'];
+        $descrizione = $_POST['descrizione'];
+        $dataSca = $_POST['dataScadenza'];
+        $dataCrea = date("Y-m-d");
+
+        $progetto = new db_progetto();
+
+        if ($ID_Progetto != "") {
+            $array = array("ID_Progetto" => $ID_Progetto,
+                    "Leader" => $_POST['email'],
+                    "NomeP" => $_POST['nome'],
+                    "DescrizioneP" => $_POST['descrizione'],
+                    "DataScadenzaP" => $dataSca,
+                    "DataCreazioneP" => $dataCrea);
+            $progetto->UpdateProg($array);
+        }
+    }
 
 ?>
 

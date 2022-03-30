@@ -94,6 +94,38 @@
             }
             return $user;
         }
+
+        public function UpdateUser($user){
+
+            $this->utente = new utente($user);
+
+            $this->startConnection();
+
+            $sql = "SELECT Nome FROM utente WHERE Mail='".$this->utente->getMail()."'";
+
+            $nome=$this->getConnection()->query($sql);
+
+            $row = $nome->fetch_assoc();
+
+            if(strcmp($row['Nome'],$this->utente->getNome()) != 0){
+                $cambioN="UPDATE utente SET Nome='".$this->utente->getNome()."' WHERE Mail='".$this->utente->getMail()."'";
+                $this->getConnection()->query($cambioN);
+            }
+
+            $sql = "SELECT Cognome FROM utente WHERE Mail='".$this->utente->getMail()."'";
+
+            $cognome=$this->getConnection()->query($sql);
+
+            $row = $cognome->fetch_assoc();
+
+            if(strcmp($row['Cognome'],$this->utente->getCognome()) != 0){
+                $cambioC="UPDATE utente SET Cognome='".$this->utente->getCognome()."' WHERE Mail='".$this->utente->getMail()."'";
+                $this->getConnection()->query($cambioC);
+            }
+
+            $this->closeconnection();
+
+        }
     }
 
 ?>
