@@ -76,7 +76,7 @@
             } else {
                 foreach ($array as $value) {
         ?>
-                    <div class="container">
+                    <div class="container-fluid">
                         <ul class="list-group">
                             <li class="list-group-item clearfix">
                                     <span style="position:absolute; top:30%;">
