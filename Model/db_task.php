@@ -104,8 +104,4 @@ class db_task extends  db_handler{
     }
 
 }
-
-?>
-
-
 ?>
