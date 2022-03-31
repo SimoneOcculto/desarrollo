@@ -173,9 +173,10 @@
             $row = $DescrizioneP->fetch_assoc();
 
             if(strcmp($row['DescrizioneP'],$this->progetto->getDescrizioneP())!=0){
-                $cambioD="UPDATE progetto SET DescrizioneP='".$this->progetto->getDescrizioneP()."' WHERE ID_Progetto=".$this->progetto->getId();
+                $cambioD="UPDATE progetto SET DescrizioneP='".$this->progetto->getDescrizioneP()."' WHERE ID_Progetto=".$this->progetto->getId().";";
                 $this->getConnection()->query($cambioD);
             }
+
 
             $sql = "SELECT DataScadenzaP FROM progetto WHERE ID_Progetto=".$this->progetto->getId();
 
@@ -185,9 +186,10 @@
             $dataScadenzaP=strtotime($row['DataScadenzaP']);
             $dataP=strtotime($this->progetto->getDataScadenzaP());
 
+
             if($dataScadenzaP!=$dataP)
             {
-                $cambioData="UPDATE progetto SET DataScadenzaP=".$this->progetto->getDataScadenzaP()." WHERE ID_Progetto=".$this->progetto->getId();
+                $cambioData="UPDATE progetto SET DataScadenzaP='".$this->progetto->getDataScadenzaP()."' WHERE ID_Progetto=".$this->progetto->getId().";";
                 $this->getConnection()->query($cambioData);
             }
 
