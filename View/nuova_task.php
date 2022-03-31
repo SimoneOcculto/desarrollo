@@ -11,7 +11,7 @@
     if(isset($_POST['invioP'])) {
         require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
-        $mailU = $_POST['email'];
+        $mailU = $_SESSION['mail'];
         $nomeProg = $_POST['nome'];
         $descrizione = $_POST['descrizione'];
         $dataSca = $_POST['dataScadenza'];
@@ -20,7 +20,7 @@
         $progetto = new db_progetto();
 
         if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
-            $array = array("Leader" => $_POST['email'],
+            $array = array("Leader" => $_SESSION['mail'],
                 "NomeP" => $_POST['nome'],
                 "DescrizioneP" => $_POST['descrizione'],
                 "DataScadenzaP" => $dataSca,
@@ -28,7 +28,7 @@
             $progetto->register($array);
         }
 
-        $ID_Progetto = $progetto->getIdUltimoProgetto($mailU, $dataCrea);
+        $ID_Progetto = $progetto->getIdUltimoProgetto($_SESSION['mail'], $dataCrea);
     }
 
     if(isset($_POST['invioT'])) {

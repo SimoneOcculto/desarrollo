@@ -100,6 +100,34 @@
             return $array;
         }
 
+        public function getAllProgettiUtente($mail){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM progetto WHERE Leader = '".$mail."' ORDER BY ID_Progetto, DataCreazioneP, NomeP, Leader";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $project = new progetto($row);
+                        $array[] = $project;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+            return $array;
+        }
+
         public function EliminaProgetto($id){
 
             $this->startConnection();

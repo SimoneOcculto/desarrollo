@@ -18,7 +18,7 @@
 
         if($utente->accesso_utente($username,$password)){
             $_SESSION['mail'] = $username;
-            header("location: index.php");
+            header("location: nuovo_progetto.php");
         }else{
             session_destroy();
         }

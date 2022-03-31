@@ -66,9 +66,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-4 offset-2">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="email" name="email">
-                        <br>
                         <label for="inputPassword4">Project's name</label>
                         <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome">
                         <br>

@@ -12,7 +12,7 @@
 
     $progetti = new db_progetto();
 
-    $array=$progetti->getAllProgetti();
+    $array=$progetti->getAllProgettiUtente($_SESSION['mail']);
 ?>
 
 <html>
