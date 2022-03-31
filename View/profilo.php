@@ -12,6 +12,25 @@
     $utente = new db_utente();
     $result = $utente->getUtente($_SESSION['mail']);
 
+    $flag = false;
+
+    if(isset($_POST['modifica'])){
+        $nome = $_POST['nome'];
+        $cognome = $_POST['cognome'];
+
+        $array = array("Nome" => $_POST['nome'],
+            "Cognome" => $_POST['cognome'],
+            "Mail" => $_SESSION['mail'],
+            "Password" => $result->getPassword());
+
+        $utente->UpdateUser($array);
+
+        $flag = true;
+    }
+
+    if($flag){
+        header("Refresh:0");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +40,7 @@
     </head>
 
     <body>
-        <form action="modifica_profilo.php" method="POST">
+        <form action="profilo.php" method="POST">
             <label>Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Nome" value="<?php echo $result->getNome(); ?>">
 
