@@ -150,7 +150,7 @@
                         <?php
                             $date=date_create(date("Y-m-d"));
                             echo "min=\"".date_format($date,"Y-m-d")."\" ";
-                        ?>>
+                        ?> required>
 
                     <label>Priority:</label></form</br>
                     <select name="priorita">

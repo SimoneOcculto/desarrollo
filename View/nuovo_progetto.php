@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-4 offset-2">
                         <label for="inputPassword4">Project's name</label>
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome">
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" required>
                         <br>
                         <label for="exampleFormControlTextarea1" align="center">Description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione"></textarea>
@@ -78,7 +78,7 @@
                         <?php
                             $date=date_create(date("Y-m-d"));
                             echo "min=\"".date_format($date,"Y-m-d")."\" ";
-                        ?>>
+                        ?> required>
                     </div>
                 </div>
                 <div class="container-fluid">
