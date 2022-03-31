@@ -1,31 +1,30 @@
 <?php
+    session_start();
 
-session_start();
+    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
-
-if(empty($_SESSION)) {
-    // session isn't started
-    header('Location: index.php');
-}
-
-    //echo $_GET['nome'];
-    require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
-
-    $progetti = new db_progetto();
-
-    if(isset($_POST['elimina'])){
-
-        require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
-
-        $task = new db_task();
-        $task->EliminaTask($_GET['id']);
-        $progetti->EliminaProgetto($_GET['id']);
-
-        header('Location: elenco_progetti.php');
+    if(empty($_SESSION)) {
+        // session isn't started
+        header('Location: index.php');
     }
 
-    $array=$progetti->getArrayProgetti($_GET['id']);
+        //echo $_GET['nome'];
+        require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
+
+        $progetti = new db_progetto();
+
+        if(isset($_POST['elimina'])){
+
+            require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
+
+            $task = new db_task();
+            $task->EliminaTask($_GET['id']);
+            $progetti->EliminaProgetto($_GET['id']);
+
+            header('Location: elenco_progetti.php');
+        }
+
+        $array=$progetti->getArrayProgetti($_GET['id']);
 ?>
 <html>
     <head>

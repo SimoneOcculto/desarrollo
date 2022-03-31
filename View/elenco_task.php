@@ -8,11 +8,11 @@
         header('Location: index.php');
     }
 
-        require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
+    require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
 
-        $task = new db_task();
+    $task = new db_task();
 
-        $array=$task->getAllTask($_GET['id']);
+    $array=$task->getAllTask($_GET['id']);
 ?>
 
 <html>

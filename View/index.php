@@ -19,12 +19,10 @@
         if($utente->accesso_utente($username,$password)){
             $_SESSION['mail'] = $username;
             header("location: nuovo_progetto.php");
-        }else{
+        } else{
             session_destroy();
         }
-}
-
-
+    }
 ?>
 
 <html>
