@@ -11,14 +11,14 @@
 
     require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
+    $flag = false;
+
     $progetti = new db_progetto();
     $ID_Progetto=$_GET['id'];
     $result=$progetti->getArrayProgetti($ID_Progetto);
 
 
     if(isset($_POST['modifica'])){
-
-        $mailU = $_POST['email'];
         $nomeProg = $_POST['nome'];
         $descrizione = $_POST['descrizione'];
         $dataSca = $_POST['dataScadenza'];
@@ -28,13 +28,18 @@
 
         if ($ID_Progetto != "") {
             $array = array("ID_Progetto" => $ID_Progetto,
-                    "Leader" => $_POST['email'],
+                    "Leader" => $_SESSION['mail'],
                     "NomeP" => $_POST['nome'],
                     "DescrizioneP" => $_POST['descrizione'],
                     "DataScadenzaP" => $dataSca,
                     "DataCreazioneP" => $dataCrea);
             $progetto->UpdateProg($array);
+            $flag = true;
         }
+    }
+
+    if($flag){
+        header("Refresh:0");
     }
 
 ?>
@@ -91,13 +96,10 @@
 </nav>
 
 
-<form action='modifica_progetto.php?=<?php echo $ID_Progetto ?>' method="POST">
+<form action='modifica_progetto.php?id=<?php echo $ID_Progetto ?>' method="POST">
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 offset-2">
-                <label for="inputEmail4">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo $result[0]->getLeader(); ?>">
-                <br>
                 <label for="inputPassword4">Project's name</label>
                 <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" value="<?php echo $result[0]->getNomeP(); ?>">
                 <br>
