@@ -19,8 +19,8 @@
 
             $this->startConnection();
 
-            $sql = "INSERT INTO utente (Mail, Password, Nome, Cognome) VALUES " .
-                "('" . $this->utente->getMail() . "', '" . $this->utente->getPassword() . "', '" . $this->utente->getNome() . "', '" . $this->utente->getCognome() . "')";
+            $sql = "INSERT INTO utente (Mail, Password, Nome, Cognome, Ruolo) VALUES " .
+                "('" . $this->utente->getMail() . "', '" . $this->utente->getPassword() . "', '" . $this->utente->getNome() . "', '" . $this->utente->getCognome() . "', '" . $this->utente->getRuolo() . "')";
 
             $this->getConnection()->query($sql);
 
@@ -76,7 +76,7 @@
 
             $this->startConnection();
 
-            $sql = "SELECT Nome, Cognome, Mail, Password  FROM utente WHERE Mail='".$mail."'";
+            $sql = "SELECT Nome, Cognome, Mail, Password, Ruolo  FROM utente WHERE Mail='".$mail."'";
 
             $result = $this->getConnection()->query($sql);
 

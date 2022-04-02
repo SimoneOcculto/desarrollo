@@ -18,6 +18,10 @@
 
         if($utente->accesso_utente($username,$password)){
             $_SESSION['mail'] = $username;
+
+            $result = $utente->getUtente($_SESSION['mail']);
+            $_SESSION['ruolo'] = $result->getRuolo();
+
             header("location: nuovo_progetto.php");
         } else{
             session_destroy();

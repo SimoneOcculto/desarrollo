@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
@@ -16,15 +15,20 @@
         $cognome = $_POST['cognome'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $ruolo = 'U';
 
         require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
         $utente = new db_utente();
         if($utente->checkUtente($email)){
-            $array = array("mail" => $email,
-                "password" => $password,
-                "nome" => $nome,
-                "cognome" => $cognome);
+            $array = array("Mail" => $email,
+                "Password" => $password,
+                "Nome" => $nome,
+                "Cognome" => $cognome,
+                "Ruolo" => $ruolo);
             $utente->register($array);
+
+            $_SESSION['mail'] = $email;
+            $_SESSION['ruolo'] = $ruolo;
 
             header('Location: nuovo_progetto.php');
 
@@ -33,7 +37,6 @@
             $flag = true;
         }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -74,25 +77,25 @@
                             <div class="row">
                                 <div class="col-4 offset-2">
                                     <label for="nome">Name</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Name" pattern="[a-zA-Z]{2,40}" >
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Name" pattern="[a-zA-Z]{2,40}" required>
                                     <label>Surname</label>
-                                    <input type="text" id="cognome"  class="form-control" name="cognome" placeholder="Surname" pattern="[a-zA-Z]{2,50}">
+                                    <input type="text" id="cognome"  class="form-control" name="cognome" placeholder="Surname" pattern="[a-zA-Z]{2,50}" required>
                                     <label for="inputEmail4">Email</label>
                                     <?php
                                     if($flag) {
-                                        echo "<input type=\"email\" class=\"form-control is-invalid\" id=\"email\" name=\"email\" placeholder=\"Email\">";
+                                        echo "<input type=\"email\" class=\"form-control is-invalid\" id=\"email\" name=\"email\" placeholder=\"Email\" required>";
                                     } else{
-                                        echo "<input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Email\">";
+                                        echo "<input type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" placeholder=\"Email\" required>";
                                     }
                                     ?>
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
 
                                     <label for="inputPassword4" >Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$" required>
 
                                     <label for="inputPassword4" >Confirm password</label>
-                                    <input type="password" class="form-control" id="confermaPassword" name="confermaPassword" placeholder="Confirm password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$">
+                                    <input type="password" class="form-control" id="confermaPassword" name="confermaPassword" placeholder="Confirm password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$" required>
                                     <br>
                                 </div>
                             </div>

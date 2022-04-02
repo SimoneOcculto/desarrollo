@@ -21,7 +21,8 @@
         $array = array("Nome" => $_POST['nome'],
             "Cognome" => $_POST['cognome'],
             "Mail" => $_SESSION['mail'],
-            "Password" => $result->getPassword());
+            "Password" => $result->getPassword(),
+            "Ruolo" => $result->$_SESSION['ruolo']);
 
         $utente->UpdateUser($array);
 
