@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 10, 2022 alle 09:24
+-- Creato il: Apr 02, 2022 alle 15:08
 -- Versione del server: 10.4.22-MariaDB
 -- Versione PHP: 7.4.26
 
@@ -41,7 +41,11 @@ CREATE TABLE `progetto` (
 --
 
 INSERT INTO `progetto` (`ID_Progetto`, `Leader`, `NomeP`, `DescrizioneP`, `DataScadenzaP`, `DataCreazioneP`) VALUES
-(19, 's@f.d', 'a', 'a', '2022-03-17', '2022-03-09');
+(40, 'sid9@live.it', 'Provaadsdddddddddd', 'provissima', '0000-00-00', '2022-03-31'),
+(41, 'sid@live.it', 'PROVA', 'provissimaaaa', '2022-03-31', '2022-03-31'),
+(42, 'sid@live.it', 'adfa', 'afa', '2022-04-08', '2022-03-31'),
+(43, 'sid9@live.it', 'dsads', 'asddads', '2022-03-31', '2022-03-31'),
+(44, 'sid9@live.it', 'qsasa', 'asssa', '2022-04-02', '2022-04-02');
 
 -- --------------------------------------------------------
 
@@ -59,6 +63,16 @@ CREATE TABLE `task` (
   `Priorita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dump dei dati per la tabella `task`
+--
+
+INSERT INTO `task` (`ID_Task`, `Progetto`, `NomeT`, `DescrizioneT`, `DataScadenzaT`, `DataCreazioneT`, `Priorita`) VALUES
+(13, 40, 'Prova', 'provissima', '2022-03-31', '2022-03-31', 2),
+(14, 41, 'CSC', 'CSCS', '2022-03-31', '2022-03-31', 2),
+(15, 41, 'CS', 'SCSC', '2022-03-31', '2022-03-31', 2),
+(16, 43, 'addsadas', 'addssda', '2022-04-09', '2022-03-31', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -67,10 +81,21 @@ CREATE TABLE `task` (
 
 CREATE TABLE `utente` (
   `Mail` varchar(60) NOT NULL,
-  `Nome` text NOT NULL,
-  `Cognome` text NOT NULL,
+  `Password` varchar(32) NOT NULL,
+  `Ruolo` varchar(1) NOT NULL,
+  `Nome` varchar(32) NOT NULL,
+  `Cognome` varchar(32) NOT NULL,
   `Nascita` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `utente`
+--
+
+INSERT INTO `utente` (`Mail`, `Password`, `Ruolo`, `Nome`, `Cognome`, `Nascita`) VALUES
+('sid9@live.it', 'Ciao2000.', 'U', 'Gabriele', 'Zullo', ''),
+('sid@live.it', 'Ciao2000.', 'U', 'Gabriele', 'Zullo', ''),
+('simone@jj.it', 'Ciao2000.', 'A', 'Simone', 'Occulto', '');
 
 --
 -- Indici per le tabelle scaricate
@@ -86,7 +111,8 @@ ALTER TABLE `progetto`
 -- Indici per le tabelle `task`
 --
 ALTER TABLE `task`
-  ADD PRIMARY KEY (`ID_Task`);
+  ADD PRIMARY KEY (`ID_Task`),
+  ADD KEY `FK_ID_Progetto` (`Progetto`);
 
 --
 -- Indici per le tabelle `utente`
@@ -102,13 +128,23 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `progetto`
 --
 ALTER TABLE `progetto`
-  MODIFY `ID_Progetto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID_Progetto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT per la tabella `task`
 --
 ALTER TABLE `task`
-  MODIFY `ID_Task` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Task` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Limiti per le tabelle scaricate
+--
+
+--
+-- Limiti per la tabella `task`
+--
+ALTER TABLE `task`
+  ADD CONSTRAINT `FK_ID_Progetto` FOREIGN KEY (`Progetto`) REFERENCES `progetto` (`ID_Progetto`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
