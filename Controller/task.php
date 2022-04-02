@@ -23,6 +23,7 @@ class task{
         $this->DataScadenzaT = $array['DataScadenzaT'];
         $this->DataCreazioneT = $array['DataCreazioneT'];
         $this->Priorita = $array['Priorita'];
+
     }
 
     public function getId_task(){

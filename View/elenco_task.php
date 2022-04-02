@@ -84,7 +84,7 @@
                                 <td>".$value->getDescrizioneT()."</td>
                                 <td>".$value->getDataScadenzaT()."</td>
                                 <td><a href='elimina_task.php?id=".$value->getId_task()."'><button>Elimina</button></a></td>
-                                <td><a href='modifica_progetto.php?id=".$value->getId_task()."'><button>Modifica</button></a></td>
+                                <td><a href='modifica_task.php?id=".$value->getId_task()."'><button>Modifica</button></a></td>
                                 <td><a href='elenco_progetti.php'><button>Annulla</button></a></td>
                             </tr>
                         </table>";
