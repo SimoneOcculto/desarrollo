@@ -3,6 +3,8 @@
 
     require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
+    $flag = 0;
+
     if(empty($_SESSION)) {
         // session isn't started
         header('Location: index.php');
@@ -12,7 +14,11 @@
 
     $progetti = new db_progetto();
 
-    $array=$progetti->getAllProgettiUtente($_SESSION['mail']);
+    if(strcmp($_SESSION['ruolo'], "U") == 0) {
+        $array = $progetti->getAllProgettiUtente($_SESSION['mail']);
+    } else {
+        $array = $progetti->getAllProgetti();
+    }
 ?>
 
 <html>
@@ -80,17 +86,28 @@
                         <ul class="list-group">
                             <li class="list-group-item clearfix">
                                     <span style="position:absolute; top:30%;">
-                                        <?php echo "<table>
-                                                <tr><td>
+                                        <?php echo "<table>";
+                                                if(strcmp($_SESSION['ruolo'], "A") == 0){
+                                                    echo "<tr><td>
+                                                        ".$value->getLeader()."
+                                                        </td>";
+                                                    $flag = 1;
+                                                }
+
+                                                if($flag != 1){
+                                                    echo "<tr>";
+                                                }
+
+                                                echo "<td>
                                                     ".$value->getNomeP()."
-                                                </td><td> 
+                                                    </td><td> 
                                                     ".$value->getDescrizioneP()."
-                                                </td><td> 
+                                                    </td><td> 
                                                     ".$value->getDataScadenzaP()."
-                                                </td><td>
+                                                    </td><td>
                                                     ".$value->getDataCreazioneP()." 
-                                                </td></tr>
-                                                </table>";
+                                                    </td></tr>
+                                                    </table>";
                                         ?>
                                     </span>
                                     <span class="pull-right button-group">
