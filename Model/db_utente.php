@@ -95,6 +95,34 @@
             return $user;
         }
 
+        public function getAllUtenti(){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM utente WHERE Ruolo = 'U' ORDER BY Nome, Cognome";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $user = new utente($row);
+                        $array[] = $user;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+            return $array;
+        }
+
         public function UpdateUser($user){
 
             $this->utente = new utente($user);
