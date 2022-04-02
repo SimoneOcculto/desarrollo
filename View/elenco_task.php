@@ -75,21 +75,29 @@
             echo "<b>Non ci sono task</b> <a href='elenco_progetti.php'><button>Annulla</button></a>";
         } else {
             foreach ($array as $value) {
-                echo "
-                        <table>
+                 ?>"
+                <div class="container">
+                        <?php echo
+                            "<table>
                             <tr>
                                 <td>".$value->getId_task()."</td>
                                 <td>".$value->getId_progetto()."</td>
                                 <td>".$value->getNomeT()."</td>
                                 <td>".$value->getDescrizioneT()."</td>
-                                <td>".$value->getDataScadenzaT()."</td>
-                                <td><a href='elimina_task.php?id=".$value->getId_task()."'><button>Elimina</button></a></td>
-                                <td><a href='modifica_task.php?id=".$value->getId_task()."'><button>Modifica</button></a></td>
-                                <td><a href='elenco_progetti.php'><button>Annulla</button></a></td>
-                            </tr>
-                        </table>";
+                                <td>".$value->getDataScadenzaT()."</td>"
+                                ?>
+
+                                <span class="pull-right button-group">
+                                <a href='elimina_task.php?id=<?php $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                                <a href='modifica_task.php?id=<?php $value->getId_task();?>'class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
+                                </span>
+                    </tr>
+                        </table>
+            <?php
             }
         }
-    ?>
+?>
+                    </div>
     </body>
 </html>
