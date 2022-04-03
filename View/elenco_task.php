@@ -77,6 +77,9 @@
             foreach ($array as $value) {
                  ?>"
                 <div class="container">
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix">
+                                    <span style="position:absolute; top:30%;">
                         <?php echo
                             "<table>
                             <tr>
@@ -86,6 +89,8 @@
                                 <td>".$value->getDescrizioneT()."</td>
                                 <td>".$value->getDataScadenzaT()."</td>"
                                 ?>
+                                        </table>
+                             </span>
 
                                 <span class="pull-right button-group">
                                 <a href='elimina_task.php?id=<?php $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
@@ -93,11 +98,14 @@
                                 <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
                                 </span>
                     </tr>
-                        </table>
+
+                        </li>
+                    </ul>
+                </div>
             <?php
             }
         }
 ?>
-                    </div>
+
     </body>
 </html>
