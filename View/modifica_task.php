@@ -121,7 +121,8 @@
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione" ><?php echo $result[0]->getDescrizioneT();?></textarea>
                 <br>
                 <label>Expiration date</label>
-                </br>
+                <br>
+
                 <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaT(); ?>">
                 <label>Priority:</label></form</br>
                 <?php
