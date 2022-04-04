@@ -61,12 +61,17 @@
             </form>
         </nav>
 
-        <div class="container">
-            <span class="pull-left button-group">
-               <a class="btn btn-success" href="nuovo_progetto.php" role="button">New Project</a>
-             </span>
-        </div>
-        <br>
+        <?php
+            if(strcmp($_SESSION['ruolo'], "A") != 0) {
+                echo"
+                    <div class='container' >
+                    <span class='pull-left button-group' >
+                       <a class='btn btn-success' href = 'nuovo_progetto.php' role = 'button' > new Project</a >
+                     </span >
+                    </div >
+                    <br >";
+            }
+        ?>
         <?php
             if($array == false){
                 echo "<b>Nessun progetto trovato</b>";
