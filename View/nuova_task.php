@@ -3,12 +3,16 @@
 
     require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
 
-    if(empty($_SESSION)) {
+    $flag = false;
+
+    if (empty($_SESSION)) {
         // session isn't started
         header('Location: index.php');
     }
 
-    $ID_Progetto=$_GET['id'];
+    if($flag) {
+        $ID_Progetto=$_GET['id'];
+    }
 
     if(isset($_POST['invioP'])) {
         require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
@@ -133,6 +137,7 @@
                                 if(isset($_POST['invioT'])) {
                                     $result = $progetti2->getArrayProgetti($_GET['id']);
                                     echo $result[0]->getNomeP();
+                                    $flag = true;
                                 } else{
                                     $result = $progetti2->getArrayProgetti($ID_Progetto);
                                     echo $result[0]->getNomeP();
