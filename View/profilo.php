@@ -74,13 +74,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gestione_utenti.php">Users Management</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -89,6 +88,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
+
     <div class="piede">
 
         <div class="col-lg-12 text-lg-center">
@@ -99,9 +99,10 @@
         </div>
 
         <form action="profilo.php" method="POST">
+
             <div class="supremo">
 
-            <div class="riga">
+                <div class="riga">
                 <div class="etichetta"><label>Name</label></div>
             <input class="tony" type="text" id="nome" name="nome" placeholder="Nome" value="<?php echo $result->getNome(); ?>">
             </div>

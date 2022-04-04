@@ -30,27 +30,17 @@ if(empty($_SESSION)) {
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="elenco_progetti.php">Projects</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="logout.php">logout <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#">Teams</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gestione_utenti.php">Users Management</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown link
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -59,6 +49,7 @@ if(empty($_SESSION)) {
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
+
     <?php
         require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
