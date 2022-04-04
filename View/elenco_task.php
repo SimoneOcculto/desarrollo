@@ -70,6 +70,7 @@
    <a class="btn btn-success" href='nuova_task.php?id=<?php echo $_GET['id'];  ?>'  role="button">New Task</a>
  </span>
     </div>
+    <br>
     <?php
         if ($array == false) {
             echo "<b>Non ci sono task</b> <a href='elenco_progetti.php'><button>Annulla</button></a>";
