@@ -37,7 +37,7 @@
                             </form>
                         </td>
                         <td>
-                            <a href='elenco_task.php'><button>Annulla</button></a>
+                            <a href='elenco_task.php?id=". $value->getId_progetto() ."'><button>Annulla</button></a>
                         </td>
                     </tr>
                   </table>";

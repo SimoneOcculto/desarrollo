@@ -1,7 +1,6 @@
 <?php
 
     require 'C:/xampp/htdocs/desarrollo/Model/utente.php';
-    require_once 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     class db_utente extends db_handler{
         //dichiarazione attributi
