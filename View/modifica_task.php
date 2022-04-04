@@ -23,6 +23,7 @@
         $descrizione = $_POST['descrizione'];
         $dataSca = $_POST['dataScadenza'];
         $priorita = $_POST['priorita'];
+        $dataCrea = date("Y-m-d");
 
         switch ($priorita)
         {
@@ -43,6 +44,7 @@
             $array = array("ID_Task" => $ID_task,
                 "NomeT" => $_POST['nome'],
                 "DescrizioneT" => $_POST['descrizione'],
+                "DataCreazioneT" => $dataCrea,
                 "DataScadenzaT" => $dataSca,
                 "Priorita" => $priorita);
             $taskt->UpdateTask($array);
@@ -153,6 +155,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </form>
 

@@ -8,6 +8,8 @@
         header('Location: index.php');
     }
 
+    $ID_Progetto=$_GET['id'];
+
     if(isset($_POST['invioP'])) {
         require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
 
@@ -169,6 +171,7 @@
                 </div>
             </div>
         </div>
+    </div>
                 </form>
     </body>
 </html>
