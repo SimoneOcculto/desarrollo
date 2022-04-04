@@ -75,7 +75,7 @@
             echo "<b>Non ci sono task</b> <a href='elenco_progetti.php'><button>Annulla</button></a>";
         } else {
             foreach ($array as $value) {
-                 ?>"
+                 ?>
                 <div class="container">
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
