@@ -82,7 +82,7 @@
             } else {
                 foreach ($array as $value) {
         ?>
-                    <div class="container-fluid">
+                    <div class="container">
                         <ul class="list-group">
                             <li class="list-group-item clearfix">
                                     <span style="position:absolute; top:30%;">
