@@ -93,8 +93,8 @@
                              </span>
 
                                 <span class="pull-right button-group">
-                                <a href='elimina_task.php?id=<?php $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                                <a href='modifica_task.php?id=<?php $value->getId_task();?>'class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <a href='elimina_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                                <a href='modifica_task.php?id=<?php echo $value->getId_task();?>'class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                                 <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
                                 </span>
                     </tr>

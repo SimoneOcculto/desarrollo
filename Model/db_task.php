@@ -79,7 +79,7 @@ class db_task extends  db_handler{
 
         $this->startConnection();
 
-        $sql = "SELECT DISTINCT Progetto, ID_Task, NomeT, DescrizioneT, DataScadenzaT, DataCreazioneT, Priorita FROM task WHERE ID_task=".$ricerca;
+        $sql = "SELECT DISTINCT * FROM task WHERE ID_task=".$ricerca.";";
 
         $result = $this->getConnection()->query($sql);
 
