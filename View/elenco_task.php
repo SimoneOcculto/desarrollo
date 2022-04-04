@@ -17,6 +17,9 @@
 
 <html>
     <head>
+        <style>
+            <?php include 'style.css'; ?>
+        </style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -69,7 +72,15 @@
     ?>
     <?php
         if ($array == false) {
-            echo "<b>Non ci sono task</b> <a href='elenco_progetti.php'><button>Annulla</button></a>";
+            echo "
+            <div class='supremo'>
+            <h3>There aren't tasks here!</h3>
+            <span class='pull-right button-group'> 
+            <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
+            </span>
+            <br>
+            </div>
+            ";
         } else {
             foreach ($array as $value) {
                  ?>
