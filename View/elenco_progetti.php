@@ -66,7 +66,7 @@
                 echo"
                     <div class='container' >
                     <span class='pull-left button-group' >
-                       <a class='btn btn-success' href = 'nuovo_progetto.php' role = 'button' > new Project</a >
+                       <a class='btn btn-success' href = 'nuovo_progetto.php' role = 'button' > New Project</a >
                      </span >
                     </div >
                     <br >";
