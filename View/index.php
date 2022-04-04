@@ -6,7 +6,7 @@
 
     if(!empty($_SESSION)) {
         // session isn't started
-        header('Location: index.php');
+        header('Location: elenco_progetti.php');
     }
 
     if (isset($_POST['login'])) {
