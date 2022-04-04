@@ -79,11 +79,9 @@
                             
                             <label>Email</label>
                             <input type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
-                       ";
-                    echo "
-                            <form action='' method='POST'>
-                                <input type='submit' name='elimina' value='elimina'>
-                            </form>
+                            
+                            <button type='submit' name='elimina' value='elimina'>Elimina</button>
+                                                       
                             <button type='submit' name='modifica'>Modifica dati</button>
                         </form>";
                     echo "<br>";
