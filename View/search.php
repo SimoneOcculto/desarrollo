@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
 if(empty($_SESSION)) {
     // session isn't started
@@ -60,7 +60,7 @@ if(empty($_SESSION)) {
         </form>
     </nav>
     <?php
-        require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
+        require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
         $progetti = new db_progetto();
 

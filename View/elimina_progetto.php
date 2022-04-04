@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     if(empty($_SESSION)) {
         // session isn't started
@@ -9,13 +9,13 @@
     }
 
         //echo $_GET['nome'];
-        require "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
+        require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
         $progetti = new db_progetto();
 
         if(isset($_POST['elimina'])){
 
-            require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
+            require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
 
             $task = new db_task();
             $task->EliminaTask($_GET['id']);

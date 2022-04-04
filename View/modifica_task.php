@@ -2,14 +2,14 @@
 
     session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     if(empty($_SESSION)) {
         // session isn't started
         header('Location: index.php');
     }
 
-    require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
+    require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
 
     $flag = false;
 

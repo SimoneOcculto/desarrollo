@@ -2,13 +2,36 @@
 
     session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     if(empty($_SESSION)) {
         // session isn't started
         header('Location: index.php');
     }
 
+    if(isset($_POST['invioP'])) {
+        require_once "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
+
+        $mailU = $_SESSION['mail'];
+        $nomeProg = $_POST['nome'];
+        $descrizione = $_POST['descrizione'];
+        $dataSca = $_POST['dataScadenza'];
+        $dataCrea = date("Y-m-d");
+
+        $progetto = new db_progetto();
+
+        $array = array("Leader" => $_SESSION['mail'],
+            "NomeP" => $_POST['nome'],
+            "DescrizioneP" => $_POST['descrizione'],
+            "DataScadenzaP" => $dataSca,
+            "DataCreazioneP" => $dataCrea);
+
+        $progetto->register($array);
+
+        $_SESSION['progetto'] = $progetto->getIdUltimoProgetto($_SESSION['mail'], $dataCrea);
+
+        header('Location: nuova_task.php');
+    }
 ?>
 
 <html>
@@ -62,7 +85,7 @@
     </nav>
 
 
-        <form action="nuova_task.php" method="POST" >
+        <form action="" method="POST" >
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-4 offset-2">

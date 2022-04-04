@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     if(!empty($_SESSION)) {
         // session isn't started
@@ -17,7 +17,7 @@
         $password = $_POST['password'];
         $ruolo = 'U';
 
-        require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
+        require "C:/xampp/htdocs/desarrollo/Controller/db_utente.php";
         $utente = new db_utente();
         if($utente->checkUtente($email)){
             $array = array("Mail" => $email,

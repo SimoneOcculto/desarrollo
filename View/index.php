@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     $flag = false;
 
@@ -13,7 +13,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        require "C:/xampp/htdocs/desarrollo/Model/db_utente.php";
+        require "C:/xampp/htdocs/desarrollo/Controller/db_utente.php";
         $utente = new db_utente();
 
         if($utente->accesso_utente($username,$password)){

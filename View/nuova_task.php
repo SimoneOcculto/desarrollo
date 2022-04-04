@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
     $flag = false;
 
@@ -10,35 +10,8 @@
         header('Location: index.php');
     }
 
-    if($flag) {
-        $ID_Progetto=$_GET['id'];
-    }
-
-    if(isset($_POST['invioP'])) {
-        require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
-
-        $mailU = $_SESSION['mail'];
-        $nomeProg = $_POST['nome'];
-        $descrizione = $_POST['descrizione'];
-        $dataSca = $_POST['dataScadenza'];
-        $dataCrea = date("Y-m-d");
-
-        $progetto = new db_progetto();
-
-        if ($_POST['nome'] != "" && $_POST['descrizione'] != "") {
-            $array = array("Leader" => $_SESSION['mail'],
-                "NomeP" => $_POST['nome'],
-                "DescrizioneP" => $_POST['descrizione'],
-                "DataScadenzaP" => $dataSca,
-                "DataCreazioneP" => $dataCrea);
-            $progetto->register($array);
-        }
-
-        $ID_Progetto = $progetto->getIdUltimoProgetto($_SESSION['mail'], $dataCrea);
-    }
-
     if(isset($_POST['invioT'])) {
-        require "C:/xampp/htdocs/desarrollo/Model/db_task.php";
+        require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
 
         $nomeTask = $_POST['nome'];
         $descrizioneTask = $_POST['descrizione'];
@@ -61,15 +34,16 @@
 
         $task = new db_task();
 
-        if ($_GET['id'] != "") {
-            $array = array("Progetto" => $_GET['id'],
-                "NomeT" => $_POST['nome'],
-                "DescrizioneT" => $_POST['descrizione'],
-                "DataScadenzaT" => $dataScaTask,
-                "DataCreazioneT" => $dataCreaTask,
-                "Priorita" => $priorita);
-            $task->register($array);
-        }
+        $array = array("Progetto" => $_SESSION['progetto'],
+            "NomeT" => $_POST['nome'],
+            "DescrizioneT" => $_POST['descrizione'],
+            "DataScadenzaT" => $dataScaTask,
+            "DataCreazioneT" => $dataCreaTask,
+            "Priorita" => $priorita);
+
+        $task->register($array);
+
+        header ('Refresh:0');
     }
 ?>
 
@@ -127,21 +101,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-4 offset-2">
-                <form action='nuova_task.php?id=<?php echo $ID_Progetto ?>' method="POST">
+                <form action='nuova_task.php' method="POST">
                     <label>
                         <h1>Project:</h1>
                         <h2>
                             <?php
-                                require_once "C:/xampp/htdocs/desarrollo/Model/db_progetto.php";
+                                require_once "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
                                 $progetti2 = new db_progetto();
-                                if(isset($_POST['invioT'])) {
-                                    $result = $progetti2->getArrayProgetti($_GET['id']);
-                                    echo $result[0]->getNomeP();
-                                    $flag = true;
-                                } else{
-                                    $result = $progetti2->getArrayProgetti($ID_Progetto);
-                                    echo $result[0]->getNomeP();
-                                }
+                                $result = $progetti2->getArrayProgetti($_SESSION['progetto']);
+                                echo $result[0]->getNomeP();
                             ?>
                         </h2>
                     </label></br>

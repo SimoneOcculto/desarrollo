@@ -1,7 +1,7 @@
 <?php
 
-require 'C:/xampp/htdocs/desarrollo/Controller/task.php';
-require_once 'C:/xampp/htdocs/desarrollo/Model/db_handler.php';
+require 'C:/xampp/htdocs/desarrollo/Model/task.php';
+require_once 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
 class db_task extends  db_handler{
 
