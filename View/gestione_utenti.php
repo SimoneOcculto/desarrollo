@@ -12,6 +12,13 @@
     $utente = new db_utente();
     $array = $utente->getAllUtenti();
 
+    if(isset($_POST['elimina'])){
+
+        $utente->EliminaUtente($_POST['mail']);
+
+        header('Location: gestione_utenti.php');
+    }
+
     if(strcmp($_SESSION['ruolo'], "A") != 0) {
         header("Location: nuovo_progetto.php");
     } else{
@@ -40,6 +47,9 @@
                             <input type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
                        ";
                     echo "
+                            <form action='' method='POST'>
+                                <input type='submit' name='elimina' value='elimina'>
+                            </form>
                             <button type='submit' name='modifica'>Modifica dati</button>
                         </form>";
                     echo "<br>";
