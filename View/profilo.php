@@ -29,6 +29,15 @@
         $flag = true;
     }
 
+    if(isset($_POST['elimina'])){
+
+        $utente->EliminaUtente($_SESSION['mail']);
+
+        session_destroy();
+
+        header('Location: index.php');
+    }
+
     if($flag){
         header("Refresh:0");
     }
@@ -50,6 +59,10 @@
 
             <label>Email</label>
             <input type="text" id="mail" name="mail" placeholder="Mail" value="<?php echo $_SESSION['mail']; ?>">
+
+            <form action="" method="POST">
+                <input type="submit" name="elimina" value="elimina">
+            </form>
 
             <button type="submit" name="modifica">Modifica dati</button>
         </form>

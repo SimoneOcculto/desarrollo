@@ -154,6 +154,18 @@
             $this->closeconnection();
 
         }
+
+        public function EliminaUtente($mail){
+
+            $this->startConnection();
+
+            $sql = "DELETE FROM utente WHERE Mail='".$mail."'";
+
+            $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+
+        }
     }
 
 ?>
