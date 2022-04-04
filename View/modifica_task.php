@@ -126,25 +126,35 @@
                 <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaT(); ?>">
                 <label>Priority:</label></form</br>
                 <?php
-                $pr=$result[0]->getPriorita();
-                switch ($pr)
-                {
-                    case 1:
-                        $pr="uno";
-                        break;
-                    case 2:
-                        $pr="due";
-                        break;
-                    case 3:
-                        $pr="tre";
-                        break;
-                }
+                    $pr=$result[0]->getPriorita();
+                    switch ($pr)
+                    {
+                        case 1:
+                            echo"
+                                <select name='priorita'>
+                                    <option value='uno' selected>Low</option>
+                                    <option value='due'>Medium</option>
+                                    <option value='tre'>High</option>
+                                </select>";
+                            break;
+                        case 2:
+                            echo"
+                                <select name='priorita'>
+                                    <option value='uno'>Low</option>
+                                    <option value='due' selected>Medium</option>
+                                    <option value='tre'>High</option>
+                                </select>";
+                            break;
+                        case 3:
+                            echo"
+                                <select name='priorita'>
+                                    <option value='uno'>Low</option>
+                                    <option value='due'>Medium</option>
+                                    <option value='tre' selected>High</option>
+                                </select>";
+                            break;
+                    }
                 ?>
-                <select name="priorita">
-                    <option value="uno">Low</option>
-                    <option value="due">Medium</option>
-                    <option value="tre">High</option>
-                </select>
             </div>
         </div>
         <div class="container-fluid">

@@ -18,8 +18,8 @@
 
             $this->startConnection();
 
-            $sql = "INSERT INTO utente (Mail, Password, Nome, Cognome, Ruolo) VALUES " .
-                "('" . $this->utente->getMail() . "', '" . $this->utente->getPassword() . "', '" . $this->utente->getNome() . "', '" . $this->utente->getCognome() . "', '" . $this->utente->getRuolo() . "')";
+            $sql = "INSERT INTO utente (Mail, Password, Nome, Cognome, Ruolo) VALUES
+                    ('" . $this->utente->getMail() . "', '" . $this->utente->getPassword() . "', '" . $this->utente->getNome() . "', '" . $this->utente->getCognome() . "', '" . $this->utente->getRuolo() . "')";
 
             $this->getConnection()->query($sql);
 

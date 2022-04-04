@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
+    require '../Controller/db_handler.php';
 
     if(!empty($_SESSION)) {
         // session isn't started
