@@ -44,8 +44,12 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
+        <style>
+            <?php include 'style.css'; ?>
+        </style>
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -55,7 +59,8 @@
     </head>
 
     <body>
-    <nav class="navbar navbar-light bg-light justify-content-between">
+
+    <nav class="navbar navbar-light bg-light justify-content-between header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="index.php" style="font-size: 25px;"><b>ToDoGGS</b></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,63 +97,48 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
     </nav>
-    <div class="container">
-        <!-- edit form column -->
+
+    <div class="piede">
+
         <div class="col-lg-12 text-lg-center">
-            <h2>Edit Profile</h2>
             <br>
+            <h2>Profile</h2>
             <br>
-        </div>
-        <div class="container-fluid">
-            <form action="profilo.php" method="POST" role="form">
-                <div class="form-group row ">
-                    <label class="col-lg-3 col-form-label form-control-label">Name</label>
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" id="nome" name="nome" placeholder="Nome" value="<?php echo $result->getNome(); ?>">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Surname</label>
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" id="cognome" name="cognome" placeholder="Cognome" value="<?php echo $result->getCognome(); ?>">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                    <div class="col-lg-9">
-                        <input class="form-control" type="text" id="mail" name="mail" placeholder="Mail" value="<?php echo $_SESSION['mail']; ?>">
-                    </div>
-                </div>
 
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-                        <input type="reset" class="btn btn-secondary" value="Cancel" />
-                        <input type="submit" class="btn btn-primary" value="Save Changes" name="modifica" />
-                    </div>
-                </div>
-            </form>
         </div>
 
-    </div>
-    <hr />
-    <!--
         <form action="profilo.php" method="POST">
-            <label>Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Nome" value="<?php echo $result->getNome(); ?>">
+            <div class="supremo">
 
-            <label>Cognome</label>
-            <input type="text" id="cognome" name="cognome" placeholder="Cognome" value="<?php echo $result->getCognome(); ?>">
+            <div class="riga">
+                <div class="etichetta"><label>Nome</label></div>
+            <input class="tony" type="text" id="nome" name="nome" placeholder="Nome" value="<?php echo $result->getNome(); ?>">
+            </div>
 
-            <label>Email</label>
-            <input type="text" id="mail" name="mail" placeholder="Mail" value="<?php echo $_SESSION['mail']; ?>">
+            <div class="riga">
+                <div class="etichetta"><label>Cognome</label></div>
+            <input class="tony" type="text" id="cognome" name="cognome" placeholder="Cognome" value="<?php echo $result->getCognome(); ?>">
+            </div>
 
+            <div class="riga">
+                <div class="etichetta"><label>Email</label></div>
+            <input class="tony" type="text" id="mail" name="mail" placeholder="Mail" value="<?php echo $_SESSION['mail']; ?>">
+            </div>
+
+            <div class="riga">
+            <span class="pull-right button-group">
             <form action="" method="POST">
-                <input type="submit" name="elimina" value="elimina">
+                <input class="btn btn-danger" type="submit" name="elimina" value="Delete profile">
             </form>
+                <input type="reset" class="btn btn-secondary" value="Cancel" />
 
-            <button type="submit" name="modifica">Modifica dati</button>
-        </form>-->
+                <button  class="btn btn-primary" type="submit" name="modifica">Save changes</button>
+            </span>
+            </div>
+            </div>
+        </form>
+    </div>
     </body>
 </html>
