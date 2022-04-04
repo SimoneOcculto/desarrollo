@@ -154,6 +154,18 @@
 
         }
 
+        public function updateMail($oldMail, $newMail){
+
+            $this->startConnection();
+
+            $cambioMail="UPDATE utente SET Mail='".$newMail."' WHERE Mail='".$oldMail."'";
+
+            $this->getConnection()->query($cambioMail);
+
+            $this->closeconnection();
+
+        }
+
         public function EliminaUtente($mail){
 
             $this->startConnection();

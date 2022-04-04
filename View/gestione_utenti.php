@@ -69,6 +69,12 @@
                 echo "<b>Nessun utente trovato</b>";
             } else {
                 foreach ($array as $value) {
+                    $flag2 = true;
+
+                    if ($flag2){
+                        $_SESSION['mailpre'] = $value->getMail();
+                    }
+
                     echo"
                         <form action='gestione_utenti.php' method='POST'>
                             <label>Nome</label>
@@ -96,16 +102,18 @@
     $flag = false;
 
     if(isset($_POST['modifica'])){
-        $nome = $_POST['nome'];
-        $cognome = $_POST['cognome'];
-
         $array = array("Nome" => $_POST['nome'],
             "Cognome" => $_POST['cognome'],
-            "Mail" => $_POST['mail'],
+            "Mail" => $_SESSION['mailpre'],
             "Password" => $value->getPassword(),
             "Ruolo" => "U");
 
         $utente->UpdateUser($array);
+
+        if(strcmp($_SESSION['mailpre'], $_POST['mail']) != 0){
+            $utente->updateMail($_SESSION['mailpre'], $_POST['mail']);
+            $flag2 = false;
+        }
 
         $flag = true;
     }
