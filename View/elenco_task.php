@@ -13,6 +13,7 @@
     $task = new db_task();
 
     $array=$task->getAllTask($_GET['id']);
+    $_SESSION['progetto'] = $_GET['id'];
 ?>
 
 <html>
