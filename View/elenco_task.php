@@ -70,7 +70,7 @@
             echo"
                 <div class='container'>
                 <span class='pull-left button-group'>
-                <a class='btn btn-success' href='nuova_task.php?id=" . $_GET['id'] . "  role='button'>New Task</a>
+                <a class='btn btn-success' href='nuova_task.php?id=" . $_GET['id'] . "'  role='button'>New Task</a>
                 </span>
                 </div>
                 <br>";
