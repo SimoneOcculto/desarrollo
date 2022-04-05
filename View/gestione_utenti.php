@@ -26,6 +26,9 @@
 
 <html>
     <head>
+        <style>
+            <?php include 'style.css'; ?>
+        </style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -41,13 +44,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="elenco_progetti.php">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="gestione_utenti.php">Users Management</a>
                     </li>
                     <li class="nav-item ">
@@ -77,19 +80,33 @@
 
                     echo"
                         <form action='gestione_utenti.php' method='POST'>
-                            <label>Nome</label>
-                            <input type='text' id='nome' name='nome' placeholder='Nome' value=" . $value->getNome() ." required>
+                        
+                            <div class='supremo'>
+                            <div class='riga'>
+                            <div class='etichetta'><label>Name</label></div>
+                            <input class='tony' type='text' id='nome' name='nome' placeholder='Nome' value=" . $value->getNome() ." required>
+                            </div>
                             
-                            <label>Cognome</label>
-                            <input type='text' id='cognome' name='cognome' placeholder='Cognome' value=" . $value->getCognome() . " required>
+                            <div class='riga'>
+                            <div class='etichetta'><label>Surname</label></div>
+                            <input class='tony' type='text' id='cognome' name='cognome' placeholder='Cognome' value=" . $value->getCognome() . " required>
+                            </div>
                             
-                            <label>Email</label>
-                            <input type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
+                            <div class='riga'>
+                             <div class='etichetta'><label>Email</label></div>
+                            <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
+                            </div>
                             
-                            <button type='submit' name='elimina' value='elimina'>Elimina</button>
-                                                       
-                            <button type='submit' name='modifica'>Modifica dati</button>
-                        </form>";
+                            <div class='riga'>
+                            <span class='pull-right button-group'>
+                            <a class='btn btn-secondary'  href='elenco_progetti.php'>Cancel</a>
+                            <button class='btn btn-danger' type='submit' name='elimina' value='elimina'>Delete Profile</button>
+                                               
+                            <button class='btn btn-primary' type='submit' name='modifica'>Save Changes</button>
+                           </span>
+                           </div>
+                            </div>
+                            </form>";
                     echo "<br>";
                 }
             }

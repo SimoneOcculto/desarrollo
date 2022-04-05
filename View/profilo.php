@@ -68,10 +68,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="elenco_progetti.php">Projects</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
                     <li class="nav-item">
@@ -122,7 +122,8 @@
             <form action="" method="POST">
                 <input class="btn btn-danger" type="submit" name="elimina" value="Delete profile">
             </form>
-                <input type="reset" class="btn btn-secondary" value="Cancel" />
+
+                <a class="btn btn-secondary"  href="elenco_progetti.php">Cancel</a>
 
                 <button  class="btn btn-primary" type="submit" name="modifica">Save changes</button>
             </span>
