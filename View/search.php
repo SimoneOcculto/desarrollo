@@ -35,9 +35,15 @@ if(empty($_SESSION)) {
                     <li class="nav-item">
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gestione_utenti.php">Users Management</a>
-                    </li>
+                    <?php
+                    if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                        echo"
+                            <li class='nav-item'>
+                            <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                            </li>
+                            ";
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
                     </li>
