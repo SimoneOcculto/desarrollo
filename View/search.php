@@ -35,9 +35,15 @@ if(empty($_SESSION)) {
                     <li class="nav-item">
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gestione_utenti.php">Users Management</a>
-                    </li>
+                    <?php
+                    if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                        echo"
+                            <li class='nav-item'>
+                            <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                            </li>
+                            ";
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
                     </li>
@@ -66,17 +72,30 @@ if(empty($_SESSION)) {
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
                             <span style="position:absolute; top:30%;">
-                                <?php echo "<table>
-                                        <tr><td>
-                                            ".$value->getNomeP()."
-                                        </td><td> 
-                                            ".$value->getDescrizioneP()."
-                                        </td><td> 
-                                            ".$value->getDataScadenzaP()."
-                                        </td><td>
-                                            ".$value->getDataCreazioneP()." 
-                                        </td></tr>
-                                        </table>";
+                                <?php
+                                echo "<table>";
+
+                                if(strcmp($_SESSION['ruolo'], "A") == 0){
+                                    echo "<tr><td>
+                                                        ".$value->getLeader()."
+                                                        </td>";
+                                    $flag = 1;
+                                }
+
+                                if($flag != 1){
+                                    echo "<tr>";
+                                }
+
+                                echo "<td>
+                                                    ".$value->getNomeP()."
+                                                    </td><td> 
+                                                    ".$value->getDescrizioneP()."
+                                                    </td><td> 
+                                                    ".$value->getDataScadenzaP()."
+                                                    </td><td>
+                                                    ".$value->getDataCreazioneP()." 
+                                                    </td></tr>
+                                                    </table>";
                                 ?>
                             </span>
                             <span class="pull-right button-group">

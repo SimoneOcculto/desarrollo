@@ -44,9 +44,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="gestione_utenti.php">Users Management</a>
-                    </li>
+                    <?php
+                    if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                        echo"
+                            <li class='nav-item'>
+                            <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                            </li>
+                            ";
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
                     </li>
@@ -64,7 +70,7 @@
             echo"
                 <div class='container'>
                 <span class='pull-left button-group'>
-                <a class='btn btn-success' href='nuova_task.php?id=" . $_GET['id'] . "  role='button'>New Task</a>
+                <a class='btn btn-success' href='nuova_task.php?id=" . $_GET['id'] . "'  role='button'>New Task</a>
                 </span>
                 </div>
                 <br>";
