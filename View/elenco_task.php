@@ -47,10 +47,10 @@
                     <?php
                     if(strcmp($_SESSION['ruolo'], "A") == 0) {
                         echo"
-                            <li class='nav-item'>
-                            <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
-                            </li>
-                            ";
+                                <li class='nav-item'>
+                                <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                                </li>
+                                ";
                     }
                     ?>
                     <li class="nav-item">
