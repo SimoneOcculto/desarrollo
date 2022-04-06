@@ -10,10 +10,6 @@
         header('Location: index.php');
     }
 
-    if(strcmp($_SESSION['ruolo'], "A") == 0){
-        header('Location: elenco_progetti.php');
-    }
-
     if(isset($_POST['invioT'])) {
         require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
 

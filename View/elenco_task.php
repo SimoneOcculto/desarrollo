@@ -66,17 +66,13 @@
         </form>
     </nav>
 
-    <?php
-        if (strcmp($_SESSION['ruolo'], "A") != 0) {
-            echo"
-                <div class='container'>
-                <span class='pull-left button-group'>
-                <a class='btn btn-success' href='nuova_task.php?id=" . $_GET['id'] . "'  role='button'>New Task</a>
-                </span>
-                </div>
-                <br>";
-        }
-    ?>
+    <div class='container'>
+        <span class='pull-left button-group'>
+            <a class='btn btn-success' href='nuova_task.php?id=<?php echo $_GET['id']?>'  role='button'>New Task</a>
+        </span>
+    </div>
+    <br>
+
     <?php
         if ($array == false) {
             echo "
@@ -109,7 +105,7 @@
 
                                 <span class="pull-right button-group">
                                 <a href='elimina_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                                <a href='modifica_task.php?id=<?php echo $value->getId_task();?>'class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <a href='modifica_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                                 <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
                                 </span>
                     </tr>

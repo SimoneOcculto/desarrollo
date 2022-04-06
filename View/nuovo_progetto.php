@@ -9,10 +9,6 @@
         header('Location: index.php');
     }
 
-    if(strcmp($_SESSION['ruolo'], "A") == 0){
-        header('Location: elenco_progetti.php');
-    }
-
     if(isset($_POST['invioP'])) {
         require_once "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
