@@ -111,7 +111,7 @@
                                     <span class="pull-right button-group">
                                         <a href='modifica_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                                         <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
-                                    <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                                        <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
                                     </span>
                             </li>
                         </ul>
