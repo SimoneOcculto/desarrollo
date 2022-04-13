@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Apr 02, 2022 alle 15:08
+-- Creato il: Apr 13, 2022 alle 11:46
 -- Versione del server: 10.4.22-MariaDB
 -- Versione PHP: 7.4.26
 
@@ -11,16 +11,29 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-CREATE DATABASE db_desarrollo;
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+CREATE DATABASE 'db_desarrollo';
+
 --
 -- Database: `db_desarrollo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `partecipazione`
+--
+
+CREATE TABLE `partecipazione` (
+  `Invitante` varchar(60) NOT NULL,
+  `Invitato` varchar(60) NOT NULL,
+  `Progetto` int(11) UNSIGNED NOT NULL,
+  `Stato` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -34,19 +47,17 @@ CREATE TABLE `progetto` (
   `NomeP` varchar(32) NOT NULL,
   `DescrizioneP` varchar(100) NOT NULL,
   `DataScadenzaP` date NOT NULL,
-  `DataCreazioneP` date NOT NULL
+  `DataCreazioneP` date NOT NULL,
+  `Privacy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `progetto`
 --
 
-INSERT INTO `progetto` (`ID_Progetto`, `Leader`, `NomeP`, `DescrizioneP`, `DataScadenzaP`, `DataCreazioneP`) VALUES
-(40, 'sid9@live.it', 'Provaadsdddddddddd', 'provissima', '0000-00-00', '2022-03-31'),
-(41, 'sid@live.it', 'PROVA', 'provissimaaaa', '2022-03-31', '2022-03-31'),
-(42, 'sid@live.it', 'adfa', 'afa', '2022-04-08', '2022-03-31'),
-(43, 'sid9@live.it', 'dsads', 'asddads', '2022-03-31', '2022-03-31'),
-(44, 'sid9@live.it', 'qsasa', 'asssa', '2022-04-02', '2022-04-02');
+INSERT INTO `progetto` (`ID_Progetto`, `Leader`, `NomeP`, `DescrizioneP`, `DataScadenzaP`, `DataCreazioneP`, `Privacy`) VALUES
+(73, 'utente1@gmail.com', 'CIAO', 'ciao', '2022-04-23', '2022-04-13', 2),
+(74, 'utente1@gmail.com', 'CIAO', 'fasdsa', '2022-04-22', '2022-04-13', 1);
 
 -- --------------------------------------------------------
 
@@ -63,16 +74,6 @@ CREATE TABLE `task` (
   `DataCreazioneT` date NOT NULL,
   `Priorita` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `task`
---
-
-INSERT INTO `task` (`ID_Task`, `Progetto`, `NomeT`, `DescrizioneT`, `DataScadenzaT`, `DataCreazioneT`, `Priorita`) VALUES
-(13, 40, 'Prova', 'provissima', '2022-03-31', '2022-03-31', 2),
-(14, 41, 'CSC', 'CSCS', '2022-03-31', '2022-03-31', 2),
-(15, 41, 'CS', 'SCSC', '2022-03-31', '2022-03-31', 2),
-(16, 43, 'addsadas', 'addssda', '2022-04-09', '2022-03-31', 1);
 
 -- --------------------------------------------------------
 
@@ -94,19 +95,28 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`Mail`, `Password`, `Ruolo`, `Nome`, `Cognome`, `Nascita`) VALUES
-('sid9@live.it', 'Ciao2000.', 'U', 'Gabriele', 'Zullo', ''),
-('sid@live.it', 'Ciao2000.', 'U', 'Gabriele', 'Zullo', ''),
-('simone@jj.it', 'Ciao2000.', 'A', 'Simone', 'Occulto', '');
+('simone@jj.it', 'Ciao2000.', 'A', 'Simone', 'Occulto', ''),
+('utente1@gmail.com', 'Ciao2000.', 'U', 'Utente', 'Du', ''),
+('utente2@gmail.com', 'Ciao2000.', 'U', 'Utente', 'Uno', '');
 
 --
 -- Indici per le tabelle scaricate
 --
 
 --
+-- Indici per le tabelle `partecipazione`
+--
+ALTER TABLE `partecipazione`
+  ADD PRIMARY KEY (`Invitante`,`Progetto`,`Invitato`),
+  ADD KEY `FK_Invitato` (`Invitato`),
+  ADD KEY `FK_Progetto` (`Progetto`);
+
+--
 -- Indici per le tabelle `progetto`
 --
 ALTER TABLE `progetto`
-  ADD PRIMARY KEY (`ID_Progetto`);
+  ADD PRIMARY KEY (`ID_Progetto`),
+  ADD KEY `FK_Mail` (`Leader`);
 
 --
 -- Indici per le tabelle `task`
@@ -129,17 +139,31 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `progetto`
 --
 ALTER TABLE `progetto`
-  MODIFY `ID_Progetto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `ID_Progetto` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT per la tabella `task`
 --
 ALTER TABLE `task`
-  MODIFY `ID_Task` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_Task` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Limiti per le tabelle scaricate
 --
+
+--
+-- Limiti per la tabella `partecipazione`
+--
+ALTER TABLE `partecipazione`
+  ADD CONSTRAINT `FK_Invitante` FOREIGN KEY (`Invitante`) REFERENCES `utente` (`Mail`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Invitato` FOREIGN KEY (`Invitato`) REFERENCES `utente` (`Mail`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_Progetto` FOREIGN KEY (`Progetto`) REFERENCES `progetto` (`ID_Progetto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Limiti per la tabella `progetto`
+--
+ALTER TABLE `progetto`
+  ADD CONSTRAINT `FK_Mail` FOREIGN KEY (`Leader`) REFERENCES `utente` (`Mail`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `task`
