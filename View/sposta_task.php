@@ -12,7 +12,11 @@
 
     $progetti = new db_progetto();
 
-    $array = $progetti->getAllProgettiUtente($_SESSION['mail']);
+    if(strcmp($_SESSION['ruolo'], "A") != 0) {
+        $array = $progetti->getAllProgettiUtente($_SESSION['mail']);
+    } else{
+        $array = $progetti->getAllProgetti();
+    }
 
     require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
 
@@ -82,10 +86,20 @@
                     foreach ($array as $value) {
                         $nomeProgetto = $progetti->getNomeProg($_SESSION['progetto']);
 
-                        if(strcmp($value->getNomeP(), $nomeProgetto) != 0) {
-                            echo "
-                                    <option value=" . $value->getId() . ">" . $value->getNomeP() . "</option>
-                                ";
+                        if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                            $leader = $progetti->getLeaderProg($_SESSION['progetto']);
+
+                            if (strcmp($value->getNomeP(), $nomeProgetto) != 0 OR strcmp($value->getLeader(), $leader) != 0) {
+                                echo "
+                                        <option value=" . $value->getId() . ">" . $value->getNomeP() . " - " . $value->getLeader() . "</option>
+                                    ";
+                            }
+                        } else{
+                            if (strcmp($value->getNomeP(), $nomeProgetto)) {
+                                echo "
+                                        <option value=" . $value->getId() . ">" . $value->getNomeP() . "</option>
+                                    ";
+                            }
                         }
                     }
                 ?>

@@ -180,6 +180,20 @@
             return $row['NomeP'];
         }
 
+        public function getLeaderProg($id){
+
+            $this->startConnection();
+
+            $sql = "SELECT Leader FROM progetto WHERE ID_Progetto=".$id.";";
+
+            $result=$this->getConnection()->query($sql);
+            $row = $result->fetch_assoc();
+
+            $this->closeconnection();
+
+            return $row['Leader'];
+        }
+
         public function UpdateProg($project){
             $this->progetto = new progetto($project);
 
