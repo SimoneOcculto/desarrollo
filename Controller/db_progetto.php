@@ -170,13 +170,14 @@
 
             $this->startConnection();
 
-            $sql = "SELECT NomeP FROM progetto WHERE ID_Progetto=".$id;
+            $sql = "SELECT NomeP FROM progetto WHERE ID_Progetto=".$id.";";
 
             $result=$this->getConnection()->query($sql);
+            $row = $result->fetch_assoc();
 
             $this->closeconnection();
 
-            return $result;
+            return $row['NomeP'];
         }
 
         public function UpdateProg($project){

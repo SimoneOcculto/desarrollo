@@ -154,7 +154,17 @@ class db_task extends db_handler{
         }
 
         $this->closeconnection();
+    }
 
+    public function MoveTask($idProgetto, $task){
+
+        $this->startConnection();
+
+        $sql = "UPDATE task SET Progetto = '".$idProgetto."' WHERE ID_Task = '".$task."';";
+
+        $this->getConnection()->query($sql);
+
+        $this->closeconnection();
     }
 
 }
