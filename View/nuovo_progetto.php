@@ -17,6 +17,17 @@
         $descrizione = $_POST['descrizione'];
         $dataSca = $_POST['dataScadenza'];
         $dataCrea = date("Y-m-d");
+        $privacy = $_POST['privacy'];
+
+        switch ($privacy)
+        {
+            case "uno":
+                $privacy=1;
+                break;
+            case "due":
+                $privacy=2;
+                break;
+        }
 
         $progetto = new db_progetto();
 
@@ -24,7 +35,8 @@
             "NomeP" => $_POST['nome'],
             "DescrizioneP" => $_POST['descrizione'],
             "DataScadenzaP" => $dataSca,
-            "DataCreazioneP" => $dataCrea);
+            "DataCreazioneP" => $dataCrea,
+            "Privacy" => $privacy);
 
         $progetto->register($array);
 
@@ -87,9 +99,11 @@
                         <label for="inputPassword4">Project's name</label>
                         <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" required>
                         <br>
+
                         <label for="exampleFormControlTextarea1" align="center">Description</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione"></textarea>
                         <br>
+
                         <label>Expiration date</label>
                         </br>
                         <input type="date" id="dataScadenza" name="dataScadenza"
@@ -97,14 +111,15 @@
                             $date=date_create(date("Y-m-d"));
                             echo "min=\"".date_format($date,"Y-m-d")."\" ";
                         ?> required>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-4 offset-2">
-                            <div align="right">
+
+                        <label>Privacy:</label>
+                        <select name="privacy">
+                            <option value="uno">Private</option>
+                            <option value="due">Public</option>
+                        </select>
+
+                        <div align="right">
                             <button type="submit" class="btn btn-primary" name="invioP">Submit</button>
-                            </div>
                         </div>
                     </div>
                 </div>

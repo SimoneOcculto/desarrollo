@@ -102,6 +102,8 @@
                                                     ".$value->getDataScadenzaP()."
                                                     </td><td>
                                                     ".$value->getDataCreazioneP()." 
+                                                    </td><td>
+                                                    ".$value->getPrivacy()."
                                                     </td></tr>
                                                     </table>";
                                         ?>

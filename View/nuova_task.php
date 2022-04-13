@@ -123,24 +123,21 @@
                             echo "min=\"".date_format($date,"Y-m-d")."\" ";
                         ?> required>
 
-                    <label>Priority:</label></form</br>
+                    <label>Priority:</label>
                     <select name="priorita">
                         <option value="uno">Low</option>
                         <option value="due">Medium</option>
                         <option value="tre">High</option>
                     </select>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-4 offset-2">
-                        <div align="right">
-                            <button type="submit" class="btn btn-primary" name="invioT">Submit</button>
-                        </div>
+
+
+                    <div align="right">
+                        <button type="submit" class="btn btn-primary" name="invioT">Submit</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-                </form>
+
     </body>
 </html>

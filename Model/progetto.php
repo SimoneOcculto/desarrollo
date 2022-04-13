@@ -8,6 +8,7 @@
         private $DescrizioneP;
         private $DataScadenzaP;
         private $DataCreazioneP;
+        private $Privacy;
 
         //Definizione Metodi
         public function __construct($array){
@@ -20,6 +21,7 @@
             $this->DescrizioneP = $array['DescrizioneP'];
             $this->DataScadenzaP = $array['DataScadenzaP'];
             $this->DataCreazioneP = $array['DataCreazioneP'];
+            $this->Privacy = $array['Privacy'];
         }
 
         public function getId(){
@@ -44,6 +46,10 @@
 
         public function getDataCreazioneP(){
             return $this->DataCreazioneP;
+        }
+
+        public function getPrivacy(){
+            return $this->Privacy;
         }
     }
 
