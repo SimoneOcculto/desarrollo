@@ -47,7 +47,35 @@
 
             $this->startConnection();
 
-            $sql = "SELECT DISTINCT Leader, ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') ORDER BY dataCreazioneP DESC";
+            $sql = "SELECT DISTINCT Leader, ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP, Privacy FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') ORDER BY dataCreazioneP DESC";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $project = new progetto($row);
+                        $array[] = $project;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+            return $array;
+        }
+
+        public function getRicercaUtente($ricerca){
+
+            $this->startConnection();
+
+            $sql = "SELECT DISTINCT Leader, ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP, Privacy FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') AND Privacy = '2' ORDER BY dataCreazioneP DESC";
 
             $result = $this->getConnection()->query($sql);
 
@@ -190,6 +218,16 @@
             {
                 $cambioData="UPDATE progetto SET DataScadenzaP='".$this->progetto->getDataScadenzaP()."' WHERE ID_Progetto=".$this->progetto->getId().";";
                 $this->getConnection()->query($cambioData);
+            }
+
+            $sql = "SELECT Privacy FROM progetto WHERE ID_Progetto=".$this->progetto->getId();
+
+            $privacy=$this->getConnection()->query($sql);
+            $row = $privacy->fetch_assoc();
+
+            if($privacy!=$row['Privacy']){
+                $cambioP="UPDATE progetto SET Privacy='".$this->progetto->getPrivacy()."' WHERE ID_Progetto=".$this->progetto->getId().";";
+                $this->getConnection()->query($cambioP);
             }
 
             $this->closeconnection();

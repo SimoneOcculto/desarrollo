@@ -23,6 +23,17 @@
         $descrizione = $_POST['descrizione'];
         $dataSca = $_POST['dataScadenza'];
         $dataCrea = date("Y-m-d");
+        $privacy = $_POST['privacy'];
+
+        switch ($privacy)
+        {
+            case "uno":
+                $privacy=1;
+                break;
+            case "due":
+                $privacy=2;
+                break;
+        }
 
         $progetto = new db_progetto();
 
@@ -32,7 +43,9 @@
                     "NomeP" => $_POST['nome'],
                     "DescrizioneP" => $_POST['descrizione'],
                     "DataScadenzaP" => $dataSca,
-                    "DataCreazioneP" => $dataCrea);
+                    "DataCreazioneP" => $dataCrea,
+                    "Privacy" => $privacy);
+
             $progetto->UpdateProg($array);
             $flag = true;
         }
@@ -99,12 +112,36 @@
                 <label for="inputPassword4">Project's name</label>
                 <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" value="<?php echo $result[0]->getNomeP(); ?>">
                 <br>
+
                 <label for="exampleFormControlTextarea1" align="center">Description</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione" ><?php echo $result[0]->getDescrizioneP();?></textarea>
                 <br>
+
                 <label>Expiration date</label>
                 </br>
                 <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaP(); ?>">
+
+                <label>Privacy:</label>
+                <?php
+                $pr=$result[0]->getPrivacy();
+                switch ($pr)
+                {
+                    case 1:
+                        echo"
+                                <select name='privacy'>
+                                    <option value='uno' selected>Private</option>
+                                    <option value='due'>Public</option>
+                                </select>";
+                        break;
+                    case 2:
+                        echo"
+                                <select name='privacy'>
+                                    <option value='uno'>Private</option>
+                                    <option value='due' selected>Public</option>
+                                </select>";
+                        break;
+                }
+                ?>
             </div>
         </div>
         <div class="container-fluid">

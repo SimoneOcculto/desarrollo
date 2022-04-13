@@ -8,6 +8,8 @@ if(empty($_SESSION)) {
     header('Location: index.php');
 }
 
+$flag = 0;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +64,12 @@ if(empty($_SESSION)) {
         $progetti = new db_progetto();
 
         if(!empty($_POST['search'])){
-            $array = $progetti->getArrayProgetti($_POST['search']);
+            if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                $array = $progetti->getArrayProgetti($_POST['search']);
+            } else{
+                $array = $progetti->getRicercaUtente($_POST['search']);
+            }
+
             if ($array == false) {
                 echo "<b>Nessun progetto trovato</b>";
             } else {

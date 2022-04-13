@@ -149,7 +149,6 @@ class db_task extends db_handler{
         $row = $Priorita->fetch_assoc();
 
         if($Priorita!=$row['Priorita']){
-
             $cambioP="UPDATE task SET Priorita='".$this->task->getPriorita()."' WHERE ID_task=".$this->task->getId_task().";";
             $this->getConnection()->query($cambioP);
         }
