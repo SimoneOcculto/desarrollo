@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
@@ -8,11 +9,52 @@ if(empty($_SESSION)) {
     header('Location: index.php');
 }
 
-require 'C:/xampp/htdocs/desarrollo/Controller/db_partecipazione.php';
+require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
-$partecipazione = new db_partecipazione();
+$flag = false;
 
-$array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']);
+$progetti = new db_progetto();
+$ID_Progetto=$_GET['id'];
+$result=$progetti->getArrayProgetti($ID_Progetto);
+
+
+if(isset($_POST['modifica'])){
+    $nomeProg = $_POST['nome'];
+    $descrizione = $_POST['descrizione'];
+    $dataSca = $_POST['dataScadenza'];
+    $dataCrea = date("Y-m-d");
+    $privacy = $_POST['privacy'];
+
+    switch ($privacy)
+    {
+        case "uno":
+            $privacy=1;
+            break;
+        case "due":
+            $privacy=2;
+            break;
+    }
+
+    $progetto = new db_progetto();
+
+    if ($ID_Progetto != "") {
+        $array = array("ID_Progetto" => $ID_Progetto,
+            "Leader" => $_SESSION['mail'],
+            "NomeP" => $_POST['nome'],
+            "DescrizioneP" => $_POST['descrizione'],
+            "DataScadenzaP" => $dataSca,
+            "DataCreazioneP" => $dataCrea,
+            "Privacy" => $privacy);
+
+        $progetto->UpdateProg($array);
+        $flag = true;
+    }
+}
+
+if($flag){
+    header("Refresh:0");
+}
+
 ?>
 
 <html>
@@ -34,7 +76,7 @@ $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="elenco_progetti.php">Projects</a>
                         </li>
                         <li class="nav-item">
@@ -46,7 +88,7 @@ $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']
                                         <li class='nav-item'>
                                         <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
                                         </li>
-                                        ";
+                                            ";
                         }
                         ?>
                         <li class="nav-item">
@@ -61,33 +103,35 @@ $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']
             </form>
         </nav>
 
-        <?php
-        if(!$array){
-            echo "Non hai ricevuto inviti";
-        } else{
-            foreach ($array as $value) {
-        ?>
-                <div class="container">
-                    <ul class="list-group">
-                        <li class="list-group-item clearfix">
-                            <span style="position:absolute; top:30%;">
-        <?php
-                                echo "Hai ricevuto un invito ad un progetto da: ". $value->getInvitante();
-        ?>
-                            </span>
-                            <form>
-                            <span class="pull-right button-group">
-                                <a href='visualizza_progetto.php?id=<?php echo $value->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
-                                <a class="btn btn-success" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=0">Accept</a>
-                                <a class="btn btn-danger" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=1">Decline</a>
-                            </span>
-                            </form>
-                        </li>
-                    </ul>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 offset-2">
+                    <label for="inputPassword4">Project's name</label>
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="Project's name" name="nome" value="<?php echo $result[0]->getNomeP(); ?>" disabled>
+                    <br>
+
+                    <label for="exampleFormControlTextarea1" align="center">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" align="center" name="descrizione" disabled><?php echo $result[0]->getDescrizioneP();?></textarea>
+                    <br>
+
+                    <label>Expiration date</label>
+                    </br>
+                    <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaP(); ?>" disabled>
                 </div>
-            <?php
-                }
-            }
-        ?>
+            </div>
+        </div>
+        </br>
+
+        <div class='container'>
+            <span class='pull-left button-group'>
+                <a class="btn btn-success" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=0">Accept</a>
+            </span>
+            <span class='pull-center button-group'>
+                <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
+            </span>
+            <span class='pull-right button-group'>
+                <a class="btn btn-danger" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=1">Decline</a>
+            </span>
+        </div>
     </body>
 </html>

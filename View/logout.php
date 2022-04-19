@@ -2,7 +2,7 @@
     if(!isset($_SESSION)){
         session_start();
     } else {
-        header('Location: nuovo_progetto.php');
+        header('Location: homepage.php');
     }
 
     session_destroy();

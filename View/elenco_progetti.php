@@ -113,7 +113,7 @@
                                         <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
                                         <a href='elenco_utenti.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> Invite</a>
                                         <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                                        </span>
+                                    </span>
                             </li>
                         </ul>
                     </div>

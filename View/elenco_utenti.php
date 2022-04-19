@@ -59,7 +59,7 @@
 </head>
 <nav class="navbar navbar-light bg-light justify-content-between">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.php" style="font-size: 25px;"><b>ToDoGGS</b></a>
+        <a class="navbar-brand" href="homepage.php" style="font-size: 25px;"><b>ToDoGGS</b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -68,6 +68,15 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="elenco_progetti.php">Projects</a>
                 </li>
+                <?php
+                if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                    echo"
+                                    <li class='nav-item'>
+                                    <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                                    </li>
+                                    ";
+                }
+                ?>
                 <li class="nav-item">
                     <a class="nav-link" href="profilo.php">Profile</a>
                 </li>

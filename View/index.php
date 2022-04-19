@@ -6,7 +6,7 @@
 
     if(!empty($_SESSION)) {
         // session isn't started
-        header('Location: elenco_progetti.php');
+        header('Location: index.php');
     }
 
     if (isset($_POST['login'])) {
@@ -22,7 +22,7 @@
             $result = $utente->getUtente($_SESSION['mail']);
             $_SESSION['ruolo'] = $result->getRuolo();
 
-            header("location: nuovo_progetto.php");
+            header("location: homepage.php");
         } else{
             session_destroy();
         }

@@ -5,7 +5,7 @@
 
     if(!empty($_SESSION)) {
         // session isn't started
-        header('Location: nuovo_progetto.php');
+        header('Location: index.php');
     }
 
     $flag = false;
@@ -30,7 +30,7 @@
             $_SESSION['mail'] = $email;
             $_SESSION['ruolo'] = $ruolo;
 
-            header('Location: nuovo_progetto.php');
+            header('Location: homepage.php');
 
             $flag = false;
         } else {

@@ -41,11 +41,11 @@
 
         }
 
-        public function RicercaInvitiRicevutiUtente($mail){
+        public function RicercaInvitiInSospesoRicevutiUtente($mail){
 
             $this->startConnection();
 
-            $sql = "SELECT * FROM partecipazione WHERE Invitato = '".$mail."';";
+            $sql = "SELECT * FROM partecipazione WHERE Invitato = '".$mail."' AND Stato = 1;";
 
             $result = $this->getConnection()->query($sql);
 
@@ -66,8 +66,23 @@
             } else{
                 echo "Error in ".$sql."<br>".$this->startConnection()->error;
             }
+
             return $array;
         }
-    }
 
+        public function AccettaRifiutoInvito($num, $progetto, $mail){
+
+            $this->startConnection();
+
+            if($num == 0){
+                $sql = "UPDATE Partecipazione SET Stato = 2 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+            } else{
+                $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+            }
+
+            $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+        }
+    }
 ?>
