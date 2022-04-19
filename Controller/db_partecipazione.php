@@ -24,19 +24,26 @@
             $this->closeconnection();
         }
 
-        public function ControlloPK($oggetto){
-
-            $this->partecipazione = new partecipazione($relazione);
+        public function ControlloMail($mInvitante,$mInvitato){
 
             $this->startConnection();
 
-            $sql = "SELECT Invitante FROM partecipazione";
+            $sql = "SELECT Invitante, Invitato FROM partecipazione";
 
             $mail1=$this->getConnection()->query($sql);
             $row = $mail1->fetch_assoc();
 
-            if(strcmp($row['Invitante'],$this->partecipazione->getInvitante()!=0)){
+            if(strcmp($row['Invitante'],$mInvitante)==0){
 
+                if(strcmp($row['Invitato'],$mInvitato)!=0){
+                    return true;
+                }else
+                {
+                    return false;
+                }
+
+            }else{
+                return true;
             }
 
         }

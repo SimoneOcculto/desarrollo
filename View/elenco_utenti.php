@@ -30,8 +30,12 @@
                 "Stato" => $Stato);
 
 
+            if($partecipazione->ControlloMail($_SESSION['mail'], $MailU)){
 
-            $partecipazione->NewRelazione($array);
+                $partecipazione->NewRelazione($array);
+            }else{
+                echo "Utente gia invitato!";
+            }
         }else{
             //fare grafica con questo warning
             echo "utente non trovato!";
