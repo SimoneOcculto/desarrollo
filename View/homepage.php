@@ -13,6 +13,8 @@ require 'C:/xampp/htdocs/desarrollo/Controller/db_partecipazione.php';
 $partecipazione = new db_partecipazione();
 
 $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']);
+
+$array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']);
 ?>
 
 <html>
@@ -62,8 +64,14 @@ $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']
         </nav>
 
         <?php
+        echo "Inviti ricevuti:";
+        ?>
+
+        </br>
+
+        <?php
         if(!$array){
-            echo "Non hai ricevuto inviti";
+            echo "Non hai richieste di partecipazione in sospeso!";
         } else{
             foreach ($array as $value) {
         ?>
@@ -72,14 +80,14 @@ $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']
                         <li class="list-group-item clearfix">
                             <span style="position:absolute; top:30%;">
         <?php
-                                echo "Hai ricevuto un invito ad un progetto da: ". $value->getInvitante();
+                                echo $value->getInvitante();
         ?>
                             </span>
                             <form>
                             <span class="pull-right button-group">
                                 <a href='visualizza_progetto.php?id=<?php echo $value->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
-                                <a class="btn btn-success" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=0">Accept</a>
-                                <a class="btn btn-danger" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=1">Decline</a>
+                                <a class="btn btn-success" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=0&opz=0">Accept</a>
+                                <a class="btn btn-danger" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=1&opz=0">Decline</a>
                             </span>
                             </form>
                         </li>
@@ -88,6 +96,42 @@ $array = $partecipazione->RicercaInvitiInSospesoRicevutiUtente($_SESSION['mail']
             <?php
                 }
             }
+        ?>
+
+        </br>
+
+        <?php
+        echo "Inviti inviati:";
+        ?>
+
+        </br>
+
+        <?php
+        if(!$array2){
+            echo "Non hai richieste di partecipazione in sospeso!";
+        } else{
+            foreach ($array2 as $value2) {
+                ?>
+                <div class="container">
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix">
+                            <span style="position:absolute; top:30%;">
+        <?php
+                                echo $value2->getInvitato();
+        ?>
+                            </span>
+                            <form>
+                            <span class="pull-right button-group">
+                                <a href='visualizza_progetto.php?id=<?php echo $value2->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                <a href='invito.php?id=<?php echo $value2->getProgetto(); ?>&opz=1&mInvitato=<?php echo $value2->getInvitato(); ?>' class="btn btn-danger" >Revoke</a>
+                            </span>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <?php
+            }
+        }
         ?>
     </body>
 </html>

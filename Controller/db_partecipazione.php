@@ -77,15 +77,59 @@
             return $array;
         }
 
+        public function RicercaInvitiInSospesoInviatiUtente($mail){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM partecipazione WHERE Invitante = '".$mail."' AND Stato = 1;";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $relation = new partecipazione($row);
+                        $array[] = $relation;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+
+            return $array;
+        }
+
         public function AccettaRifiutoInvito($num, $progetto, $mail){
 
             $this->startConnection();
 
-            if($num == 0){
-                $sql = "UPDATE Partecipazione SET Stato = 2 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
-            } else{
-                $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+            switch($num){
+                case 0:
+                    $sql = "UPDATE Partecipazione SET Stato = 2 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+                    break;
+
+                case 1:
+                    $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+                    break;
             }
+
+            $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+        }
+
+        public function RevocaInvito($progetto, $mInvitante, $mInvitato){
+
+            $this->startConnection();
+
+            $sql = "DELETE FROM Partecipazione WHERE Progetto = '".$progetto."' AND Invitato = '".$mInvitato."' AND Invitante = '".$mInvitante."';";
 
             $this->getConnection()->query($sql);
 
