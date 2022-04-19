@@ -33,6 +33,7 @@
 
             $partecipazione->NewRelazione($array);
         }else{
+            //fare grafica con questo warning
             echo "utente non trovato!";
         }
 
