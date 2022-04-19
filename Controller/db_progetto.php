@@ -71,11 +71,11 @@
             return $array;
         }
 
-        public function getRicercaUtente($ricerca){
+        public function getRicercaUtente($ricerca, $mail){
 
             $this->startConnection();
 
-            $sql = "SELECT DISTINCT Leader, ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP, Privacy FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') AND Privacy = '2' ORDER BY dataCreazioneP DESC";
+            $sql = "SELECT Leader, ID_Progetto, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP, Privacy FROM progetto WHERE (ID_Progetto LIKE '%".$ricerca."%' OR NomeP LIKE '%".$ricerca."%') AND Leader !='".$mail."' AND Privacy = '2' ORDER BY dataCreazioneP DESC";
 
             $result = $this->getConnection()->query($sql);
 
@@ -170,13 +170,28 @@
 
             $this->startConnection();
 
-            $sql = "SELECT NomeP FROM progetto WHERE ID_Progetto=".$id;
+            $sql = "SELECT NomeP FROM progetto WHERE ID_Progetto=".$id.";";
 
             $result=$this->getConnection()->query($sql);
+            $row = $result->fetch_assoc();
 
             $this->closeconnection();
 
-            return $result;
+            return $row['NomeP'];
+        }
+
+        public function getLeaderProg($id){
+
+            $this->startConnection();
+
+            $sql = "SELECT Leader FROM progetto WHERE ID_Progetto=".$id.";";
+
+            $result=$this->getConnection()->query($sql);
+            $row = $result->fetch_assoc();
+
+            $this->closeconnection();
+
+            return $row['Leader'];
         }
 
         public function UpdateProg($project){

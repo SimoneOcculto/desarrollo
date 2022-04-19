@@ -67,7 +67,7 @@ $flag = 0;
             if(strcmp($_SESSION['ruolo'], "A") == 0) {
                 $array = $progetti->getArrayProgetti($_POST['search']);
             } else{
-                $array = $progetti->getRicercaUtente($_POST['search']);
+                $array = $progetti->getRicercaUtente($_POST['search'], $_SESSION['mail']);
             }
 
             if ($array == false) {
@@ -83,9 +83,10 @@ $flag = 0;
                                 echo "<table>";
 
                                 if(strcmp($_SESSION['ruolo'], "A") == 0){
-                                    echo "<tr><td>
-                                                        ".$value->getLeader()."
-                                                        </td>";
+                                    echo "
+                                            <tr><td>
+                                            ".$value->getLeader()."
+                                            </td>";
                                     $flag = 1;
                                 }
 
@@ -93,22 +94,26 @@ $flag = 0;
                                     echo "<tr>";
                                 }
 
-                                echo "<td>
-                                                    ".$value->getNomeP()."
-                                                    </td><td> 
-                                                    ".$value->getDescrizioneP()."
-                                                    </td><td> 
-                                                    ".$value->getDataScadenzaP()."
-                                                    </td><td>
-                                                    ".$value->getDataCreazioneP()." 
-                                                    </td></tr>
-                                                    </table>";
+                                echo "
+                                            <td>
+                                            ".$value->getLeader()."
+                                            </td><td>
+                                            ".$value->getNomeP()."
+                                            </td><td> 
+                                            ".$value->getDescrizioneP()."
+                                            </td><td> 
+                                            ".$value->getDataScadenzaP()."
+                                            </td><td>
+                                            ".$value->getDataCreazioneP()." 
+                                            </td></tr>
+                                    </table>";
                                 ?>
                             </span>
-                            <span class="pull-right button-group">
-                                  <a href='modifica_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                                  <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
 
+                            <span class="pull-right button-group">
+                                <a href='modifica_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
+                                <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
                             </span>
                         </li>
                     </ul>

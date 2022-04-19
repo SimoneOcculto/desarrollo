@@ -8,20 +8,22 @@
         header('Location: index.php');
     }
 
-    require 'C:/xampp/htdocs/desarrollo/Controller/db_utente.php';
-    $utente = new db_utente();
-    $array = $utente->getAllUtenti();
-
-    if(isset($_POST['elimina'])){
-
-        $utente->EliminaUtente($_POST['mail']);
-
-        header('Location: gestione_utenti.php');
-    }
-
     if(strcmp($_SESSION['ruolo'], "A") != 0) {
         header("Location: nuovo_progetto.php");
     } else{
+        require 'C:/xampp/htdocs/desarrollo/Controller/db_utente.php';
+        $utente = new db_utente();
+        $array = $utente->getAllUtenti();
+
+        if(isset($_POST['elimina'])){
+            $utente->EliminaUtente($_POST['mail']);
+
+            header('Location: gestione_utenti.php');
+        }
+
+        if(isset($_POST['modifica'])){
+
+        }
 ?>
 
 <html>
@@ -72,70 +74,40 @@
                 echo "<b>Nessun utente trovato</b>";
             } else {
                 foreach ($array as $value) {
-                    $flag2 = true;
-
-                    if ($flag2){
-                        $_SESSION['mailpre'] = $value->getMail();
-                    }
-
                     echo"
-                        <form action='gestione_utenti.php' method='POST'>
+                            <form action='gestione_utenti.php' method='POST'>
                         
-                            <div class='supremo'>
-                            <div class='riga'>
-                            <div class='etichetta'><label>Name</label></div>
-                            <input class='tony' type='text' id='nome' name='nome' placeholder='Nome' value=" . $value->getNome() ." required>
-                            </div>
+                                <div class='supremo'>
+                                
+                                <div class='riga'>
+                                    <div class='etichetta'><label>Name</label></div>
+                                    <input class='tony' type='text' id='nome' name='nome' placeholder='Nome' value=" . $value->getNome() . " required>
+                                </div>
                             
-                            <div class='riga'>
-                            <div class='etichetta'><label>Surname</label></div>
-                            <input class='tony' type='text' id='cognome' name='cognome' placeholder='Cognome' value=" . $value->getCognome() . " required>
-                            </div>
+                                <div class='riga'>
+                                    <div class='etichetta'><label>Surname</label></div>
+                                    <input class='tony' type='text' id='cognome' name='cognome' placeholder='Cognome' value=" . $value->getCognome() . " required>
+                                </div>
                             
-                            <div class='riga'>
-                             <div class='etichetta'><label>Email</label></div>
-                            <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
-                            </div>
+                                <div class='riga'>
+                                    <div class='etichetta'><label>Email</label></div>
+                                    <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
+                                </div>
                             
-                            <div class='riga'>
-                            <span class='pull-right button-group'>
-                            <a class='btn btn-secondary'  href='elenco_progetti.php'>Cancel</a>
-                            <button class='btn btn-danger' type='submit' name='elimina' value='elimina'>Delete Profile</button>
-                                               
-                            <button class='btn btn-primary' type='submit' name='modifica'>Save Changes</button>
-                           </span>
-                           </div>
-                            </div>
-                            </form>";
-                    echo "<br>";
+                                <div class='riga'>
+                                    <span class='pull-right button-group'>
+                                        <a class='btn btn-secondary'  href='elenco_progetti.php'>Cancel</a>
+                                        <button class='btn btn-danger' type='submit' name='elimina' value='elimina'>Delete Profile</button>       
+                                        <button class='btn btn-primary' type='submit' name='modifica'>Save Changes</button>
+                                    </span>
+                                </div>
+                                
+                                </div>
+                            </form>
+                            <br>";
                 }
             }
         }
         ?>
     </body>
 </html>
-
-<?php
-    $flag = false;
-
-    if(isset($_POST['modifica'])){
-        $array = array("Nome" => $_POST['nome'],
-            "Cognome" => $_POST['cognome'],
-            "Mail" => $_SESSION['mailpre'],
-            "Password" => $value->getPassword(),
-            "Ruolo" => "U");
-
-        $utente->UpdateUser($array);
-
-        if(strcmp($_SESSION['mailpre'], $_POST['mail']) != 0){
-            $utente->updateMail($_SESSION['mailpre'], $_POST['mail']);
-            $flag2 = false;
-        }
-
-        $flag = true;
-    }
-
-    if($flag){
-        header("Refresh:0");
-    }
-?>

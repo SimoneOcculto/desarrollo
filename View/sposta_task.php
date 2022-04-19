@@ -8,12 +8,26 @@
         header('Location: index.php');
     }
 
+    require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
+
+    $progetti = new db_progetto();
+
+    if(strcmp($_SESSION['ruolo'], "A") != 0) {
+        $array = $progetti->getAllProgettiUtente($_SESSION['mail']);
+    } else{
+        $array = $progetti->getAllProgetti();
+    }
+
     require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
 
     $task = new db_task();
+    $taskSpostata = $_GET['id'];
 
-    $array=$task->getAllTask($_GET['id']);
-    $_SESSION['progetto'] = $_GET['id'];
+    if(isset($_POST['Conferma'])){
+        $task->MoveTask($_POST['spostaTask'], $taskSpostata);
+
+        header('Location: elenco_progetti.php');
+    }
 ?>
 
 <html>
@@ -65,58 +79,32 @@
             </form>
         </nav>
 
-        <div class='container'>
-            <span class='pull-left button-group'>
-                <a class='btn btn-success' href='nuova_task.php?id=<?php echo $_GET['id']?>'  role='button'>New Task</a>
-            </span>
-            <span class='pull-right button-group'>
-                <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
-            </span>
-        </div>
-        <br>
-
-        <?php
-            if ($array == false) {
-                echo "
-                <div class='supremo'>
-                <h3>There aren't tasks here!</h3>
-                <span class='pull-right button-group'> 
-                <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
-                </span>
-                <br>
-                </div>
-                ";
-            } else {
-                foreach ($array as $value) {
-                     ?>
-                    <div class="container">
-                        <ul class="list-group">
-                            <li class="list-group-item clearfix">
-                                <span style="position:absolute; top:30%;">
-                                <?php echo
-                                            "<table>
-                                                <tr>
-                                                <td>".$value->getId_task()."</td>
-                                                <td>".$value->getId_progetto()."</td>
-                                                <td>".$value->getNomeT()."</td>
-                                                <td>".$value->getDescrizioneT()."</td>
-                                                <td>".$value->getDataScadenzaT()."</td>"
-                                ?>
-                                            </table>
-                                </span>
-
-                                <span class="pull-right button-group">
-                                    <a href='modifica_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                                    <a href='sposta_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-primary">Move Task</a>
-                                    <a href='elimina_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
+        <form action="" method="POST">
+            <label>Move to another project:</label><br>
+            <select name="spostaTask">
                 <?php
-                }
-            }
-?>
+                    foreach ($array as $value) {
+                        $nomeProgetto = $progetti->getNomeProg($_SESSION['progetto']);
 
+                        if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                            $leader = $progetti->getLeaderProg($_SESSION['progetto']);
+
+                            if (strcmp($value->getNomeP(), $nomeProgetto) != 0 OR strcmp($value->getLeader(), $leader) != 0) {
+                                echo "
+                                        <option value=" . $value->getId() . ">" . $value->getNomeP() . " - " . $value->getLeader() . "</option>
+                                    ";
+                            }
+                        } else{
+                            if (strcmp($value->getNomeP(), $nomeProgetto)) {
+                                echo "
+                                        <option value=" . $value->getId() . ">" . $value->getNomeP() . "</option>
+                                    ";
+                            }
+                        }
+                    }
+                ?>
+            </select>
+            <button type="submit" name="Conferma">Conferma</button>
+        </form>
     </body>
 </html>
