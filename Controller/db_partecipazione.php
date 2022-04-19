@@ -59,8 +59,8 @@
                 } else {
                     for ($i = 0; $i < $result->num_rows; $i++) {
                         $row = $result->fetch_assoc();
-                        $project = new progetto($row);
-                        $array[] = $project;
+                        $relation = new partecipazione($row);
+                        $array[] = $relation;
                     }
                 }
             } else{
