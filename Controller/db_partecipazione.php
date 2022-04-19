@@ -16,15 +16,6 @@
 
             $this->startConnection();
 
-            $sql = "SELECT Invitante FROM partecipazione";
-
-            $mail1=$this->getConnection()->query($sql);
-            $row = $mail1->fetch_assoc();
-
-            if(strcmp($row['Invitante'],$this->partecipazione->getInvitante()!=0)){
-
-            }
-
             $sql = "INSERT INTO partecipazione (Invitante, Invitato, Progetto, Stato) VALUES ".
                 "('".$this->partecipazione->getInvitante()."', '".$this->partecipazione->getInvitato()."', '".$this->partecipazione->getProgetto()."', '".$this->partecipazione->getStato()."')";
 
