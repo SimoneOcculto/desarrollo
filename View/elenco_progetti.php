@@ -68,6 +68,7 @@
         <div class='container' >
             <span class='pull-left button-group' >
                 <a class='btn btn-success' href = 'nuovo_progetto.php' role = 'button' > New Project</a >
+                <a class='btn btn-success' href = 'elenco_progetti_invitati.php' role = 'button' > Invited Project</a >
             </span>
         </div>
         <br>
