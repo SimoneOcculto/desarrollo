@@ -124,10 +124,13 @@ if($flag){
 
         <div class='container'>
             <span class='pull-left button-group'>
+                <a class="btn btn-success" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=0">Accept</a>
+            </span>
+            <span class='pull-center button-group'>
                 <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
             </span>
             <span class='pull-right button-group'>
-                <a class='btn btn-secondary'  href='homepage.php'>Cancel</a>
+                <a class="btn btn-danger" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=1">Decline</a>
             </span>
         </div>
     </body>
