@@ -47,11 +47,10 @@
                         </li>
                         <?php
                         if(strcmp($_SESSION['ruolo'], "A") == 0) {
-                            echo"
+                            echo "
                                     <li class='nav-item'>
-                                    <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
-                                    </li>
-                                    ";
+                                        <a class='nav-link' href = 'gestione_utenti.php'>Users Management</a>
+                                    </li>";
                         }
                         ?>
                         <li class="nav-item">
@@ -78,8 +77,7 @@
                 echo "
                         <span class='pull-left button-group'>
                             <a class='btn btn-success' href='nuova_task.php?id=".$_GET['id']." role='button'>New Task</a>
-                        </span>
-                    ";
+                        </span>";
             }
             ?>
             <span class='pull-right button-group'>
@@ -106,16 +104,17 @@
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
                             <span style="position:absolute; top:30%;">
-                            <?php echo
-                                        "<table>
-                                            <tr>
-                                                <td>".$value->getId_task()."</td>
-                                                <td>".$value->getId_progetto()."</td>
-                                                <td>".$value->getNomeT()."</td>
-                                                <td>".$value->getDescrizioneT()."</td>
-                                                <td>".$value->getDataScadenzaT()."</td>
-                                            </tr>
-                                        </table>"
+                            <?php
+                            echo "
+                                <table>
+                                    <tr>
+                                        <td>".$value->getId_task()."</td>
+                                        <td>".$value->getId_progetto()."</td>
+                                        <td>".$value->getNomeT()."</td>
+                                        <td>".$value->getDescrizioneT()."</td>
+                                        <td>".$value->getDataScadenzaT()."</td>
+                                    </tr>
+                                </table>"
                             ?>
                             </span>
 
