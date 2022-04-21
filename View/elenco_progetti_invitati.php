@@ -10,11 +10,11 @@ if(empty($_SESSION)) {
     header('Location: index.php');
 }
 
-require "C:/xampp/htdocs/desarrollo/Controller/db_partecipazione.php";
+require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
-$partecipazione = new db_partecipazione();
+$progetto = new db_progetto();
 
-$array = $partecipazione->getProjectInvited($_SESSION['mail']);
+$array = $progetto->getProjectInvited($_SESSION['mail']);
 
 ?>
 
@@ -63,3 +63,54 @@ $array = $partecipazione->getProjectInvited($_SESSION['mail']);
     </form>
 </nav>
 <br>
+
+<?php
+if($array == false){
+    echo "<b>Nessun progetto trovato</b>";
+} else {
+    foreach ($array as $value) {
+        ?>
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item clearfix">
+                                    <span style="position:absolute; top:30%;">
+                                        <?php echo "<table>";
+                                        if(strcmp($_SESSION['ruolo'], "A") == 0){
+                                            echo "<tr><td>
+                                                        ".$value->getLeader()."
+                                                        </td>";
+                                            $flag = 1;
+                                        }
+
+                                        if($flag != 1){
+                                            echo "<tr>";
+                                        }
+
+                                        echo "<td>
+                                                    ".$value->getNomeP()."
+                                                    </td><td> 
+                                                    ".$value->getDescrizioneP()."
+                                                    </td><td> 
+                                                    ".$value->getDataScadenzaP()."
+                                                    </td><td>
+                                                    ".$value->getDataCreazioneP()." 
+                                                    </td><td>
+                                                    ".$value->getPrivacy()."
+                                                    </td></tr>
+                                                    </table>";
+                                        ?>
+                                    </span>
+                    <span class="pull-right button-group">
+                                        <a href='visualizza_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Project</a>
+                                        <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
+                                        <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Exit Project</a>
+                                    </span>
+                </li>
+            </ul>
+        </div>
+        <?php
+    }
+}
+?>
+</body>
+</html>

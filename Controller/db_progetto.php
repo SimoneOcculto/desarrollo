@@ -249,5 +249,33 @@
 
         }
 
+        public function getProjectInvited($mail){
+
+            $this->startConnection();
+
+            $sql = "SELECT ID_Progetto, Leader, NomeP, DescrizioneP, DataScadenzaP, DataCreazioneP, Privacy FROM progetto, partecipazione WHERE ID_Progetto = Progetto AND Invitato = '".$mail."' AND Stato = 2;";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $project = new progetto($row);
+                        $array[] = $project;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+            return $array;
+        }
+
     }
 ?>
