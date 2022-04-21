@@ -70,9 +70,6 @@
             <span class='pull-left button-group'>
                 <a class='btn btn-success' href='nuova_task.php?id=<?php echo $_GET['id']?>' role='button'>New Task</a>
             </span>
-            <span class='pull-right button-group'>
-                <a href='elenco_progetti.php' class="btn btn-primary">Cancel</a>
-            </span>
         </div>
         <br>
 

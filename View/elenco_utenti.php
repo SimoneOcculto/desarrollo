@@ -9,6 +9,7 @@
     }
 
     $flag=0;
+    $flagError=0;
     require 'C:/xampp/htdocs/desarrollo/Controller/db_utente.php';
     require 'C:/xampp/htdocs/desarrollo/Controller/db_partecipazione.php';
     $utente = new db_utente();
@@ -34,11 +35,10 @@
 
                 $partecipazione->NewRelazione($array);
             }else{
-                echo "Utente gia invitato!";
+                $flagError=1;
             }
         }else{
-            //fare grafica con questo warning
-            echo "utente non trovato!";
+            $flagError=2;
         }
 
 
@@ -106,11 +106,12 @@
                             <div class='supremo'>                            
                             <div class='riga'>
                              <div class='etichetta'><label>Email</label></div>
-                            <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' required>
+                            <input class='tony' type='text' id='mail' name='mail' placeholder='Email' required>
                             </div>
                             
-                            <div class='riga'>
+                            <div class='riga-button'>
                             <span class='pull-right button-group'>
+                           
                             <a class='btn btn-secondary'  href='elenco_progetti.php'>Cancel</a>
                                                
                             <button class='btn btn-primary' type='submit' name='invita'>Invite</button>
@@ -119,6 +120,28 @@
                             </div>
                             </form>";
                     echo "<br>";
+
+                    if ($flagError==1){
+                        echo"
+                            <div class='supremo'>
+                            <h3>User already invited!</h3>
+                             <span class='pull-right button-group'> 
+                                <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
+                             </span>
+                            <br>
+                            </div>
+                            ";
+                    } elseif ($flagError==2){
+                        echo"
+                            <div class='supremo'>
+                            <h3>User not found!</h3>
+                             <span class='pull-right button-group'> 
+                                <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
+                             </span>
+                            <br>
+                            </div>
+                            ";
+                    }
         ?>
 </body>
 </html>

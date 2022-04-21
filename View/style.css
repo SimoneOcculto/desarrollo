@@ -56,3 +56,13 @@
     margin: auto;
 
 }
+
+.riga-button{
+
+    display: flex;
+    width: 132%;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: center;
+}
