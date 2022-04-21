@@ -67,69 +67,79 @@
         </nav>
 
         <div class='container'>
-            <span class='pull-left button-group'>
-                <a class='btn btn-success' href='nuova_task.php?id=<?php echo $_GET['id']?>' role='button'>New Task</a>
+            <?php
+            require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
+
+            $progetto = new db_progetto();
+
+            $leaderProg = $progetto->getLeaderProg($_GET['id']);
+
+            if(strcmp($_SESSION['mail'], $leaderProg) == 0) {
+                echo "
+                        <span class='pull-left button-group'>
+                            <a class='btn btn-success' href='nuova_task.php?id=".$_GET['id']." role='button'>New Task</a>
+                        </span>
+                    ";
+            }
+            ?>
+            <span class='pull-right button-group'>
+                <a class='btn btn-secondary' href='elenco_progetti.php' role='button'>Cancel</a>
             </span>
         </div>
         <br>
 
         <?php
-            if ($array == false) {
-                echo "
-                <div class='supremo'>
-                <h3>There aren't tasks here!</h3>
-                <span class='pull-right button-group'> 
-                <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
-                </span>
-                <br>
-                </div>
-                ";
-            } else {
-                foreach ($array as $value) {
-                     ?>
-                    <div class="container">
-                        <ul class="list-group">
-                            <li class="list-group-item clearfix">
-                                <span style="position:absolute; top:30%;">
-                                <?php echo
-                                            "<table>
-                                                <tr>
+        if ($array == false) {
+            echo "
+                    <div class='supremo'>
+                    <h3>There aren't tasks here!</h3>
+                    <span class='pull-right button-group'> 
+                    <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
+                    </span>
+                    <br>
+                    </div>
+                    ";
+        } else {
+            foreach ($array as $value) {
+        ?>
+                <div class="container">
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix">
+                            <span style="position:absolute; top:30%;">
+                            <?php echo
+                                        "<table>
+                                            <tr>
                                                 <td>".$value->getId_task()."</td>
                                                 <td>".$value->getId_progetto()."</td>
                                                 <td>".$value->getNomeT()."</td>
                                                 <td>".$value->getDescrizioneT()."</td>
-                                                <td>".$value->getDataScadenzaT()."</td>"
+                                                <td>".$value->getDataScadenzaT()."</td>
+                                            </tr>
+                                        </table>"
+                            ?>
+                            </span>
+
+                            <span class="pull-right button-group">
+                                <a href='modifica_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <?php
+                                $flag = false;
+
+                                if(strcmp($leaderProg, $_SESSION['mail']) == 0){
+                                    $flag = true;
+                                }
+
+                                if($flag){
+                                    echo "<a href='sposta_task.php?id=".$value->getId_task()."' class='btn btn-primary'>Move Task</a>";
+                                }
                                 ?>
-                                            </table>
-                                </span>
-
-                                <span class="pull-right button-group">
-                                    <a href='modifica_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                                    <?php
-                                    require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
-
-                                    $progetto = new db_progetto();
-
-                                    $leaderProg=$progetto->getLeaderProg($_GET['id']);
-
-                                    $flag = false;
-
-                                    if(strcmp($leaderProg, $_SESSION['mail']) == 0){
-                                        $flag = true;
-                                    }
-
-                                    if($flag){
-                                        echo "<a href='sposta_task.php?id=".$value->getId_task()."' class='btn btn-primary'>Move Task</a>";
-                                    }
-                                    ?>
-                                    <a href='elimina_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
+                                <a href='elimina_task.php?id=<?php echo $value->getId_task();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
 <?php
-                }
             }
+        }
 ?>
     </body>
 </html>
