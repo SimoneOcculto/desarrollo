@@ -132,6 +132,7 @@ if($flag){
             <span class='pull-right button-group'>
                 <a class="btn btn-danger" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=1">Decline</a>
             </span>
+
         </div>
     </body>
 </html>
