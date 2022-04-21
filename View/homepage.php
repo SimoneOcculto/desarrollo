@@ -19,6 +19,9 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
 
 <html>
     <head>
+        <style>
+            <?php include 'style.css'; ?>
+        </style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -63,8 +66,10 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
             </form>
         </nav>
 
+
+        <div class="supremo">
         <?php
-        echo "Inviti ricevuti:";
+        echo "Invites received:";
         ?>
 
         </br>
@@ -75,7 +80,7 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
         } else{
             foreach ($array as $value) {
         ?>
-                <div class="container">
+                <div class="riga-elenco">
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
                             <span style="position:absolute; top:30%;">
@@ -93,6 +98,8 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
                         </li>
                     </ul>
                 </div>
+                </div>
+
             <?php
                 }
             }
@@ -100,8 +107,10 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
 
         </br>
 
+        <div class="supremo">
+
         <?php
-        echo "Inviti inviati:";
+        echo "Invites sent:";
         ?>
 
         </br>
@@ -112,7 +121,7 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
         } else{
             foreach ($array2 as $value2) {
                 ?>
-                <div class="container">
+                <div class="riga-elenco">
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
                             <span style="position:absolute; top:30%;">
@@ -128,6 +137,7 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
                             </form>
                         </li>
                     </ul>
+                </div>
                 </div>
                 <?php
             }
