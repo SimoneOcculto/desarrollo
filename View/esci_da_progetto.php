@@ -1,23 +1,35 @@
 <?php
-session_start();
+    session_start();
 
-require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
+    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
-$flag = 0;
+    if(empty($_SESSION)) {
+        // session isn't started
+        header('Location: index.php');
+    }
 
-if(empty($_SESSION)) {
-    // session isn't started
-    header('Location: index.php');
-}
+    $flag = 0;
 
-require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
+    require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
 
-$progetto = new db_progetto();
+    $progetto = new db_progetto();
 
-$array = $progetto->getProjectInvited($_SESSION['mail']);
 
-?>
 
+    if(isset($_POST['esci'])){
+
+        require "C:/xampp/htdocs/desarrollo/Controller/db_partecipazione.php";
+
+        $partecipazione = new db_partecipazione();
+
+        $partecipazione->EsciProgetto($_GET['id'],$_SESSION['mail']);
+
+        header('Location: elenco_progetti_invitati.php');
+    }
+
+    $array = $progetto->getProjectInvited($_SESSION['mail']);
+
+    ?>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -100,10 +112,13 @@ if($array == false){
                                                     </table>";
                                         ?>
                                     </span>
-                    <span class="pull-right button-group">
-                                        <a href='visualizza_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Project</a>
-                                        <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
-                                        <a href='esci_da_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Exit Project</a>
+                                    <span class="pull-right button-group">
+                                        <form action='' method='POST'>
+                                            <span class="pull-right button-group">
+                                            <a href='elenco_progetti_invitati.php' class="btn btn-primary">Cancel</a>
+                                            <input type='submit' name='esci' value='exit' class="btn btn-danger">
+                                             </span>
+                                        </form>
                                     </span>
                 </li>
             </ul>

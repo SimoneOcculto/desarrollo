@@ -165,5 +165,16 @@
             return $array;
         }
 
+        public function EsciProgetto($progetto, $mail){
+
+            $this->startConnection();
+
+            $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+
+            $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+        }
+
     }
 ?>
