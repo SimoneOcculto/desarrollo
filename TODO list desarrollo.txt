@@ -1,0 +1,5 @@
+visualizzare partecipanti al proprio progetto
+richiesta di patecipazione ad un progetto
+modifica dati utenti lato amministratore
+modifica elenco progetti amministratore
+amministratore puo muovere task
