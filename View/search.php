@@ -111,6 +111,7 @@ $flag = 0;
                             </span>
 
                             <span class="pull-right button-group">
+                                <a href='richiesta_partecipazione.php?id=<?php echo $value->getId();?>' class='btn btn-primary'> Join to project</a>
                                 <a href='elenco_task.php?id=<?php echo $value->getId();?>' class='btn btn-primary'> View Tasks</a>
                             </span>
                         </li>

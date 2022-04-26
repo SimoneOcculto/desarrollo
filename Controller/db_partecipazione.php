@@ -106,17 +106,94 @@
             return $array;
         }
 
-        public function AccettaRifiutoInvito($num, $progetto, $mail){
+        public function RicercaRichiesteInSospesoRicevutiUtente($mail){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM partecipazione WHERE Invitante = '".$mail."' AND Stato = 4;";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $relation = new partecipazione($row);
+                        $array[] = $relation;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+
+            return $array;
+        }
+
+        public function RicercaRichiesteInSospesoInviatiUtente($mail){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM partecipazione WHERE Invitato = '".$mail."' AND Stato = 4;";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $relation = new partecipazione($row);
+                        $array[] = $relation;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+
+            return $array;
+        }
+
+        public function AccettaRifiutoInvito($num, $progetto, $mail, $mailInvitante){
 
             $this->startConnection();
 
             switch($num){
                 case 0:
-                    $sql = "UPDATE Partecipazione SET Stato = 2 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+                    $sql = "UPDATE Partecipazione SET Stato = 2 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."' AND Invitante = '".$mailInvitante."';";
                     break;
 
                 case 1:
-                    $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."';";
+                    $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."' AND Invitante = '".$mailInvitante."';";
+                    break;
+            }
+
+            $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+        }
+
+        public function AccettaRifiutoRichiesta($num, $progetto, $mail, $mailInvitato){
+
+            $this->startConnection();
+
+            switch($num){
+                case 0:
+                    $sql = "UPDATE Partecipazione SET Stato = 2 WHERE Progetto = '".$progetto."' AND Invitante = '".$mail."' AND Invitato ='$mailInvitato';";
+                    break;
+
+                case 1:
+                    $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitante = '".$mail."' AND Invitato ='$mailInvitato';";
                     break;
             }
 
@@ -203,6 +280,10 @@
             }
 
             return $array;
+        }
+
+        public function richiestaPartecipazione($mR, $mP, $progetto){
+
         }
 
     }
