@@ -24,7 +24,7 @@
 
         $partecipazione->EsciProgetto($_GET['id'],$_SESSION['mail']);
 
-        header('Location: elenco_progetti_invitati.php');
+        header('Location: elenco_progetti.php');
     }
 
     $array = $progetto->getProjectInvited($_SESSION['mail']);
