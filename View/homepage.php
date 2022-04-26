@@ -89,20 +89,20 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
         ?>
                             </span>
                             <form>
-                            <span class="pull-right button-group">
-                                <a href='visualizza_progetto.php?id=<?php echo $value->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
-                                <a class="btn btn-success" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=0&opz=0">Accept</a>
-                                <a class="btn btn-danger" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=1&opz=0">Decline</a>
-                            </span>
+                                <span class="pull-right button-group">
+                                    <a href='visualizza_progetto.php?id=<?php echo $value->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                    <a class="btn btn-success" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=0&opz=0">Accept</a>
+                                    <a class="btn btn-danger" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=1&opz=0">Decline</a>
+                                </span>
                             </form>
                         </li>
                     </ul>
                 </div>
-                </div>
+        </div>
 
-            <?php
-                }
+        <?php
             }
+        }
         ?>
 
         </br>
@@ -120,7 +120,7 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
             echo "Non hai richieste di partecipazione in sospeso!";
         } else{
             foreach ($array2 as $value2) {
-                ?>
+        ?>
                 <div class="riga-elenco">
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
@@ -130,16 +130,16 @@ $array2 = $partecipazione->RicercaInvitiInSospesoInviatiUtente($_SESSION['mail']
         ?>
                             </span>
                             <form>
-                            <span class="pull-right button-group">
-                                <a href='visualizza_progetto.php?id=<?php echo $value2->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
-                                <a href='invito.php?id=<?php echo $value2->getProgetto(); ?>&opz=1&mInvitato=<?php echo $value2->getInvitato(); ?>' class="btn btn-danger" >Revoke</a>
-                            </span>
+                                <span class="pull-right button-group">
+                                    <a href='visualizza_progetto.php?id=<?php echo $value2->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                    <a href='invito.php?id=<?php echo $value2->getProgetto(); ?>&opz=1&mInvitato=<?php echo $value2->getInvitato(); ?>' class="btn btn-danger">Revoke</a>
+                                </span>
                             </form>
                         </li>
                     </ul>
                 </div>
-                </div>
-                <?php
+        </div>
+        <?php
             }
         }
         ?>
