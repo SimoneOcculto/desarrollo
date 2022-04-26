@@ -21,6 +21,7 @@ $result=$progetti->getArrayProgetti($ID_Progetto);
 $partecipazione = new db_partecipazione();
 $result2=$partecipazione->getStatoProg($_SESSION['mail']);
 
+$result3=$partecipazione->ElencoPartecipanti($ID_Progetto);
 
 if(isset($_POST['modifica'])){
     $nomeProg = $_POST['nome'];
@@ -71,7 +72,7 @@ if($flag){
         <meta charset="utf-8">
     </head>
 
-    <body>
+    <br>
         <nav class="navbar navbar-light bg-light justify-content-between">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="homepage.php" style="font-size: 25px;"><b>ToDoGGS</b></a>
@@ -151,5 +152,21 @@ if($flag){
         }
             ?>
         </div>
+        partecipanti:</br>
+    <?php
+    if($result3 == false){
+        echo "<b>Nessun Invitato</b>";
+    } else {
+    foreach ($result3 as $value) {
+    ?>
+                                        <?php echo "<table>";
+                                        echo "<tr>
+                                              <td>
+                                               ".$value->getInvitato()."
+                                               </td></tr>
+                                               </table>";
+            }
+        }
+    ?>
     </body>
 </html>

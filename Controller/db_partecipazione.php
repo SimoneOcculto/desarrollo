@@ -176,5 +176,34 @@
             $this->closeconnection();
         }
 
+        public function ElencoPartecipanti($progetto){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM partecipazione WHERE Progetto = '".$progetto."';";
+
+            $result = $this->getConnection()->query($sql);
+
+            $array = array();
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+                    for ($i = 0; $i < $result->num_rows; $i++) {
+                        $row = $result->fetch_assoc();
+                        $relation = new partecipazione($row);
+                        $array[] = $relation;
+                    }
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+
+            return $array;
+        }
+
     }
 ?>
