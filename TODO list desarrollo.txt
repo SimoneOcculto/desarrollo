@@ -1,4 +1,4 @@
-visualizzare partecipanti al proprio progetto
+visualizzare partecipanti al proprio progetto - FATTO
 richiesta di patecipazione ad un progetto
 modifica dati utenti lato amministratore
 modifica elenco progetti amministratore
