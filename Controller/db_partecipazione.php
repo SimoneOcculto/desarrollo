@@ -213,11 +213,11 @@
             $this->closeconnection();
         }
 
-        public function getStatoProg($mail){
+        public function getStatoProg($progetto,$mail){
 
             $this->startConnection();
 
-            $sql = "SELECT * FROM partecipazione WHERE Invitato = '".$mail."';";
+            $sql = "SELECT * FROM partecipazione WHERE Invitato = '".$mail."' AND Progetto= '".$progetto."';";
 
             $result = $this->getConnection()->query($sql);
 
@@ -257,7 +257,7 @@
 
             $this->startConnection();
 
-            $sql = "SELECT * FROM partecipazione WHERE Progetto = '".$progetto."';";
+            $sql = "SELECT * FROM partecipazione WHERE Progetto = '".$progetto."' AND Stato=2;";
 
             $result = $this->getConnection()->query($sql);
 

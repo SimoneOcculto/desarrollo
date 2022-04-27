@@ -19,7 +19,7 @@ $ID_Progetto=$_GET['id'];
 $result=$progetti->getArrayProgetti($ID_Progetto);
 
 $partecipazione = new db_partecipazione();
-$result2=$partecipazione->getStatoProg($_SESSION['mail']);
+$result2=$partecipazione->getStatoProg($ID_Progetto,$_SESSION['mail']);
 
 $result3=$partecipazione->ElencoPartecipanti($ID_Progetto);
 
@@ -136,8 +136,18 @@ if($flag){
         </br>
         <div class='container'>
         <?php
-        if($result2[0]->getStato()==1){
+        if($result2==false){
         ?>
+            <span class='pull-center button-group'>
+                <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
+            </span>
+            <span class='pull-right button-group'>
+                <a class='btn btn-secondary'  href='elenco_progetti_invitati.php'>Cancel</a>
+            </span>
+
+            <?php
+        }else if($result2[0]->getStato()==1){
+            ?>
             <span class='pull-left button-group'>
                 <a class="btn btn-success" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=0">Accept</a>
             </span>
@@ -149,7 +159,7 @@ if($flag){
             </span>
             <?php
         }else{
-        ?>
+            ?>
             <span class='pull-center button-group'>
                 <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
             </span>
