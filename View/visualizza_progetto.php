@@ -88,7 +88,7 @@ if($flag){
                         if(strcmp($_SESSION['ruolo'], "A") == 0) {
                             echo"
                                  <li class='nav-item'>
-                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All Projects </a>
+                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All projects </a>
                                  </li>";
                         }
                         ?>
@@ -145,21 +145,15 @@ if($flag){
                 <a class='btn btn-secondary'  href='elenco_progetti_invitati.php'>Cancel</a>
             </span>
 
-            <?php
+        <?php
         }else if($result2[0]->getStato()==1){
-            ?>
-            <span class='pull-left button-group'>
-                <a class="btn btn-success" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=0">Accept</a>
-            </span>
+        ?>
             <span class='pull-center button-group'>
                 <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
             </span>
-            <span class='pull-right button-group'>
-                <a class="btn btn-danger" href="invito.php?id=<?php echo $_GET['id']; ?>&scelta=1">Decline</a>
-            </span>
-            <?php
+        <?php
         }else{
-            ?>
+        ?>
             <span class='pull-center button-group'>
                 <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
             </span>
