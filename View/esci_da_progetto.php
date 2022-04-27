@@ -108,7 +108,7 @@ if($array == false){
                                         echo "<td>
                                                     
                                                 
-                                            <br>
+                                            
                                                 ".$value->getNomeP()."
                                             
                                                <b> ".$value->getDataCreazioneP()." </b>

@@ -100,16 +100,11 @@
                                                     echo "<tr>";
                                                 }
 
-                                                echo "<td>
-                                                    ".$value->getNomeP()."
-                                                    </td><td> 
-                                                    ".$value->getDescrizioneP()."
-                                                    </td><td> 
-                                                    ".$value->getDataScadenzaP()."
-                                                    </td><td>
-                                                    ".$value->getDataCreazioneP()." 
-                                                    </td><td>
-                                                    ".$value->getPrivacy()."
+                                                echo "  
+                                                        ".$value->getNomeP()."
+                                            
+                                                    <b> ".$value->getDataCreazioneP()." </b>
+                                                        </td><td>
                                                     </td></tr>
                                                     </table>";
                                         ?>
