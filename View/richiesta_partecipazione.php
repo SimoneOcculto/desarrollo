@@ -25,6 +25,6 @@ $array = array("Invitante" => $leaderProg,
 
 $partecipazione->NewRelazione($array);
 
-header('Location: search.php');
+header('Location: homepage.php');
 
 ?>
