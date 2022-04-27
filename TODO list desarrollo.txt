@@ -1,5 +1,5 @@
 visualizzare partecipanti al proprio progetto - FATTO
 richiesta di patecipazione ad un progetto - FATTO
 modifica dati utenti lato amministratore
-modifica elenco progetti amministratore
-amministratore puo muovere task
+modifica elenco progetti amministratore - FATTO
+amministratore puo muovere task - FATTO

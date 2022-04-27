@@ -86,7 +86,7 @@
             if(strcmp($_SESSION['mail'], $leaderProg) == 0) {
                 echo "
                         <span class='pull-left button-group'>
-                            <a class='btn btn-success' href='nuova_task.php?id=".$_GET['id']." role='button'>New Task</a>
+                            <a class='btn btn-success' href='nuova_task.php?id=".$_GET['id']."' role='button'>New Task</a>
                         </span>";
 
                 $flag = true;
@@ -132,6 +132,14 @@
 
                             <?php
                             if($flag){
+                                echo "
+                                        <span class='pull-right button-group'>
+                                            <a href='modifica_task.php?id=".$value->getId_task()."' class='btn btn-primary'> <span class='glyphicon glyphicon-edit'></span> Edit</a>
+                                            <a href='sposta_task.php?id=".$value->getId_task()."' class='btn btn-primary'> Move Task</a>
+                                            <a href='elimina_task.php?id=".$value->getId_task()."' class='btn btn-danger'> <span class='glyphicon glyphicon-remove'></span> Delete</a>
+                                        </span>";
+                            }
+                            if(strcmp($_SESSION['ruolo'], "A") == 0){
                                 echo "
                                         <span class='pull-right button-group'>
                                             <a href='modifica_task.php?id=".$value->getId_task()."' class='btn btn-primary'> <span class='glyphicon glyphicon-edit'></span> Edit</a>
