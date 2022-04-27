@@ -135,42 +135,17 @@ if($flag){
         </div>
         </br>
         <div class='container'>
-        <?php
-        if($result2==false){
-        ?>
             <span class='pull-center button-group'>
                 <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
             </span>
-            <span class='pull-right button-group'>
-                <a class='btn btn-secondary'  href='elenco_progetti_invitati.php'>Cancel</a>
-            </span>
-
-        <?php
-        }else if($result2[0]->getStato()==1){
-        ?>
-            <span class='pull-center button-group'>
-                <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
-            </span>
-        <?php
-        }else{
-        ?>
-            <span class='pull-center button-group'>
-                <a href='elenco_task.php?id=<?php echo $_GET['id']; ?>' class="btn btn-primary"> View Tasks</a>
-            </span>
-            <span class='pull-right button-group'>
-                <a class='btn btn-secondary'  href='elenco_progetti_invitati.php'>Cancel</a>
-            </span>
-            <?php
-        }
-            ?>
         </div>
         partecipanti:</br>
-    <?php
-    if($result3 == false){
-        echo "<b>Nessun Invitato</b>";
-    } else {
-    foreach ($result3 as $value) {
-    ?>
+        <?php
+        if($result3 == false){
+            echo "<b>Nessun Invitato</b>";
+        } else {
+        foreach ($result3 as $value) {
+        ?>
                                         <?php echo "<table>";
                                         echo "<tr>
                                               <td>
