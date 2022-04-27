@@ -14,11 +14,7 @@
 
     $progetti = new db_progetto();
 
-    if(strcmp($_SESSION['ruolo'], "U") == 0) {
-        $array = $progetti->getAllProgettiUtente($_SESSION['mail']);
-    } else {
-        $array = $progetti->getAllProgetti();
-    }
+    $array = $progetti->getAllProgettiUtente($_SESSION['mail']);
 ?>
 
 <html>
@@ -42,6 +38,15 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="elenco_progetti.php">Projects</a>
                         </li>
+                        <?php
+                        if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                            echo"
+                                <li class='nav-item'>
+                                <a class='nav-link' href = 'elenco_progetti_completo.php'> All Projects </a>
+                                </li>
+                                ";
+                        }
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="profilo.php">Profile</a>
                         </li>

@@ -34,7 +34,7 @@ $array4 = $partecipazione->RicercaRichiesteInSospesoInviatiUtente($_SESSION['mai
         <meta charset="utf-8">
     </head>
 
-    <br>
+    <body>
         <nav class="navbar navbar-light bg-light justify-content-between">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="homepage.php" style="font-size: 25px;"><b>ToDoGGS</b></a>
@@ -46,6 +46,14 @@ $array4 = $partecipazione->RicercaRichiesteInSospesoInviatiUtente($_SESSION['mai
                         <li class="nav-item">
                             <a class="nav-link" href="elenco_progetti.php">Projects</a>
                         </li>
+                        <?php
+                        if(strcmp($_SESSION['ruolo'], "A") == 0) {
+                            echo"
+                                 <li class='nav-item'>
+                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All Projects </a>
+                                 </li>";
+                        }
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link" href="profilo.php">Profile</a>
                         </li>
