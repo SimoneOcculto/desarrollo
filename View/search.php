@@ -32,13 +32,13 @@ $flag = 0;
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="elenco_progetti.php">Projects</a>
+                        <a class="nav-link" href="elenco_progetti.php">My projects</a>
                     </li>
                     <?php
                     if(strcmp($_SESSION['ruolo'], "A") == 0) {
                         echo"
                                  <li class='nav-item'>
-                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All Projects </a>
+                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All projects </a>
                                  </li>";
                     }
                     ?>
@@ -49,7 +49,7 @@ $flag = 0;
                     if(strcmp($_SESSION['ruolo'], "A") == 0) {
                         echo"
                             <li class='nav-item'>
-                            <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                            <a class='nav-link' href = 'gestione_utenti.php'> Users management </a>
                             </li>
                             ";
                     }

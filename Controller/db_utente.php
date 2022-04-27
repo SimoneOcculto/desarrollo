@@ -98,7 +98,7 @@
 
             $this->startConnection();
 
-            $sql = "SELECT * FROM utente WHERE Ruolo = 'U' ORDER BY Nome, Cognome";
+            $sql = "SELECT * FROM utente ORDER BY Nome, Cognome";
 
             $result = $this->getConnection()->query($sql);
 
@@ -178,17 +178,28 @@
                 $this->getConnection()->query($cambioC);
             }
 
+            $sql = "SELECT Ruolo FROM utente WHERE Mail='".$this->utente->getMail()."'";
+
+            $ruolo=$this->getConnection()->query($sql);
+
+            $row = $ruolo->fetch_assoc();
+
+            if(strcmp($row['Ruolo'],$this->utente->getCognome()) != 0){
+                $cambioR="UPDATE utente SET Ruolo='".$this->utente->getRuolo()."' WHERE Mail='".$this->utente->getMail()."'";
+                $this->getConnection()->query($cambioR);
+            }
+
             $this->closeconnection();
 
         }
 
-        public function updateMail($oldMail, $newMail){
+        public function UpdateMail($oMail, $nMail){
 
             $this->startConnection();
 
-            $cambioMail="UPDATE utente SET Mail='".$newMail."' WHERE Mail='".$oldMail."'";
+            $sql="UPDATE utente SET Mail='".$nMail."' WHERE Mail='".$oMail."'";
 
-            $this->getConnection()->query($cambioMail);
+            $this->getConnection()->query($sql);
 
             $this->closeconnection();
 
