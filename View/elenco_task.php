@@ -120,8 +120,8 @@
                             echo "
                                 <table>
                                     <tr>
-                                        <td>".$value->getId_task()."</td>
-                                        <td>".$value->getId_progetto()."</td>
+                                        
+                                        <td>".$value->getNomeP()."</td>
                                         <td>".$value->getNomeT()."</td>
                                         <td>".$value->getDescrizioneT()."</td>
                                         <td>".$value->getDataScadenzaT()."</td>

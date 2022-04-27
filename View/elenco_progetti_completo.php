@@ -93,17 +93,12 @@ $array = $progetti->getAllProgetti();
                                         <tr>
                                             <td>
                                                 ".$value->getLeader()."
-                                            </td><td>
+                                            <br>
                                                 ".$value->getNomeP()."
-                                            </td><td> 
-                                                ".$value->getDescrizioneP()."
-                                            </td><td> 
-                                                ".$value->getDataScadenzaP()."
+                                            
+                                               <b> ".$value->getDataCreazioneP()." </b>
                                             </td><td>
-                                                ".$value->getDataCreazioneP()." 
-                                            </td><td>
-                                                ".$value->getPrivacy()."
-                                            </td>
+                                            
                                         </tr>
                                     </table>";
                             ?>
