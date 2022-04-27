@@ -102,7 +102,7 @@ $array4 = $partecipazione->RicercaRichiesteInSospesoInviatiUtente($_SESSION['mai
                                 </span>
                                 <form>
                                     <span class="pull-right button-group">
-                                        <a href='visualizza_progetto.php?id=<?php echo $value->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                        <a href='visualizza_progetto.php?id=<?php echo $value->getProgetto(); ?>' class="btn btn-primary">View Project</a>
                                         <a class="btn btn-success" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=0&opz=0&mInvitato=<?php echo $value->getInvitante(); ?>">Accept</a>
                                         <a class="btn btn-danger" href="invito.php?id=<?php echo $value->getProgetto(); ?>&scelta=1&opz=0&mInvitato=<?php echo $value->getInvitante(); ?>">Decline</a>
                                     </span>
@@ -140,7 +140,7 @@ $array4 = $partecipazione->RicercaRichiesteInSospesoInviatiUtente($_SESSION['mai
                                 </span>
                                 <form>
                                     <span class="pull-right button-group">
-                                        <a href='visualizza_progetto.php?id=<?php echo $value2->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                        <a href='visualizza_progetto.php?id=<?php echo $value2->getProgetto(); ?>' class="btn btn-primary">View Project</a>
                                         <a href='invito.php?id=<?php echo $value2->getProgetto(); ?>&opz=1&mInvitato=<?php echo $value2->getInvitato(); ?>' class="btn btn-danger">Revoke</a>
                                     </span>
                                 </form>
@@ -178,7 +178,7 @@ $array4 = $partecipazione->RicercaRichiesteInSospesoInviatiUtente($_SESSION['mai
                                 </span>
                                 <form>
                                     <span class="pull-right button-group">
-                                        <a href='visualizza_progetto.php?id=<?php echo $value3->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                        <a href='visualizza_progetto.php?id=<?php echo $value3->getProgetto(); ?>' class="btn btn-primary">View Project</a>
                                         <a class="btn btn-success" href="invito.php?id=<?php echo $value3->getProgetto(); ?>&scelta=0&opz=3&mInvitato=<?php echo $value3->getInvitato(); ?>"">Accept</a>
                                         <a class="btn btn-danger" href="invito.php?id=<?php echo $value3->getProgetto(); ?>&scelta=1&opz=3&mInvitato=<?php echo $value3->getInvitato(); ?>">Decline</a>
                                     </span>
@@ -216,7 +216,7 @@ $array4 = $partecipazione->RicercaRichiesteInSospesoInviatiUtente($_SESSION['mai
                                 </span>
                                 <form>
                                     <span class="pull-right button-group">
-                                        <a href='visualizza_progetto.php?id=<?php echo $value4->getProgetto(); ?>' class="btn btn-primary">View Proyect</a>
+                                        <a href='visualizza_progetto.php?id=<?php echo $value4->getProgetto(); ?>' class="btn btn-primary">View Project</a>
                                         <a href='invito.php?id=<?php echo $value4->getProgetto(); ?>&opz=2&mInvitato=<?php echo $value4->getInvitante(); ?>' class="btn btn-danger">Revoke</a>
                                     </span>
                                 </form>
