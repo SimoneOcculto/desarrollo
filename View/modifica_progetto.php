@@ -10,12 +10,16 @@
     }
 
     require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
+    require "C:/xampp/htdocs/desarrollo/Controller/db_partecipazione.php";
 
     $flag = false;
 
     $progetti = new db_progetto();
     $ID_Progetto=$_GET['id'];
     $result=$progetti->getArrayProgetti($ID_Progetto);
+
+    $partecipazione = new db_partecipazione();
+    $result3=$partecipazione->ElencoPartecipanti($ID_Progetto);
 
 
     if(isset($_POST['modifica'])){
@@ -77,13 +81,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="elenco_progetti.php">Projects</a>
+                        <a class="nav-link" href="elenco_progetti.php">My projects</a>
                     </li>
                     <?php
                     if(strcmp($_SESSION['ruolo'], "A") == 0) {
                         echo"
                                  <li class='nav-item'>
-                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All Projects </a>
+                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All projects </a>
                                  </li>";
                     }
                     ?>
@@ -94,7 +98,7 @@
                     if(strcmp($_SESSION['ruolo'], "A") == 0) {
                         echo"
                                 <li class='nav-item'>
-                                <a class='nav-link' href = 'gestione_utenti.php'> Users Management </a>
+                                <a class='nav-link' href = 'gestione_utenti.php'> Users management </a>
                                 </li>
                                     ";
                         }
@@ -161,6 +165,23 @@
                     </div>
                 </div>
             </div>
+            partecipanti:</br>
+            <?php
+            if($result3 == false){
+                echo "<b>Nessun Invitato</b>";
+            } else {
+                foreach ($result3 as $value) {
+                    ?>
+                                        <?php echo "<table>";
+                                              echo "<tr><td>
+                                                    ".$value->getInvitato()."
+                                                    </td><td>
+                                                    <a href='rimuovi_utente.php?id=".$ID_Progetto."&scelta=0&opz=0&mInvitato=".$value->getInvitato()."' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Delete</a>
+                                                    </td></tr>
+                                                    </table>";
+                }
+            }
+            ?>
         </form>
     </body>
 </html>
