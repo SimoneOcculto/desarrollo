@@ -121,10 +121,10 @@
                                 <table>
                                     <tr>
                                         
-                                        <td>".$value->getNomeP()."</td>
-                                        <td>".$value->getNomeT()."</td>
-                                        <td>".$value->getDescrizioneT()."</td>
-                                        <td>".$value->getDataScadenzaT()."</td>
+                                      
+                                        ".$value->getNomeT()."
+                                    
+                                        <b>".$value->getDataScadenzaT()."</b>
                                     </tr>
                                 </table>"
                             ?>

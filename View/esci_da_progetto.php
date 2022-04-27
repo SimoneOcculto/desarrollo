@@ -106,16 +106,13 @@ if($array == false){
                                         }
 
                                         echo "<td>
-                                                    ".$value->getNomeP()."
-                                                    </td><td> 
-                                                    ".$value->getDescrizioneP()."
-                                                    </td><td> 
-                                                    ".$value->getDataScadenzaP()."
-                                                    </td><td>
-                                                    ".$value->getDataCreazioneP()." 
-                                                    </td><td>
-                                                    ".$value->getPrivacy()."
-                                                    </td></tr>
+                                                    
+                                                
+                                            <br>
+                                                ".$value->getNomeP()."
+                                            
+                                               <b> ".$value->getDataCreazioneP()." </b>
+                                            </td><td>
                                                     </table>";
                                         ?>
                                     </span>

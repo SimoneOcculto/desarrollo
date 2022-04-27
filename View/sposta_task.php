@@ -87,9 +87,12 @@
             </form>
         </nav>
 
+        <div class="supremo">
         <form action="" method="POST">
             <label>Move to another project:</label><br>
-            <select name="spostaTask">
+
+
+                <select toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle" name="spostaTask">
                 <?php
                     foreach ($array as $value) {
                         $nomeProgetto = $progetti->getNomeProg($_SESSION['progetto']);
@@ -111,8 +114,11 @@
                         }
                     }
                 ?>
-            </select>
-            <button type="submit" name="Conferma">Conferma</button>
+                </select>
+            <span class='pull-right button-group'>
+            <button type="submit" class="btn btn-primary" name="Conferma">Confirm</button>
+                </span>
         </form>
+        </div>
     </body>
 </html>
