@@ -9,7 +9,7 @@
     }
 
     if(strcmp($_SESSION['ruolo'], "A") != 0) {
-        header("Location: nuovo_progetto.php");
+        header("Location: homepage.php");
     } else{
         require 'C:/xampp/htdocs/desarrollo/Controller/db_utente.php';
         $utente = new db_utente();
@@ -47,13 +47,13 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" href="elenco_progetti.php">Projects</a>
+                        <a class="nav-link" href="elenco_progetti.php">My projects</a>
                     </li>
                     <?php
                     if(strcmp($_SESSION['ruolo'], "A") == 0) {
                         echo"
                                  <li class='nav-item'>
-                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All Projects </a>
+                                    <a class='nav-link' href = 'elenco_progetti_completo.php'> All projects </a>
                                  </li>";
                     }
                     ?>
@@ -61,7 +61,7 @@
                         <a class="nav-link" href="profilo.php">Profile</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="gestione_utenti.php">Users Management</a>
+                        <a class="nav-link" href="gestione_utenti.php">Users management</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="logout.php">Logout<span class="sr-only">(current)</span></a>
@@ -82,37 +82,25 @@
                 echo "<b>Nessun utente trovato</b>";
             } else {
                 foreach ($array as $value) {
-                    echo"
+                    if(strcmp($_SESSION['mail'], $value->getMail()) != 0) {
+                        echo "
                             <form action='gestione_utenti.php' method='POST'>
-                        
+                            
                                 <div class='supremo'>
                                 
-                                <div class='riga'>
-                                    <div class='etichetta'><label>Name</label></div>
-                                    <input class='tony' type='text' id='nome' name='nome' placeholder='Nome' value=" . $value->getNome() . " required>
-                                </div>
-                            
-                                <div class='riga'>
-                                    <div class='etichetta'><label>Surname</label></div>
-                                    <input class='tony' type='text' id='cognome' name='cognome' placeholder='Cognome' value=" . $value->getCognome() . " required>
-                                </div>
-                            
-                                <div class='riga'>
-                                    <div class='etichetta'><label>Email</label></div>
-                                    <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " required>
-                                </div>
-                            
-                                <div class='riga'>
-                                    <span class='pull-right button-group'>
-                                        <a class='btn btn-secondary'  href='elenco_progetti.php'>Cancel</a>
-                                        <button class='btn btn-danger' type='submit' name='elimina' value='elimina'>Delete Profile</button>       
-                                        <button class='btn btn-primary' type='submit' name='modifica'>Save Changes</button>
-                                    </span>
-                                </div>
-                                
+                                    <div class='riga'>
+                                        <div class='etichetta'><label>Email</label></div>
+                                        <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " disabled>
+                                        
+                                        <span class='pull-right button-group'>       
+                                            <a class='btn btn-primary'  href='modifica_utente.php?email=" . $value->getMail() . "'>Modify</a>
+                                        </span>
+                                    </div>
+                                    
                                 </div>
                             </form>
                             <br>";
+                    }
                 }
             }
         }

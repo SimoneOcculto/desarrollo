@@ -1,45 +1,54 @@
 <?php
-    session_start();
+session_start();
 
-    require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
+require 'C:/xampp/htdocs/desarrollo/Controller/db_handler.php';
 
-    if(empty($_SESSION)) {
-        // session isn't started
-        header('Location: index.php');
-    }
+if(empty($_SESSION)) {
+    // session isn't started
+    header('Location: index.php');
+}
 
+if(strcmp($_SESSION['ruolo'], "A") != 0) {
+    header("Location: homepage.php");
+} else {
     require "C:/xampp/htdocs/desarrollo/Controller/db_utente.php";
     $utente = new db_utente();
-    $result = $utente->getUtente($_SESSION['mail']);
+    $result = $utente->getUtente($_GET['email']);
 
     $flag = false;
 
-    if(isset($_POST['modifica'])){
-        $nome = $_POST['nome'];
-        $cognome = $_POST['cognome'];
+    if (isset($_POST['modifica'])) {
+        if (strcmp($_POST['ruolo'], "uno") == 0) {
+            $ruolo = 'A';
+        } else {
+            $ruolo = 'U';
+        }
 
         $array = array("Nome" => $_POST['nome'],
             "Cognome" => $_POST['cognome'],
-            "Mail" => $_SESSION['mail'],
+            "Mail" => $_GET['email'],
             "Password" => $result->getPassword(),
-            "Ruolo" => $_SESSION['ruolo']);
+            "Ruolo" => $ruolo);
 
         $utente->UpdateUser($array);
+
+        if (strcmp($_GET['email'], $_POST['mail']) != 0) {
+            $utente->UpdateMail($_GET['email'], $_POST['mail']);
+        }
 
         $flag = true;
     }
 
-    if(isset($_POST['elimina'])){
-        $utente->EliminaUtente($_SESSION['mail']);
+    if (isset($_POST['elimina'])) {
+        $utente->EliminaUtente($_GET['email']);
 
-        session_destroy();
-
-        header('Location: index.php');
+        $flag = true;
     }
 
-    if($flag){
-        header("Refresh:0");
+    if ($flag) {
+        header("Location: gestione_utenti.php");
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,21 +81,21 @@
                         <?php
                         if(strcmp($_SESSION['ruolo'], "A") == 0) {
                             echo"
-                                     <li class='nav-item'>
-                                        <a class='nav-link' href = 'elenco_progetti_completo.php'> All projects </a>
-                                     </li>";
+                                             <li class='nav-item'>
+                                                <a class='nav-link' href = 'elenco_progetti_completo.php'> All projects </a>
+                                             </li>";
                         }
                         ?>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="profilo.php">Profile</a>
                         </li>
                         <?php
                         if(strcmp($_SESSION['ruolo'], "A") == 0) {
                             echo"
-                                <li class='nav-item'>
-                                <a class='nav-link' href = 'gestione_utenti.php'> Users management </a>
-                                </li>
-                                ";
+                                        <li class='nav-item active'>
+                                        <a class='nav-link' href = 'gestione_utenti.php'> Users management </a>
+                                        </li>
+                                        ";
                         }
                         ?>
                         <li class="nav-item">
@@ -105,15 +114,13 @@
 
             <div class="col-lg-12 text-lg-center">
                 <br>
-                <h2>Your Profile</h2>
+                <h2>User Profile</h2>
                 <br>
-
             </div>
 
-            <form action="profilo.php" method="POST">
+            <form action="" method="POST">
 
                 <div class="supremo">
-
                     <div class="riga">
                         <div class="etichetta"><label>Name</label></div>
                         <input class="tony" type="text" id="nome" name="nome" placeholder="Nome" value="<?php echo $result->getNome(); ?>">
@@ -126,7 +133,26 @@
 
                     <div class="riga">
                         <div class="etichetta"><label>Email</label></div>
-                        <input class="tony" type="text" id="mail" name="mail" placeholder="Mail" value="<?php echo $_SESSION['mail']; ?>">
+                        <input class="tony" type="text" id="mail" name="mail" placeholder="Mail" value="<?php echo $_GET['email']; ?>">
+                    </div>
+
+                    <div class="riga">
+                        <label>Ruolo:</label>
+                        <?php
+                        if(strcmp($result->getRuolo(), 'A') == 0) {
+                            echo "
+                            <select name = 'ruolo'>
+                                <option value = 'uno' selected> Amministratore</option>
+                                <option value = 'due'> Utente</option>
+                            </select >";
+                        } else{
+                            echo "
+                            <select name = 'ruolo'>
+                                <option value = 'uno'> Amministratore</option>
+                                <option value = 'due' selected> Utente</option>
+                            </select >";
+                        }
+                        ?>
                     </div>
 
                     <div class="riga">
@@ -139,6 +165,7 @@
                         </span>
                     </div>
                 </div>
+
             </form>
         </div>
     </body>
