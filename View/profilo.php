@@ -26,6 +26,12 @@
 
         $utente->UpdateUser($array);
 
+        if (strcmp($_SESSION['mail'], $_POST['mail']) != 0) {
+            $utente->UpdateMail($_SESSION['mail'], $_POST['mail']);
+        }
+
+        $_SESSION['mail'] = $_POST['mail'];
+
         $flag = true;
     }
 
