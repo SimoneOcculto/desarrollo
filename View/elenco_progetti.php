@@ -52,11 +52,10 @@
                         </li>
                         <?php
                         if(strcmp($_SESSION['ruolo'], "A") == 0) {
-                            echo"
+                            echo "
                                 <li class='nav-item'>
                                 <a class='nav-link' href = 'gestione_utenti.php'> Users management </a>
-                                </li>
-                                ";
+                                </li>";
                         }
                         ?>
                         <li class="nav-item">
@@ -72,56 +71,61 @@
         </nav>
         <div class='container' >
             <span class='pull-left button-group' >
-                <a class='btn btn-success' href = 'nuovo_progetto.php' role = 'button' > New Project</a >
-                <a class='btn btn-success' href = 'elenco_progetti_invitati.php' role = 'button' > Invited Project</a >
+                <a class='btn btn-success' href='nuovo_progetto.php' role='button'> New Project</a >
+                <a class='btn btn-success' href='elenco_progetti_invitati.php' role='button'> Invited Project</a >
             </span>
         </div>
+
         <br>
 
         <?php
-            if($array == false){
-                echo "<b>Nessun progetto trovato</b>";
-            } else {
-                foreach ($array as $value) {
+        if($array == false){
+            echo "<b>Nessun progetto trovato</b>";
+        } else {
+            foreach ($array as $value) {
         ?>
-                    <div class="container">
-                        <ul class="list-group">
-                            <li class="list-group-item clearfix">
-                                    <span style="position:absolute; top:30%;">
-                                        <?php echo "<table>";
-                                                if(strcmp($_SESSION['ruolo'], "A") == 0){
-                                                    echo "<tr><td>
-                                                        ".$value->getLeader()."
-                                                        </td>";
-                                                    $flag = 1;
-                                                }
+                <div class="container">
+                    <ul class="list-group">
+                        <li class="list-group-item clearfix">
+                            <span style="position:absolute; top:30%;">
+                                <?php
+                                echo "<table>";
+                                if(strcmp($_SESSION['ruolo'], "A") == 0){
+                                    echo "
+                                            <tr>
+                                                <td>
+                                                ".$value->getLeader()."
+                                                </td>";
+                                    $flag = 1;
+                                }
 
-                                                if($flag != 1){
-                                                    echo "<tr>";
-                                                }
+                                if($flag != 1){
+                                    echo "<tr>";
+                                }
 
-                                                echo "  
-                                                        ".$value->getNomeP()."
-                                            
-                                                    <b> ".$value->getDataCreazioneP()." </b>
-                                                        </td><td>
-                                                    </td></tr>
-                                                    </table>";
-                                        ?>
-                                    </span>
-                                    <span class="pull-right button-group">
-                                        <a href='modifica_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                                        <a href='visualizza_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Project</a>
-                                        <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
-                                        <a href='elenco_utenti.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> Invite</a>
-                                        <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                                    </span>
+                                echo "  
+                                            ".$value->getNomeP()."
+                                            <b> 
+                                            ".$value->getDataCreazioneP()." 
+                                            </b>
+                                            </td>
+                                         </tr>
+                                     </table>";
+                                ?>
+                            </span>
+                                <span class="pull-right button-group">
+                                    <a href='modifica_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                    <a href='visualizza_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Project</a>
+                                    <a href='elenco_task.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> View Tasks</a>
+                                    <a href='elenco_utenti.php?id=<?php echo $value->getId();?>' class="btn btn-primary"> Invite</a>
+                                    <a href='elimina_progetto.php?id=<?php echo $value->getId();?>' class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                                </span>
                             </li>
                         </ul>
                     </div>
-            <?php
-                }
+        <?php
             }
-            ?>
+        }
+        ?>
     </body>
 </html>

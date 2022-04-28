@@ -96,19 +96,19 @@
                 <a class='btn btn-secondary' href='elenco_progetti.php' role='button'>Cancel</a>
             </span>
         </div>
+
         <br>
 
         <?php
         if ($array == false) {
             echo "
-                    <div class='supremo'>
+                <div class='supremo'>
                     <h3>There aren't tasks here!</h3>
                     <span class='pull-right button-group'> 
-                    <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
+                        <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
                     </span>
                     <br>
-                    </div>
-                    ";
+                </div>";
         } else {
             foreach ($array as $value) {
         ?>
@@ -120,11 +120,12 @@
                             echo "
                                 <table>
                                     <tr>
-                                        
-                                      
+                                        <td>
                                         ".$value->getNomeT()."
-                                    
-                                        <b>".$value->getDataScadenzaT()."</b>
+                                        </td>
+                                        <b>
+                                        ".$value->getDataScadenzaT()."
+                                        </b>
                                     </tr>
                                 </table>"
                             ?>
@@ -133,19 +134,19 @@
                             <?php
                             if($flag OR strcmp($_SESSION['ruolo'], "A") == 0){
                                 echo "
-                                        <span class='pull-right button-group'>
-                                            <a href='modifica_task.php?id=".$value->getId_task()."' class='btn btn-primary'> <span class='glyphicon glyphicon-edit'></span> Edit</a>
-                                            <a href='sposta_task.php?id=".$value->getId_task()."' class='btn btn-primary'> Move Task</a>
-                                            <a href='elimina_task.php?id=".$value->getId_task()."' class='btn btn-danger'> <span class='glyphicon glyphicon-remove'></span> Delete</a>
-                                        </span>";
+                                    <span class='pull-right button-group'>
+                                        <a href='modifica_task.php?id=".$value->getId_task()."' class='btn btn-primary'> <span class='glyphicon glyphicon-edit'></span> Edit</a>
+                                        <a href='sposta_task.php?id=".$value->getId_task()."' class='btn btn-primary'> Move Task</a>
+                                        <a href='elimina_task.php?id=".$value->getId_task()."' class='btn btn-danger'> <span class='glyphicon glyphicon-remove'></span> Delete</a>
+                                    </span>";
                             }
                             ?>
                         </li>
                     </ul>
                 </div>
-<?php
+        <?php
             }
         }
-?>
+        ?>
     </body>
 </html>
