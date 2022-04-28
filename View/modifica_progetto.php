@@ -130,7 +130,10 @@
 
                         <label>Expiration date</label>
                         </br>
-                        <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaP(); ?>">
+                        <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaP(); ?>"
+                            <?php
+                            echo "min=\"".$result[0]->getDataCreazioneP()."\" ";
+                            ?>>
 
                         <label>Privacy:</label>
                         <?php

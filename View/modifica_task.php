@@ -127,7 +127,11 @@
                 <label>Expiration date</label>
                 <br>
 
-                <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaT(); ?>">
+                <input type="date" id="dataScadenza" name="dataScadenza" value="<?php echo $result[0]->getDataScadenzaT(); ?>"
+                    <?php
+                    echo "min=\"".$result[0]->getDataCreazioneT()."\" ";
+                    ?>>
+
                 <label>Priority:</label></form</br>
                 <?php
                     $pr=$result[0]->getPriorita();
