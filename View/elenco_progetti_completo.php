@@ -68,14 +68,6 @@ $array = $progetti->getAllProgetti();
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
-        <div class='container' >
-                    <span class='pull-left button-group' >
-                        <a class='btn btn-success' href = 'nuovo_progetto.php' role = 'button' > New Project</a >
-                        <a class='btn btn-success' href = 'elenco_progetti_invitati.php' role = 'button' > Invited Project</a >
-                    </span>
-        </div>
-
-        <br>
 
         <?php
         if($array == false){
