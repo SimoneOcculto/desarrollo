@@ -174,7 +174,7 @@
                     break;
 
                 case 1:
-                    $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."' AND Invitante = '".$mailInvitante."';";
+                    $sql = "DELETE FROM Partecipazione WHERE Progetto = '".$progetto."' AND Invitato = '".$mail."' AND Invitante = '".$mailInvitante."';";
                     break;
             }
 
@@ -193,7 +193,7 @@
                     break;
 
                 case 1:
-                    $sql = "UPDATE Partecipazione SET Stato = 3 WHERE Progetto = '".$progetto."' AND Invitante = '".$mail."' AND Invitato ='$mailInvitato';";
+                    $sql = "DELETE FROM Partecipazione WHERE Progetto = '".$progetto."' AND Invitato = '".$mailInvitato."' AND Invitante = '".$mail."';";
                     break;
             }
 
