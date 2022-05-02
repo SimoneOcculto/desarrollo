@@ -93,7 +93,7 @@
                                         <input class='tony' type='text' id='mail' name='mail' placeholder='Mail' value=" . $value->getMail() . " disabled>
                                         
                                         <span class='pull-right button-group'>       
-                                            <a class='btn btn-primary'  href='modifica_utente.php?email=" . $value->getMail() . "'>Modify</a>
+                                            <a class='cervello btn btn-primary'  href='modifica_utente.php?email=" . $value->getMail() . "'>Modify</a>
                                         </span>
                                     </div>
                                     

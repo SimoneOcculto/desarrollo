@@ -63,6 +63,9 @@
 
 <html>
     <head>
+        <style>
+            <?php include 'style.css'; ?>
+        </style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="//code.jquery.com/jquery.min.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -156,35 +159,41 @@
                                 break;
                         }
                         ?>
+                        <span class='pull-right button-group'>
+                        <button type="submit" class="btn btn-primary" name="modifica">Modify</button>
+                        </span>
                     </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-4 offset-2">
-                            <div align="right">
-                                <button type="submit" class="btn btn-primary" name="modifica">Modifica</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            partecipanti:</br>
+
+
+
+
+
+            <b>Members:<b></b></br>
             <?php
             if($result3 == false){
                 echo "<b>Nessun Invitato</b>";
             } else {
                 foreach ($result3 as $value) {
                     ?>
-                                        <?php echo "<table>";
+                            <li class="tony3">
+
+
+                                        <?php echo "<table >";
                                               echo "<tr><td>
                                                     ".$value->getInvitato()."
                                                     </td><td>
-                                                    <a href='rimuovi_utente.php?id=".$ID_Progetto."&scelta=0&opz=0&mInvitato=".$value->getInvitato()."' class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Delete</a>
+                                                    <a href='rimuovi_utente.php?id=".$ID_Progetto."&scelta=0&opz=0&mInvitato=".$value->getInvitato()."' class='cervello btn btn-danger'><span class='glyphicon glyphicon-remove'></span> Delete</a>
                                                     </td></tr>
-                                                    </table>";
+                                                    </table>
+                                                    ";
                 }
             }
-            ?>
+                                        ?>
+                                </li>
+
+
+                    </div>
+            </div>
         </form>
     </body>
 </html>
