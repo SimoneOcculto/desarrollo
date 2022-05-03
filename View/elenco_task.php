@@ -115,7 +115,7 @@
                 <div class="container">
                     <ul class="list-group">
                         <li class="list-group-item clearfix">
-                            <span style="position:absolute; top:30%;">
+
                             <?php
                             echo "
                                 <table>
@@ -126,10 +126,11 @@
                                         <b>
                                         ".$value->getDataScadenzaT()."
                                         </b>
+                                       
                                     </tr>
                                 </table>"
                             ?>
-                            </span>
+
 
                             <?php
                             if($flag OR strcmp($_SESSION['ruolo'], "A") == 0){
