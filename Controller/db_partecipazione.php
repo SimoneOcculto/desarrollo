@@ -31,21 +31,26 @@
             $sql = "SELECT Invitante, Invitato FROM partecipazione";
 
             $mail1=$this->getConnection()->query($sql);
-            $row = $mail1->fetch_assoc();
 
-            if(strcmp($row['Invitante'],$mInvitante)==0){
+            $flag=false;
 
-                if(strcmp($row['Invitato'],$mInvitato)!=0){
-                    return true;
-                }else
-                {
-                    return false;
+            for ($i = 0; $i < $mail1->num_rows; $i++) {
+                $row = $mail1->fetch_assoc();
+
+                if (strcmp($row['Invitante'], $mInvitante) == 0) {
+
+                    if (strcmp($row['Invitato'], $mInvitato) != 0) {
+                        $flag = true;
+                    } else {
+                        $flag = false;
+                    }
+
+                } else {
+                    $flag = true;
                 }
-
-            }else{
-                return true;
             }
 
+            return $flag;
         }
 
         public function RicercaInvitiInSospesoRicevutiUtente($mail){

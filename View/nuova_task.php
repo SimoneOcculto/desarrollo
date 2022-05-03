@@ -129,7 +129,9 @@
                         <?php
                             $date=date_create(date("Y-m-d"));
                             echo "min=\"".date_format($date,"Y-m-d")."\" ";
-                        ?> required>
+                            $date=date_create($_SESSION['dataScad']);
+                           echo "max=\"".date_format($date,"Y-m-d")."\" ";
+                           ?>required>
 
                     <label>Priority:</label>
                     <select name="priorita">

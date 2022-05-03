@@ -31,12 +31,17 @@
                 "Stato" => $Stato);
 
 
-            if($partecipazione->ControlloMail($_SESSION['mail'], $MailU)){
 
-                $partecipazione->NewRelazione($array);
-            }else{
-                $flagError=1;
+            if($partecipazione->ControlloMail($_SESSION['mail'], $MailU)){
+                if(strcmp($MailU,$_SESSION['mail'])!=0){
+                    $partecipazione->NewRelazione($array);
+                }else{
+                    $flagError=3;
+                }
+            }else {
+                $flagError = 1;
             }
+
         }else{
             $flagError=2;
         }
@@ -135,6 +140,15 @@
             echo "
                 <div class='supremo'>
                     <h3>User not found!</h3>
+                        <span class='pull-right button-group'> 
+                            <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
+                        </span>
+                        <br>
+                </div>";
+        } elseif ($flagError==3) {
+            echo "
+                <div class='supremo'>
+                    <h3>You can't invite this user!</h3>
                         <span class='pull-right button-group'> 
                             <a href='elenco_progetti.php' class='btn btn-primary'>Back</a>
                         </span>
