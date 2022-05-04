@@ -277,5 +277,30 @@
             return $array;
         }
 
+        public function getProgettobyid($ID_Progetto){
+
+            $this->startConnection();
+
+            $sql = "SELECT * FROM progetto WHERE ID_Progetto=".$ID_Progetto.";";
+
+            $result = $this->getConnection()->query($sql);
+
+            $this->closeconnection();
+
+            if($result) {
+                if ($result->num_rows == 0) {
+                    return false;
+                } else {
+
+                        $row = $result->fetch_assoc();
+                        $project = new progetto($row);
+
+                }
+            } else{
+                echo "Error in ".$sql."<br>".$this->startConnection()->error;
+            }
+            return $project;
+        }
+
     }
 ?>

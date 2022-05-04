@@ -32,7 +32,7 @@
 
             $mail1=$this->getConnection()->query($sql);
 
-            $flag=false;
+            $flag=true;
 
             for ($i = 0; $i < $mail1->num_rows; $i++) {
                 $row = $mail1->fetch_assoc();

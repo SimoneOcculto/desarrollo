@@ -9,9 +9,20 @@
         // session isn't started
         header('Location: index.php');
     }
+    require "C:/xampp/htdocs/desarrollo/Controller/db_progetto.php";
+    require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
+
+    if(!isset($_SESSION['progetto']))
+    {
+        $dbprogetto=new db_progetto();
+        $progetto=$dbprogetto->getProgettobyid($_GET['id']);
+    }else{
+        $dbprogetto=new db_progetto();
+        $progetto=$dbprogetto->getProgettobyid($_SESSION['progetto']);
+    }
 
     if(isset($_POST['invioT'])) {
-        require "C:/xampp/htdocs/desarrollo/Controller/db_task.php";
+
 
         $nomeTask = $_POST['nome'];
         $descrizioneTask = $_POST['descrizione'];
@@ -129,7 +140,7 @@
                         <?php
                             $date=date_create(date("Y-m-d"));
                             echo "min=\"".date_format($date,"Y-m-d")."\" ";
-                            $date=date_create($_SESSION['dataScad']);
+                            $date=date_create($progetto->getDataScadenzaP());
                            echo "max=\"".date_format($date,"Y-m-d")."\" ";
                            ?>required>
 

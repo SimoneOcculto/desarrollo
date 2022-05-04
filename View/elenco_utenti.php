@@ -119,7 +119,7 @@
                     <div class='riga-button'>
                         <span class='pull-right button-group'>
                             <a class='btn btn-secondary'  href='elenco_progetti.php'>Cancel</a>
-                            <button class='btn btn-primary' type='submit' name='invita'>Invite</button>
+                            <button href='homepage.php' class='btn btn-primary' type='submit' name='invita'>Invite</button>
                         </span>
                     </div>               
                 </div>

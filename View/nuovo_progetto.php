@@ -41,7 +41,6 @@
         $progetto->register($array);
 
         $_SESSION['progetto'] = $progetto->getIdUltimoProgetto($_SESSION['mail'], $dataCrea);
-        $_SESSION['dataScad'] = $dataSca;
 
         header('Location: nuova_task.php');
     }
